@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="ko">
 <head>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,12 +7,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>서류평가</title>
 </head>
 
 <body>
 <%-- 사이드바 시작 --%>
+타임리프 테스트
 <div class="sidebar">
 	<ul>
 		<li><a href="evl_document">서류평가</a></li>
@@ -74,54 +74,6 @@
 					</li>
 				</ul>
 			</div>
-
-			<div class="인원박스">
-				총 담당 인원 : N명 평가완료인원 : N명
-			</div>
-
-			<div class="심사인원박스">
-				담당 과정 선택
-				<table>
-					<tr>
-						<td>No.</td>
-						<td>수험번호</td>
-						<td>성명</td>
-						<td>지원서조회</td>
-						<td>제출서류조회</td>
-						<td>문항1번</td>
-						<td>문항2번</td>
-						<td>합계</td>
-						<td>심사평</td>
-						<td>평가여부</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>20240101</td>
-						<td>홍길동</td>
-						<td><input type="button" value="확인"></td>
-						<td><input type="button" value="확인"></td>
-						<td><input type="text"></td>
-						<td><input type="text"></td>
-						<td>00점</td>
-						<td><input type="text"></td>
-						<td>완료</td>
-					</tr>
-					<c:forEach var="applicant" items="${applicant}">
-						<tr>
-							<td>${applicant.aplNo}</td>
-							<td>${applicant.aplNm}</td>
-							<td><input type="button" value="확인"></td>
-							<td><input type="button" value="확인"></td>
-							<td><input type="text"></td>
-							<td><input type="text"></td>
-							<td>00점</td>
-							<td><input type="text"></td>
-							<td>완료</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-
 		</div>
 	</div>
 </div>
