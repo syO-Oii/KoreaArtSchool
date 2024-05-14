@@ -18,11 +18,10 @@ public class TestController {
         return "테스트용";
     }
 
-    //@GetMapping("/user")
-    @RequestMapping(value="/tester", method = RequestMethod.GET)
-    public String testlistPage(Model model){
-        model.addAttribute("testers", testDAO.list());
-        return "applicant_list";
+    //@GetMapping("/main")
+    @RequestMapping(value="/main")
+    public String mainPage(){
+        return "main";
     }
 
 
