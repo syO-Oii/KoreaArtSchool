@@ -108,8 +108,9 @@
 					</tr>
 					<c:forEach var="applicant" items="${applicant}">
 						<tr>
-							<td>${applicant.aplNo}</td>
-							<td>${applicant.aplNm}</td>
+							<td>${applicant.apl_no}</td>
+							<td>${applicant.apl_Brdt}</td>
+							<td>${applicant.apl_nm}</td>
 							<td><input type="button" value="확인"></td>
 							<td><input type="button" value="확인"></td>
 							<td><input type="text"></td>

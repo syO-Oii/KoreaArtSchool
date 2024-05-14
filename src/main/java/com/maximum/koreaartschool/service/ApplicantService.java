@@ -18,7 +18,7 @@ public class ApplicantService {
     }
 
     @Transactional
-    public List<Applicant> getApplicantListAll(){
+    public List<Applicant> getAllApplicant(){
         return applicantMapper.selectAll();
     }
 }

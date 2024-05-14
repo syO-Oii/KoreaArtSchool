@@ -24,14 +24,8 @@ public class EvaluatorController {
 
     @GetMapping("/evl_document")
     public String evlDocument(Model model) {
-        System.out.println("불러오기 테스트");
-        List<Applicant> applicants = applicantService.getApplicantListAll();
-        model.addAttribute("applicant", applicants);
-        for (Applicant applicant : applicants) {
-            
-            System.out.println(applicant);
-        }
-
+        List<Applicant> allApplicant = applicantService.getAllApplicant();
+        model.addAttribute("applicant", allApplicant);
         return "evaluator/document";
     }
     @GetMapping("/evl_practical")

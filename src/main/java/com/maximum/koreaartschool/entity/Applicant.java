@@ -18,24 +18,24 @@ import java.util.Date;
 public class Applicant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer aplNo;      // 지원자 고유번호
-    private Integer rcrtNo;     // 모집전형 번호
-    private String dept;        // 계열코드
-    private String deptCd;      // 학과코드
-    private String pscpSe;      // 전형코드
-    private String aplPw;       // 기수코드
-    private char firstPassYn;   // 1단계 합격여부
-    private char secondPassYn;  // 2단계 합격여부
-    private char finalPassYn;   // 최종 합격여부
-    private String pswd;        // 비밀번호
-    private char aplNm;         // 지원자명
-    private char aplBrdt;       // 지원자 생년워일
-    private String gndrCd;      // 성별코드
-    private String addr;        // 주소
-    private String addrDetail;  // 상세주소
-    private String aplEml;      // 이메일
-    private String aplTel;      // 연락처
-    private String lastAcbg;    // 최종학력
-    private String aplImg;      // 증명사진
-    private Date aplCrtDt;    // 지원자 정보생성일시
+    private Integer apl_no;          // 지원자 고유번호
+    private Integer rcrt_no;         // 모집전형 번호
+    private String dept;            // 계열코드
+    private String dept_cd;          // 학과코드
+    private String pscp_se;          // 전형코드
+    private String apl_pw;           // 기수코드
+    private String first_pass_yn;     // 1단계 합격여부
+    private String second_pass_yn;    // 2단계 합격여부
+    private String final_pass_yn;     // 최종 합격여부
+    private String pswd;            // 비밀번호
+    private String apl_nm;           // 지원자명
+    private String apl_Brdt;         // 지원자 생년워일
+    private String gndr_Cd;          // 성별코드
+    private String addr;            // 주소
+    private String addr_Detail;      // 상세주소
+    private String apl_Eml;          // 이메일
+    private String apl_Tel;          // 연락처
+    private String last_Acbg;        // 최종학력
+    private String apl_Img;          // 증명사진
+    private Date apl_Crt_Dt;          // 지원자 정보생성일시
 }
