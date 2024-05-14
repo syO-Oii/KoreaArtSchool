@@ -11,7 +11,7 @@
 무사히 잘 만들었다!!
 
 ## 🛠️사용된 도구
-* Spring boot 2.6.5
+* Spring boot 3.2.5
 * Gradle ...
 * IDE : IntelliJ IDEA
 * DB : MySQL
