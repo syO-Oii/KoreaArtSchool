@@ -8,33 +8,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>서류평가</title>
-
-
-	<script>
-	function calculateTotal(id) {
-		var score1 = parseInt(document.getElementById(id).value) || 0;
-		var index = id.split('_')[1];
-		var score2 = parseInt(document.getElementById('score2_' + index).value) || 0;
-		var total = score1 + score2;
-		document.getElementById('totalScore_' + index).textContent = total + '점';
-	}
-
-	function evlChecked(id) {
-		var isChecked = document.getElementById(id).checked;
-		var index = id.split('_')[1];
-		var evlCheckedElement = document.getElementById('evlChecked_' + index);
-		if (isChecked) {
-			evlCheckedElement.textContent = "평가완료";
-		} else {
-			evlCheckedElement.textContent = "진행중";
-		}
-	}
-</script>
-
 </head>
 
 <body>
+
 <%-- 사이드바 시작 --%>
+
 <div class="sidebar">
 	<ul>
 		<li><a href="evl_document">서류평가</a></li>
@@ -43,6 +22,7 @@
 		<li><a href="/">메인메뉴</a></li>
 	</ul>
 </div>
+
 <%-- 사이드바 종료 --%>
 
 <%-- 헤더 시작 --%>
@@ -159,5 +139,24 @@
 <%-- 푸터 종료 --%>
 
 </body>
+<script>
+	function calculateTotal(id) {
+		var score1 = parseInt(document.getElementById(id).value) || 0;
+		var index = id.split('_')[1];
+		var score2 = parseInt(document.getElementById('score2_' + index).value) || 0;
+		var total = score1 + score2;
+		document.getElementById('totalScore_' + index).textContent = total + '점';
+	}
 
+	function evlChecked(id) {
+		var isChecked = document.getElementById(id).checked;
+		var index = id.split('_')[2]; // 'apl_ck_1'와 같은 형식에서 인덱스를 가져오기 위해 split의 인덱스 수정
+		var evlCheckedElement = document.getElementById('evlChecked_' + index);
+		if (isChecked) {
+			evlCheckedElement.textContent = "평가완료";
+		} else {
+			evlCheckedElement.textContent = "평가중";
+		}
+	}
+</script>
 </html>
