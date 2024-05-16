@@ -21,4 +21,13 @@ public class ApplicantService {
     public List<Applicant> getAllApplicant(){
         return applicantMapper.selectAll();
     }
+
+    // 평가위원별 대상자 평가
+    @Transactional
+    public List<Applicant> getSelectedApplicant(String year, String rcrt, String dept, String deptNo){
+        return applicantMapper.selectApplicantByOption(year, rcrt, dept, deptNo);
+    }
+
+
+    ;
 }
