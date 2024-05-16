@@ -8,6 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface ApplicantMapper {
-    @Select("select * from applicant")
+    @Select("select * from APPLICANT")
     List<Applicant> selectAll();
 }

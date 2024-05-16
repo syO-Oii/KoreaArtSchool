@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>서류평가</title>
 </head>
 
@@ -84,7 +83,6 @@
 				<table>
 					<tr>
 						<td>No.</td>
-						<td>수험번호</td>
 						<td>성명</td>
 						<td>지원서조회</td>
 						<td>제출서류조회</td>
@@ -96,7 +94,6 @@
 					</tr>
 					<tr>
 						<td>1</td>
-						<td>20240101</td>
 						<td>홍길동</td>
 						<td><input type="button" value="확인"></td>
 						<td><input type="button" value="확인"></td>
@@ -109,7 +106,6 @@
 					<c:forEach var="applicant" items="${applicant}">
 						<tr>
 							<td>${applicant.apl_no}</td>
-							<td>${applicant.apl_Brdt}</td>
 							<td>${applicant.apl_nm}</td>
 							<td><input type="button" value="확인"></td>
 							<td><input type="button" value="확인"></td>
