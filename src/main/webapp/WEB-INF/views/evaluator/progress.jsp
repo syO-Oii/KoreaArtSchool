@@ -520,35 +520,35 @@
                         <h5 class="card-title"></h5>
 
                         <!-- General Form Elements -->
-                        <form>
+                        <form action="/evaluator/selectProgress" method="get">
                             <div class="row mb-3">
                                 <label class="col-sm-1 col-form-label">학과 선택</label>
                                 <div class="col-sm-2">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select name="department" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
-                                        <option value="1">시각디자인</option>
-                                        <option value="2">무대영화미술</option>
-                                        <option value="3">연기</option>
-                                        <option value="3">모델</option>
-                                        <option value="3">보컬</option>
-                                        <option value="3">싱어송라이터</option>
+                                        <option value="10">시각디자인</option>
+                                        <option value="20">무대영화미술</option>
+                                        <option value="30">연기</option>
+                                        <option value="40">모델</option>
+                                        <option value="50">보컬</option>
+                                        <option value="60">싱어송라이터</option>
                                     </select>
                                 </div>
                                 <label class="col-sm-1 col-form-label">전형 선택</label>
                                 <div class="col-sm-2">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select name="recruitment" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
-                                        <option value="1">일반전형</option>
-                                        <option value="2">특기생전형</option>
+                                        <option value="10">일반전형</option>
+                                        <option value="20">특기생전형</option>
                                     </select>
                                 </div>
                                 <label class="col-sm-1 col-form-label">평가 단계</label>
                                 <div class="col-sm-2">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select name="stage" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
-                                        <option value="1">서류</option>
-                                        <option value="2">실기</option>
-                                        <option value="3">면접</option>
+                                        <option value="10">서류</option>
+                                        <option value="20">실기</option>
+                                        <option value="30">면접</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
@@ -571,7 +571,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">이름</th>
                                 <th scope="col">성별</th>
                                 <th scope="col">생년월일</th>
@@ -583,17 +582,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="applicant" items="${applicantList}">
+                            <c:forEach var="applicants" items="${applicants}">
                             <tr>
-                                <th scope="row">${applicant.apl_no}</th>
-                                <td>${applicant.apl_nm}</td>
-                                <td>${applicant.gndr_cd}</td>
-                                <td>${applicant.dept_cd}</td>
-                                <td>${applicant.rcrt_no}</td>
-                                <td>${applicant.dept_cd}</td>
-                                <td>${applicant.dept_cd}</td>
-                                <td>${applicant.dept_cd}</td>
-                                <td>${applicant.dept_cd}</td>
+                                <td>${applicants.apl_nm}</td>
+                                <td>
+                                    <c:if test="${applicants.gndr_cd == 10}">남</c:if>
+                                    <c:if test="${applicants.gndr_cd == 20}">여</c:if>
+                                </td>
+                                <td>${applicants.apl_brdt}</td>
+                                <td>
+                                    <c:if test="${applicants.dept_cd == 10}">시각디자인</c:if>
+                                    <c:if test="${applicants.dept_cd == 20}">무대영화미술</c:if>
+                                    <c:if test="${applicants.dept_cd == 30}">연기</c:if>
+                                    <c:if test="${applicants.dept_cd == 40}">모델</c:if>
+                                    <c:if test="${applicants.dept_cd == 50}">보컬</c:if>
+                                    <c:if test="${applicants.dept_cd == 60}">싱어송라이터</c:if>
+                                </td>
+                                <td>
+                                    <c:if test="${applicants.rcrt_cd == 10}">일반전형</c:if>
+                                    <c:if test="${applicants.rcrt_cd == 20}">특기자전형</c:if>
+                                </td>
+                                <td>
+                                    <c:if test="${applicants.evl_stg_cd == 10}">서류</c:if>
+                                    <c:if test="${applicants.evl_stg_cd == 20}">실기</c:if>
+                                    <c:if test="${applicants.evl_stg_cd == 30}">면접</c:if>
+                                </td>
+                                <td>${applicants.is_evaluated}</td>
+                                <td>${applicants.score}</td>
                             </tr>
                             </c:forEach>
                             </tbody>

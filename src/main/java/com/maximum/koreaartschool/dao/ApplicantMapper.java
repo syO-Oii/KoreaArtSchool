@@ -1,7 +1,9 @@
 package com.maximum.koreaartschool.dao;
 
 import com.maximum.koreaartschool.dto.Applicant;
+import com.maximum.koreaartschool.dto.ApplicantProcess;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -11,6 +13,7 @@ public interface ApplicantMapper {
 
     @Select("select count(*) from applicant")
     int count();
-    @Select("select * from applicant")
-    List<Applicant> selectAllApplicant();
+    List<ApplicantProcess> selectAllApplicants();
+
+    List<ApplicantProcess> findApplicants(String departmentId, String recruitmentId, String stageId);
 }

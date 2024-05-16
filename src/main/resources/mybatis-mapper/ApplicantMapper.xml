@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.maximum.koreaartschool.dao.ApplicantMapper">
+
+    <select id="selectAllApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantProcess">
+        SELECT sa.APL_NM, sa.GNDR_CD, sa.APL_BRDT, sa.DEPT_CD, sa.RCRT_CD, sa.EVL_STG_CD,
+               ae.IS_EVALUATED, ae.SCORE
+        FROM STAGE_APPLICANT sa
+                 INNER JOIN APPLICANT_EVALUATE ae ON sa.EVL_STG_NO = ae.EVL_STG_NO
+            AND sa.RCRT_NO = ae.RCRT_NO
+            AND sa.APL_NO = ae.APL_NO
+    </select>
+
+    <select id="findApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantProcess">
+        SELECT sa.APL_NM, sa.GNDR_CD, sa.APL_BRDT, sa.DEPT_CD, sa.RCRT_CD, sa.EVL_STG_CD,
+               ae.IS_EVALUATED, ae.SCORE
+        FROM STAGE_APPLICANT sa
+                 INNER JOIN APPLICANT_EVALUATE ae ON sa.EVL_STG_NO = ae.EVL_STG_NO
+            AND sa.RCRT_NO = ae.RCRT_NO
+            AND sa.APL_NO = ae.APL_NO
+        WHERE sa.DEPT_CD=#{departmentId} AND sa.RCRT_CD=#{recruitmentId} AND sa.EVL_STG_CD=#{stageId};
+    </select>
+
+</mapper>
