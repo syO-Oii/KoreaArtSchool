@@ -1,6 +1,7 @@
 package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.entity.Applicant;
+import com.maximum.koreaartschool.entity.EvaluateScore;
 import com.maximum.koreaartschool.service.ApplicantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +28,6 @@ public class EvaluatorController {
     /* 서류평가 페이지 */
     @GetMapping("/evl_document")
     public String evlDocument(Model model) {
-
         List<Applicant> allApplicant = applicantService.getAllApplicant();  // 전체 지원자 명단 추출
         //List<Applicant> getEvaluatorStageApplicant = applicantService.getEvaluatorStageApplicant(evaluatorNum, evaluateStage, applicantNum);
         model.addAttribute("applicant", allApplicant);          // model에 전체 지원자 명단 추가
@@ -42,8 +42,15 @@ public class EvaluatorController {
             @RequestParam(value="dept", required = false)String dept,
             @RequestParam(value="deptNo", required = false)String deptNo
     ){
+        if(rcrt.equals("0") && deptNo.equals("0")){
+            List<Applicant> applicantList = applicantService.getAllApplicant();
+            model.addAttribute("applicant", applicantList);
+        } else if (rcrt.equals("0") && !deptNo.equals("0")){
+            List<EvaluateScore> evaluateScoreList = applicantService.getApplicantByDeptno(Integer.parseInt(deptNo));
+            model.addAttribute("applicant", evaluateScoreList);
+        }
         // 옵션 선택에 의한 지원자 명단
-        List<Applicant> selectedApplicant = applicantService.getSelectedApplicant(year, rcrt, dept, deptNo);
+        //List<EvaluateScore> selectedApplicant = applicantService.getSelectedApplicant(year, rcrt, dept, deptNo);
 
 
         return "evaluator/document";

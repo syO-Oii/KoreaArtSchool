@@ -4,18 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.maximum.koreaartschool.repository.ApplicantMapper">
-
-<select id="selectApplicantByOption" resultType="com.maximum.koreaartschool.repository.ApplicantMapper">
-        SELECT sa.APL_NM, sa.GNDR_CD, sa.APL_BRDT, sa.DEPT_CD, sa.RCRT_CD, sa.EVL_STG_CD,
-        ae.IS_EVALUATED, ae.SCORE
-        FROM STAGE_APPLICANT sa
-        JOIN APPLICANT_EVALUATE ae ON sa.EVL_STG_NO = ae.EVL_STG_NO
-        AND sa.RCRT_NO = ae.RCRT_NO
-        AND sa.APL_NO = ae.APL_NO
-        WHERE sa.DEPT_CD=#{deptNo} AND sa.RCRT_CD=#{rcrt} AND sa.EVL_STG_CD=#{10};
+<select id="selectAll" resultType="com.maximum.koreaartschool.entity.Applicant">
+    select *
+    from APPLICANT;
 </select>
 
-        List<Applicant> selectApplicantByOption(String year,String rcrt,String dept,String deptNo);
 
+<select id="selectApplicantByOption" resultType="com.maximum.koreaartschool.entity.EvaluateScore">
+    SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
+    FROM EVALUATE_SCORE AS ES
+    LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
+    ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
+    AND ES.RCRT_NO = APL_EVL.RCRT_NO
+    AND ES.APL_NO = APL_EVL.APL_NO
+    WHERE ES.RCRT_NO = #{rcrt} AND APL_EVL.DEPT_CD = #{deptNo};
+</select>
+
+    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.entity.EvaluateScore">
+    SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
+    FROM EVALUATE_SCORE AS ES
+    LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
+    ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
+    AND ES.RCRT_NO = APL_EVL.RCRT_NO
+    AND ES.APL_NO = APL_EVL.APL_NO
+    WHERE APL_EVL.DEPT_CD = #{deptNo};
+    </select>
 
 </mapper>
