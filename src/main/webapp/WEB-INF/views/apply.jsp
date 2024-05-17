@@ -118,7 +118,7 @@
                                         <label for="gender" class="col-sm-2 col-form-label">성별</label>
                                         <div class="col-sm-10">
                                             <div class="row">
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" id="male" name="gender" value="남자" checked="checked">
                                                         <label class="form-check-label" for="male">남자</label>
