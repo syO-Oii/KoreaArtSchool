@@ -1,11 +1,7 @@
-package com.maximum.koreaartschool.entity;
+package com.maximum.koreaartschool.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
-
 import java.util.Date;
 
 @Builder
@@ -14,9 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
 public class EvaluateScore {
-    @Id
     private Integer EVL_STG_NO;     // 평가단계 번호
     private Integer RCRT_NO;        // 모집 번호
     private Integer EVL_NO;         // 평가위원 번호

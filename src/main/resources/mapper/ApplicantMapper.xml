@@ -3,14 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.maximum.koreaartschool.repository.ApplicantMapper">
-    <select id="selectAll" resultType="com.maximum.koreaartschool.entity.Applicant">
+<mapper namespace="com.maximum.koreaartschool.dao.ApplicantMapper">
+
+    <select id="selectAll" resultType="com.maximum.koreaartschool.dto.Applicant">
         select *
         from APPLICANT;
     </select>
 
-
-    <select id="selectApplicantByOption" resultType="com.maximum.koreaartschool.entity.EvaluateScore">
+    <select id="selectApplicantByOption" resultType="com.maximum.koreaartschool.dto.EvaluateScore">
         SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
         FROM EVALUATE_SCORE AS ES
                  LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
@@ -20,7 +20,7 @@
         WHERE ES.RCRT_NO = #{rcrt} AND APL_EVL.DEPT_CD = #{deptNo};
     </select>
 
-    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.entity.EvaluateScore">
+    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.dto.EvaluateScore">
         SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
         FROM EVALUATE_SCORE AS ES
                  LEFT JOIN APPLICANT_EVALUATE AS APL_EVL

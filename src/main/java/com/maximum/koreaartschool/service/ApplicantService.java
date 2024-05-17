@@ -1,15 +1,9 @@
 package com.maximum.koreaartschool.service;
 
-<<<<<<< HEAD
 import com.maximum.koreaartschool.dao.ApplicantMapper;
 import com.maximum.koreaartschool.dto.Applicant;
-import com.maximum.koreaartschool.dto.ApplicantProcess;
-=======
-import com.maximum.koreaartschool.entity.Applicant;
-import com.maximum.koreaartschool.entity.EvaluateScore;
-import com.maximum.koreaartschool.repository.ApplicantMapper;
+import com.maximum.koreaartschool.dto.EvaluateScore;
 import jakarta.transaction.Transactional;
->>>>>>> origin/🛠️develop
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +11,9 @@ import java.util.List;
 
 @Service
 public class ApplicantService {
-<<<<<<< HEAD
 
     @Autowired
     private ApplicantMapper applicantMapper;
-
-=======
-    private final ApplicantMapper applicantMapper;
-
-    @Autowired
-    public ApplicantService(ApplicantMapper applicantMapper) {
-        this.applicantMapper = applicantMapper;
-    }
 
     @Transactional
     public List<Applicant> getAllApplicant(){
@@ -46,6 +31,4 @@ public class ApplicantService {
         return applicantMapper.selectApplicantByDeptno(deptNo);
     }
 
-    ;
->>>>>>> origin/🛠️develop
 }
