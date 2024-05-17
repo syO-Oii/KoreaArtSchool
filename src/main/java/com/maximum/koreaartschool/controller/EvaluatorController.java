@@ -21,7 +21,7 @@ public class EvaluatorController {
     private final ApplicantService applicantService;
 
     /* 평가위원 페이지 초기 화면 */
-    @GetMapping("/")
+    @GetMapping("/123")
     public String index(){
         return "index";
     }
