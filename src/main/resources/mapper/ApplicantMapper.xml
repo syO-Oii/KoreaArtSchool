@@ -2,31 +2,51 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++
 
-<mapper namespace="com.maximum.koreaartschool.repository.ApplicantMapper">
-    <select id="selectAll" resultType="com.maximum.koreaartschool.entity.Applicant">
+<mapper namespace="com.maximum.koreaartschool.dao.ApplicantMapper">
+    <select id="selectAll" resultType="com.maximum.koreaartschool.dto.ApplicantDTO">
         select *
         from APPLICANT;
     </select>
 
 
-    <select id="selectApplicantByOption" resultType="com.maximum.koreaartschool.entity.EvaluateScore">
+    <select id="selectApplicantByOption" resultType="com.maximum.koreaartschool.dto.EvaluateScoreDto">
         SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
         FROM EVALUATE_SCORE AS ES
-                 LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
-                           ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
-                               AND ES.RCRT_NO = APL_EVL.RCRT_NO
-                               AND ES.APL_NO = APL_EVL.APL_NO
+        LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
+        ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
+        AND ES.RCRT_NO = APL_EVL.RCRT_NO
+        AND ES.APL_NO = APL_EVL.APL_NO
         WHERE ES.RCRT_NO = #{rcrt} AND APL_EVL.DEPT_CD = #{deptNo};
     </select>
 
-    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.entity.EvaluateScore">
-        SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
+    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.dto.EvaluateScoreDto">
+        /*SELECT
+            ES.EVL_STG_NO,
+            ES.RCRT_NO,
+            ES.EVL_NO,
+            ES.APL_NO,
+            APL_EVL.APL_NM,
+            APL_EVL.DEPT_CD,
+            MAX(CASE WHEN ES.EVLQ_NO = 1 THEN ES.SCORE END) AS SCORE1,
+            MAX(CASE WHEN ES.EVLQ_NO = 2 THEN ES.SCORE END) AS SCORE2
+        FROM
+            EVALUATE_SCORE AS ES
+                LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
+                          ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
+                              AND ES.RCRT_NO = APL_EVL.RCRT_NO
+                              AND ES.APL_NO = APL_EVL.APL_NO
+        WHERE
+            APL_EVL.DEPT_CD = #{deptNo};*/
+
+
+        SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE, APL_EVL.DEPT_CD
         FROM EVALUATE_SCORE AS ES
-                 LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
-                           ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
-                               AND ES.RCRT_NO = APL_EVL.RCRT_NO
-                               AND ES.APL_NO = APL_EVL.APL_NO
+        LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
+        ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
+        AND ES.RCRT_NO = APL_EVL.RCRT_NO
+        AND ES.APL_NO = APL_EVL.APL_NO
         WHERE APL_EVL.DEPT_CD = #{deptNo};
     </select>
 

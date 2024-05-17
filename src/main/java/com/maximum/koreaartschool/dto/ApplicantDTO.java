@@ -1,4 +1,4 @@
-package com.maximum.koreaartschool.entity;
+package com.maximum.koreaartschool.dto;
 
 import jakarta.persistence.Entity;
 import lombok.*;
@@ -14,8 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
-public class Applicant {
+public class ApplicantDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer apl_no;          // 지원자 고유번호
@@ -24,7 +23,8 @@ public class Applicant {
     private String dept_cd;          // 학과코드
     private String pscp_se;          // 전형코드
     private String apl_pw;           // 기수코드
-    private String first_pass_yn;     // 1단계 합격여부
+    private String first_pass_yn;     // 1단
+    // 계 합격여부
     private String second_pass_yn;    // 2단계 합격여부
     private String final_pass_yn;     // 최종 합격여부
     private String pswd;            // 비밀번호

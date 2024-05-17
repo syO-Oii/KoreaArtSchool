@@ -1,11 +1,10 @@
 package com.maximum.koreaartschool.controller;
 
-import com.maximum.koreaartschool.entity.Applicant;
-import com.maximum.koreaartschool.entity.EvaluateScore;
+import com.maximum.koreaartschool.dto.ApplicantDTO;
+import com.maximum.koreaartschool.dto.EvaluateScoreDto;
 import com.maximum.koreaartschool.service.ApplicantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +27,7 @@ public class EvaluatorController {
     /* 서류평가 페이지 */
     @GetMapping("/evl_document")
     public String evlDocument(Model model) {
-        List<Applicant> allApplicant = applicantService.getAllApplicant();  // 전체 지원자 명단 추출
+        List<ApplicantDTO> allApplicant = applicantService.getAllApplicant();  // 전체 지원자 명단 추출
         //List<Applicant> getEvaluatorStageApplicant = applicantService.getEvaluatorStageApplicant(evaluatorNum, evaluateStage, applicantNum);
         model.addAttribute("applicant", allApplicant);          // model에 전체 지원자 명단 추가
         return "evaluator/document";
@@ -43,10 +42,10 @@ public class EvaluatorController {
             @RequestParam(value="deptNo", required = false)String deptNo
     ){
         if(rcrt.equals("0") && deptNo.equals("0")){
-            List<Applicant> applicantList = applicantService.getAllApplicant();
+            List<ApplicantDTO> applicantList = applicantService.getAllApplicant();
             model.addAttribute("applicant", applicantList);
         } else if (rcrt.equals("0") && !deptNo.equals("0")){
-            List<EvaluateScore> evaluateScoreList = applicantService.getApplicantByDeptno(Integer.parseInt(deptNo));
+            List<EvaluateScoreDto> evaluateScoreList = applicantService.getApplicantByDeptno(Integer.parseInt(deptNo));
             model.addAttribute("applicant", evaluateScoreList);
         }
         // 옵션 선택에 의한 지원자 명단
