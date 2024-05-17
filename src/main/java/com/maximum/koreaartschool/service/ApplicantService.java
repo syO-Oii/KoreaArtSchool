@@ -14,11 +14,4 @@ public class ApplicantService {
     @Autowired
     private ApplicantMapper applicantMapper;
 
-    public List<ApplicantProcess> getAllApplicants() {
-        return applicantMapper.selectAllApplicants();
-    }
-
-    public List<ApplicantProcess> getApplicantsBySelect(String departmentId, String recruitmentId, String stageId) {
-        return applicantMapper.findApplicants(departmentId, recruitmentId, stageId);
-    }
 }

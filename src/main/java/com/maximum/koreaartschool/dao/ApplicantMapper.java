@@ -13,7 +13,5 @@ public interface ApplicantMapper {
 
     @Select("select count(*) from applicant")
     int count();
-    List<ApplicantProcess> selectAllApplicants();
 
-    List<ApplicantProcess> findApplicants(String departmentId, String recruitmentId, String stageId);
 }

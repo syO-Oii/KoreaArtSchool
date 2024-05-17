@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,8 +47,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-            <img src="assets/img/logo.png" alt="">
+        <a href="/evaluator" class="logo d-flex align-items-center">
+            <img src="/assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -163,7 +163,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                            <img src="/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                             <div>
                                 <h4>Maria Hudson</h4>
                                 <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -177,7 +177,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                            <img src="/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                             <div>
                                 <h4>Anna Nelson</h4>
                                 <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -191,7 +191,7 @@
 
                     <li class="message-item">
                         <a href="#">
-                            <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                            <img src="/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                             <div>
                                 <h4>David Muldon</h4>
                                 <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -214,7 +214,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
                     <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                 </a><!-- End Profile Iamge Icon -->
 
@@ -278,116 +278,24 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/evaluator/progress">
+            <a class="nav-link " href="/evaluator/progress">
                 <i class="bi bi-grid"></i>
                 <span>평가진행현황</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-menu-button-wide"></i>
+                <span>Components</span>
             </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="components-alerts.html">
-                        <i class="bi bi-circle"></i><span>Alerts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-accordion.html">
-                        <i class="bi bi-circle"></i><span>Accordion</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-badges.html">
-                        <i class="bi bi-circle"></i><span>Badges</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-breadcrumbs.html">
-                        <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-buttons.html">
-                        <i class="bi bi-circle"></i><span>Buttons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-cards.html">
-                        <i class="bi bi-circle"></i><span>Cards</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-carousel.html">
-                        <i class="bi bi-circle"></i><span>Carousel</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-list-group.html">
-                        <i class="bi bi-circle"></i><span>List group</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-modal.html">
-                        <i class="bi bi-circle"></i><span>Modal</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tabs.html">
-                        <i class="bi bi-circle"></i><span>Tabs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-pagination.html">
-                        <i class="bi bi-circle"></i><span>Pagination</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-progress.html">
-                        <i class="bi bi-circle"></i><span>Progress</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-spinners.html">
-                        <i class="bi bi-circle"></i><span>Spinners</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tooltips.html">
-                        <i class="bi bi-circle"></i><span>Tooltips</span>
-                    </a>
-                </li>
-            </ul>
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-journal-text"></i>
+                <span>Forms</span>
             </a>
-            <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="forms-elements.html" class="active">
-                        <i class="bi bi-circle"></i><span>Form Elements</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-layouts.html">
-                        <i class="bi bi-circle"></i><span>Form Layouts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-editors.html">
-                        <i class="bi bi-circle"></i><span>Form Editors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-validation.html">
-                        <i class="bi bi-circle"></i><span>Form Validation</span>
-                    </a>
-                </li>
-            </ul>
         </li><!-- End Forms Nav -->
 
         <li class="nav-item">
@@ -583,33 +491,33 @@
                             </thead>
                             <tbody>
                             <c:forEach var="applicants" items="${applicants}">
-                            <tr>
-                                <td>${applicants.apl_nm}</td>
-                                <td>
-                                    <c:if test="${applicants.gndr_cd == 10}">남</c:if>
-                                    <c:if test="${applicants.gndr_cd == 20}">여</c:if>
-                                </td>
-                                <td>${applicants.apl_brdt}</td>
-                                <td>
-                                    <c:if test="${applicants.dept_cd == 10}">시각디자인</c:if>
-                                    <c:if test="${applicants.dept_cd == 20}">무대영화미술</c:if>
-                                    <c:if test="${applicants.dept_cd == 30}">연기</c:if>
-                                    <c:if test="${applicants.dept_cd == 40}">모델</c:if>
-                                    <c:if test="${applicants.dept_cd == 50}">보컬</c:if>
-                                    <c:if test="${applicants.dept_cd == 60}">싱어송라이터</c:if>
-                                </td>
-                                <td>
-                                    <c:if test="${applicants.rcrt_cd == 10}">일반전형</c:if>
-                                    <c:if test="${applicants.rcrt_cd == 20}">특기자전형</c:if>
-                                </td>
-                                <td>
-                                    <c:if test="${applicants.evl_stg_cd == 10}">서류</c:if>
-                                    <c:if test="${applicants.evl_stg_cd == 20}">실기</c:if>
-                                    <c:if test="${applicants.evl_stg_cd == 30}">면접</c:if>
-                                </td>
-                                <td>${applicants.is_evaluated}</td>
-                                <td>${applicants.score}</td>
-                            </tr>
+                                <tr>
+                                    <td>${applicants.apl_nm}</td>
+                                    <td>
+                                        <c:if test="${applicants.gndr_cd == 10}">남</c:if>
+                                        <c:if test="${applicants.gndr_cd == 20}">여</c:if>
+                                    </td>
+                                    <td>${applicants.apl_brdt}</td>
+                                    <td>
+                                        <c:if test="${applicants.dept_cd == 10}">시각디자인</c:if>
+                                        <c:if test="${applicants.dept_cd == 20}">무대영화미술</c:if>
+                                        <c:if test="${applicants.dept_cd == 30}">연기</c:if>
+                                        <c:if test="${applicants.dept_cd == 40}">모델</c:if>
+                                        <c:if test="${applicants.dept_cd == 50}">보컬</c:if>
+                                        <c:if test="${applicants.dept_cd == 60}">싱어송라이터</c:if>
+                                    </td>
+                                    <td>
+                                        <c:if test="${applicants.rcrt_cd == 10}">일반전형</c:if>
+                                        <c:if test="${applicants.rcrt_cd == 20}">특기자전형</c:if>
+                                    </td>
+                                    <td>
+                                        <c:if test="${applicants.evl_stg_cd == 10}">서류</c:if>
+                                        <c:if test="${applicants.evl_stg_cd == 20}">실기</c:if>
+                                        <c:if test="${applicants.evl_stg_cd == 30}">면접</c:if>
+                                    </td>
+                                    <td>${applicants.is_evaluated}</td>
+                                    <td>${applicants.score}</td>
+                                </tr>
                             </c:forEach>
                             </tbody>
                         </table>
@@ -640,17 +548,17 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/chart.js/chart.umd.js"></script>
-<script src="assets/vendor/echarts/echarts.min.js"></script>
-<script src="assets/vendor/quill/quill.js"></script>
-<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="assets/vendor/tinymce/tinymce.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="/assets/vendor/echarts/echarts.min.js"></script>
+<script src="/assets/vendor/quill/quill.js"></script>
+<script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="/assets/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
 
 </body>
 

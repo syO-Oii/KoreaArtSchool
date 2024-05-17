@@ -23,9 +23,14 @@ public class EvaluatorController {
     @Autowired
     ApplicantService applicantService;
 
+    @GetMapping("")
+    public String main() {
+        return "/evaluator/main";
+    }
+
     @GetMapping("/progress")
     public String list(Model model) {
-        List<ApplicantProcess> applicants = applicantService.getAllApplicants();
+        List<ApplicantProcess> applicants = evaluatorService.getAllApplicants();
         model.addAttribute("applicants", applicants);
         return "/evaluator/progress";
     }
@@ -35,7 +40,7 @@ public class EvaluatorController {
                                 @RequestParam("recruitment") String recruitmentId,
                                 @RequestParam("stage") String stageId,
                                 Model model) {
-        List<ApplicantProcess> applicants = applicantService.getApplicantsBySelect(departmentId, recruitmentId, stageId);
+        List<ApplicantProcess> applicants = evaluatorService.getApplicantsBySelect(departmentId, recruitmentId, stageId);
         model.addAttribute("applicants", applicants);
         return "/evaluator/progress";
     }
