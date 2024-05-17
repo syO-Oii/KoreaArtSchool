@@ -15,7 +15,11 @@
 
 body {
   font-family: "Open Sans", sans-serif;
+<<<<<<< HEAD
   background: #f6f9ff;
+=======
+  background:#000000;
+>>>>>>> origin/🛠️develop
   color: #444444;
 }
 
@@ -42,7 +46,13 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
+<<<<<<< HEAD
   margin-top: 60px;
+=======
+
+  /* 카드위 여백 */
+  margin-top: 40px;   
+>>>>>>> origin/🛠️develop
   padding: 20px 30px;
   transition: all 0.3s;
 }
@@ -100,6 +110,12 @@ h6 {
   opacity: 1;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/🛠️develop
 /*--------------------------------------------------------------
 # Override some default Bootstrap stylings
 --------------------------------------------------------------*/
@@ -218,6 +234,10 @@ h6 {
 
 /* Card */
 .card {
+<<<<<<< HEAD
+=======
+  margin: 0 auto; /* 수평 가운데 정렬 */
+>>>>>>> origin/🛠️develop
   margin-bottom: 30px;
   border: none;
   border-radius: 5px;
@@ -246,8 +266,22 @@ h6 {
   font-weight: 400;
 }
 
+<<<<<<< HEAD
 .card-body {
   padding: 0 20px 20px 20px;
+=======
+.form-control {
+  max-width: 100%; /* 입력 필드의 최대 너비를 부모 요소에 맞게 설정합니다. */
+  width: 100%; /* 입력 필드의 너비를 부모 요소에 맞게 설정합니다. */
+  box-sizing: border-box; /* 입력 필드의 너비가 border와 padding을 포함하도록 설정합니다. */
+}
+
+.card-body {
+  /* 위, 오른쪽, 아래, 왼쪽 */
+  padding:0px 30px 20px 30px;
+  overflow-wrap: break-word; /* 글자가 요소를 벗어날 때 줄 바꿈을 수행하여 요소 크기를 유지합니다. */
+  word-wrap: break-word; /* 오래된 브라우저에서도 동일한 효과를 제공합니다. */
+>>>>>>> origin/🛠️develop
 }
 
 .card-img-overlay {
@@ -629,11 +663,20 @@ h6 {
   background-color: #aab7cf;
 }
 
+<<<<<<< HEAD
 @media (min-width: 1200px) {
 
   #main,
   #footer {
     margin-left: 300px;
+=======
+@media (min-width: 1200px) {  
+  /* 카드 치우친 원인............. */
+
+  #main,
+  #footer {
+    margin-left: 0px;
+>>>>>>> origin/🛠️develop
   }
 }
 
@@ -1214,7 +1257,11 @@ h6 {
 # Footer
 --------------------------------------------------------------*/
 .footer {
+<<<<<<< HEAD
   padding: 20px 0;
+=======
+  padding: 30px 0;
+>>>>>>> origin/🛠️develop
   font-size: 14px;
   transition: all 0.3s;
   border-top: 1px solid #cddfff;
