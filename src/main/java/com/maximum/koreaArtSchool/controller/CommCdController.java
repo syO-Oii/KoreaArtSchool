@@ -36,7 +36,7 @@ public class CommCdController {
 }
 
 /*
-API 엔드포인트에 HTTP 요청을 보내서 구현을 테스트
+API 엔드포인트에 HTTP 요청을 보내서 구현 테스트
 
 01. 모든 공통 코드 가져오기
 GET /api/commcd
