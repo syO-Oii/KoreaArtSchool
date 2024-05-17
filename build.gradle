@@ -4,12 +4,15 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.4'
 }
 
+
 group = 'com.maximum'
 version = '0.0.1-SNAPSHOT'
+
 
 java {
 	sourceCompatibility = '17'
 }
+
 
 configurations {
 	compileOnly {
@@ -17,15 +20,17 @@ configurations {
 	}
 }
 
+
 repositories {
 	mavenCentral()
 }
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	// jsp 사용할꺼면 막아야함
-    //implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//  implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	compileOnly 'org.projectlombok:lombok'
@@ -46,7 +51,10 @@ dependencies {
 	implementation 'org.hibernate:hibernate-core:6.4.1.Final'
 	// JDBC 드라이버 (예: MySQL을 사용하는 경우)
 	implementation 'mysql:mysql-connector-java:8.0.28'
+
+
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()
