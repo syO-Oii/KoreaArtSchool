@@ -34,7 +34,7 @@ public class StageApplicant {
     private String aplImg;
     private Timestamp aplCrtDt;
     private String sbmsnDcmntUrlAddr;
-    private Integer avgScore;
+    private Integer score;
     private Integer evlRank;
     private String passYn;
     private String evlStgCd;

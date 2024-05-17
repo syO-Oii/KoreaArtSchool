@@ -89,7 +89,7 @@
                 <td>${stageApplicant.aplNo}</td>
                 <td>${stageApplicant.aplNm}</td>
                 <td>${stageApplicant.gndrCd}</td>
-                <td>${stageApplicant.avgScore}</td>
+                <td>${stageApplicant.score}</td>
                 <td>${stageApplicant.evlRank}</td>
                 <!-- 각 지원자의 합격 여부를 나타내는 토글 버튼 -->
                 <td class="pass-toggle">

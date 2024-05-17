@@ -6,7 +6,7 @@
 <mapper namespace="com.maximum.koreaartschool.repository.StageApplicantMapper">
 
 	<select id="selectStageApplicant" resultType="com.maximum.koreaartschool.model.StageApplicant" >
-		SELECT SA.APL_NO,SA.APL_NM, SA.GNDR_CD, SA.AVG_SCORE, SA.EVL_RANK,SA.PASS_YN
+		SELECT SA.APL_NO,SA.APL_NM, SA.GNDR_CD, SA.SCORE, SA.EVL_RANK,SA.PASS_YN
 		FROM APPLICANT A INNER JOIN STAGE_APPLICANT SA ON A.APL_NO= SA.APL_NO
 		WHERE A.DEPT =#{dept} AND A.DEPT_CD = #{deptCd} AND A.RCRT_CD = #{rcrtCd} AND A.APL_PW = #{aplPw};
 	</select>
