@@ -53,10 +53,6 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.28'
 
 
-	//이메일 인증에 필요
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-
-
 }
 
 

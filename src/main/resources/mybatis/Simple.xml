@@ -5,7 +5,6 @@
 
 <mapper namespace="com.maximum.koreaartschool.dao.TestDAO">
     <select id="list" resultType="com.maximum.koreaartschool.dto.TestDTO">
-        select apl_no, dept
-        from applicant
+
     </select>
 </mapper>
