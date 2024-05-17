@@ -15,7 +15,7 @@ public interface ApplicantMapper {
     @Select("select count(*) from applicant")
     int count();
 
-    List<Applicant> selectAll();
+    List<EvaluateScore> selectAll();
 
     // 평가위원별 단계별 심사대상자 조회
     //List<Applicant> selectEvaluatorStageApplicant(int evaluatorNum, String evaluateStage);

@@ -1,4 +1,4 @@
-package com.maximum.koreaartschool.entity;
+package com.maximum.koreaartschool.dto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,16 +14,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
 public class EvaluateScore {
-    @Id
-    private Integer EVL_STG_NO;     // 평가단계 번호
-    private Integer RCRT_NO;        // 모집 번호
-    private Integer EVL_NO;         // 평가위원 번호
-    private Integer APL_NO;         // 지원자 번호
-    private String  apl_nm;         // 지원자 이름
-    private Integer EVLQ_NO;        // 문항 번호
-    private Integer SCORE;          // 점수
-    private Integer dept_cd;
-
+    private Integer evl_Stg_No;     // 평가단계 번호
+    private Integer rcrt_No;       // 모집 번호
+    private Integer evl_No;        // 평가위원 번호
+    private Integer apl_No;        // 지원자 번호
+    private String apl_Nm;         // 지원자 이름
+    private Integer score1;       // 1번 문항 점수
+    private Integer score2;       // 2번 문항 점수
+    private Integer dept_Cd;       // 부서 코드
 }
