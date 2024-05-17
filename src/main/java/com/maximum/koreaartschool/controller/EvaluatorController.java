@@ -56,7 +56,6 @@ public class EvaluatorController {
     public String evlDocument(Model model) {
         List<EvaluateScore> allApplicant = applicantService.getAllApplicant();  // 전체 지원자 명단 추출
         model.addAttribute("evaluateScore", allApplicant);          // model에 전체 지원자 명단 추가
-        System.out.println(allApplicant);
         return "evaluator/document";
     }
 
@@ -68,17 +67,17 @@ public class EvaluatorController {
             @RequestParam(value = "dept", required = false) String dept,
             @RequestParam(value = "deptNo", required = false) String deptNo
     ) {
+        System.out.println("year : " + year + " rcrt : " + rcrt + " dept : " + dept + " deptNo : " + deptNo);
+
         if (rcrt.equals("0") && deptNo.equals("0")) {
             List<EvaluateScore> applicantList = applicantService.getAllApplicant();
             model.addAttribute("evaluateScore", applicantList);
-        } else if (rcrt.equals("0") && (deptNo.equals("10") || deptNo.equals("20"))) {
-            List<EvaluateScore> evaluateScoreList = applicantService.getApplicantByDeptno(Integer.parseInt(deptNo));
+        } else if (deptNo.equals("10") || deptNo.equals("20")) {
+            List<EvaluateScore> evaluateScoreList = applicantService.getApplicantByDeptno(deptNo);
+            System.out.println(evaluateScoreList);
             model.addAttribute("evaluateScore", evaluateScoreList);
+
         }
-        // 옵션 선택에 의한 지원자 명단
-        //List<EvaluateScore> selectedApplicant = applicantService.getSelectedApplicant(year, rcrt, dept, deptNo);
-
-
         return "evaluator/document";
     }
 

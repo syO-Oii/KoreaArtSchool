@@ -28,26 +28,16 @@
             AP.DEPT_CD
     </select>
 
-    <select id="selectApplicantByOption" resultType="com.maximum.koreaartschool.dto.EvaluateScore">
+    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.dto.EvaluateScore">
         SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
         FROM EVALUATE_SCORE AS ES
                  LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
                            ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
                                AND ES.RCRT_NO = APL_EVL.RCRT_NO
                                AND ES.APL_NO = APL_EVL.APL_NO
-        WHERE ES.RCRT_NO = #{rcrt} AND APL_EVL.DEPT_CD = #{deptNo};
-    </select>
+        WHERE APL_EVL.DEPT_CD = #{deptNo};
 
-    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.dto.EvaluateScore">
-        /*SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
-        FROM EVALUATE_SCORE AS ES
-                 LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
-                           ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
-                               AND ES.RCRT_NO = APL_EVL.RCRT_NO
-                               AND ES.APL_NO = APL_EVL.APL_NO
-        WHERE APL_EVL.DEPT_CD = #{deptNo};*/
-
-        SELECT
+        /*SELECT
             ES.EVL_STG_NO AS evl_Stg_No,
             ES.RCRT_NO AS rcrt_No,
             ES.EVL_NO AS evl_No,
@@ -58,10 +48,10 @@
             MAX(CASE WHEN ES.EVLQ_NO = 2 THEN ES.SCORE END) AS score2
         FROM
             EVALUATE_SCORE AS ES
-                LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
-                          ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
-                              AND ES.RCRT_NO = APL_EVL.RCRT_NO
-                              AND ES.APL_NO = APL_EVL.APL_NO
+        LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
+            ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
+            AND ES.RCRT_NO = APL_EVL.RCRT_NO
+            AND ES.APL_NO = APL_EVL.APL_NO
         WHERE
             APL_EVL.DEPT_CD = #{deptNo}
         GROUP BY
@@ -70,7 +60,7 @@
             ES.EVL_NO,
             ES.APL_NO,
             APL_EVL.APL_NM,
-            APL_EVL.DEPT_CD
+            APL_EVL.DEPT_CD;*/
     </select>
 
 </mapper>

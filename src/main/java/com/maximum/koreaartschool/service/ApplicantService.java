@@ -20,15 +20,11 @@ public class ApplicantService {
         return applicantMapper.selectAll();
     }
 
-    // 평가위원별 대상자 평가
-    @Transactional
-    public List<EvaluateScore> getSelectedApplicant(String year, String rcrt, String dept, String deptNo){
-        return applicantMapper.selectApplicantByOption(rcrt, deptNo);
-    }
 
     @Transactional
-    public List<EvaluateScore> getApplicantByDeptno(int deptNo){
-        return applicantMapper.selectApplicantByDeptno(deptNo);
+    public List<EvaluateScore> getApplicantByDeptno(String deptNo){
+        int no = Integer.parseInt(deptNo);
+        return applicantMapper.selectApplicantByDeptno(no);
     }
 
 }

@@ -17,11 +17,6 @@ public interface ApplicantMapper {
 
     List<EvaluateScore> selectAll();
 
-    // 평가위원별 단계별 심사대상자 조회
-    //List<Applicant> selectEvaluatorStageApplicant(int evaluatorNum, String evaluateStage);
-
-    List<EvaluateScore> selectApplicantByOption(String rcrt, String deptNo);
-
     List<EvaluateScore> selectApplicantByDeptno(int deptNo);
 
 }
