@@ -183,11 +183,6 @@ body {
   transition: all .3s;
 }
 
-.video-overlay .main-button-yellow .scroll-to-section a {
-  background-color: #FFB84C; /* 원하는 색상으로 변경 */
-  /* 다른 스타일 속성들도 추가할 수 있습니다. */
-}
-
 .main-button-yellow a:hover {
   opacity: 0.9;
 }
@@ -262,7 +257,7 @@ header
   color: #1e1e1e!important;
 }
 
-.background-header .school-name,
+.background-header .logo,
 .background-header .main-nav .nav li a {
   color: #1e1e1e!important;
 }
@@ -293,10 +288,10 @@ header
   background: transparent;
 }
 
-.header-area .main-nav .school-name {
+.header-area .main-nav .logo {
   line-height: 100px;
   color: #fff;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -307,13 +302,7 @@ header
   transition: all 0.3s ease 0s;
 }
 
-
-/*.header-area .main-nav .school-name .sub-name {*/
-/*  font-size: 16px;*/
-/*  vertical-align: top; !* 위로 이동 *!*/
-/*}*/
-
-.background-header .main-nav .school-name {
+.background-header .main-nav .logo {
   line-height: 75px;
 }
 
@@ -582,7 +571,7 @@ header
 }
 
 @media (max-width: 767px) {
-  .header-area .main-nav .school-name {
+  .header-area .main-nav .logo {
     color: #1e1e1e;
   }
   .header-area.header-sticky .nav li a:hover,
@@ -603,7 +592,7 @@ header
   .header-area .container {
     padding: 0px;
   }
-  .header-area .school-name {
+  .header-area .logo {
     margin-left: 30px;
   }
   .header-area .menu-trigger {
@@ -723,16 +712,6 @@ banner
     width: 100%;
 }
 
-.scroll-to-section a {
-  color: black;
-  font-weight: bold;
-}
-
-.video-overlay.header-text h5,
-.video-overlay.header-text h1 {
-  color: white; /* 흰색으로 변경 */
-}
-
 .main-banner .caption {
   position: absolute;
   top: 50%;
@@ -799,8 +778,6 @@ services
   width: 100%;
 }
 
-
-
 .services .item {
   background-image: url(../images/service-item-bg.jpg);
   background-repeat: no-repeat;
@@ -820,12 +797,8 @@ services
 .services .item h4 {
   margin-top: 25px;
   margin-bottom: 15px;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
-}
-
-.services .item h4 .sub-text {
-  font-size: 16px; /* 또는 원하는 크기로 조절 */
 }
 
 .services .item p {

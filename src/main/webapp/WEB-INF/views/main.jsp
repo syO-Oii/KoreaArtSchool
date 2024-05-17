@@ -91,10 +91,10 @@
                 <div class="col-lg-12">
                     <div class="caption">
                         <h5>예술과 창의력의 새로운 표준</h5>
-                        <h1>Korea National University of Arts</h1>
+                        <h1>Korea Art School</h1>
                         <p>한국예술학교는 창의적인 예술 교육으로 미래를 준비합니다. 다양한 예술적 영역을 탐구하고 교수진이 탄탄한 지도 아래에서 자신만의 예술적 목소리를 발견할 수 있으며, 예술의 세계에서 독창적으로 발전할 수 있는 기반을 마련할 수 있습니다</a>.</p><br>
                         <div class="main-button-yellow">
-                            <div class="scroll-to-section"><a href="#">원서 접수하기</a></div>
+                            <div class="scroll-to-section"><a href="#">입학 지원하기</a></div>
                         </div>
                     </div>
                 </div>

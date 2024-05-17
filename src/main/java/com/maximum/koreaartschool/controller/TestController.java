@@ -24,6 +24,12 @@ public class TestController {
         return "main";
     }
 
+    //@GetMapping("/apply")
+    @RequestMapping(value="/apply")
+    public String applyPage(){
+        return "apply";
+    }
+
 
 
 }
