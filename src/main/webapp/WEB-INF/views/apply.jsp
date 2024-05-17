@@ -55,8 +55,8 @@
                         <li class="has-sub">
                             <a href="javascript:void(0)">접수/결과 조회</a>
                             <ul class="sub-menu">
-                                <li><a href="meetings.html">접수조회</a></li>
-                                <li><a href="meeting-details.html">결과조회</a></li>
+                                <li><a href="">접수조회</a></li>
+                                <li><a href="">결과조회</a></li>
                             </ul>
                         </li>
                         <li class="scroll-to-section"><a href="#apply">입학 Q&A</a></li>
