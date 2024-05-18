@@ -12,7 +12,7 @@ public interface EvaluatorMapper {
 
     @Select("select count(*) from evaluator")
     int count();
-    @Select("select * from evaluator")
+
     List<Evaluator> selectAllEvaluator();
 
     List<ApplicantProcess> selectAllApplicants();

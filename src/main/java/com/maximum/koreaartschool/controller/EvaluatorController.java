@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 
 @Controller
@@ -83,10 +82,8 @@ public class EvaluatorController {
         // 옵션 선택에 의한 지원자 명단
         //List<EvaluateScore> selectedApplicant = applicantService.getSelectedApplicant(year, rcrt, dept, deptNo);
 
-
         return "evaluator/document";
     }
-
 
     /* 실기평가 페이지 */
     @GetMapping("/evl_practical")
