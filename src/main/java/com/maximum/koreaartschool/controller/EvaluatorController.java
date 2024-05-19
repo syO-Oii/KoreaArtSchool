@@ -22,6 +22,8 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 public class EvaluatorController {
+    int evlNo;  // 해당 페이지 심사위원 번호
+    int evlStgCd;
 
     @Autowired
     EvaluatorService evaluatorService;
@@ -57,7 +59,8 @@ public class EvaluatorController {
     // 서류평가 초기화면, (평가위원에게 속한) 전체 지원자 명단 조회
     @GetMapping("/evl_document")
     public String evlDocument(Model model) {
-        int evlNo = 1;
+        evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
+        evlStgCd = 10;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
         List<ApplicantEvaluate> asEvaluatorApplicants = applicantService.getEvaluatorApplicants(evlNo);  // 전체 지원자 명단 추출
         model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);          // model에 전체 지원자 명단 추가
         return "evaluator/document";
@@ -71,20 +74,26 @@ public class EvaluatorController {
             //@RequestParam(value = "dept", required = false) String dept,
             @RequestParam(value = "deptNo", required = false) String deptNo
     ) {
-        int evlNo = 1;
+        evlNo = 1;
         int deptNum = Integer.parseInt(deptNo);
         int rcrtNum = Integer.parseInt(rcrt);
-        List<ApplicantEvaluate> asEvaluatorApplicants;
+        List<ApplicantEvaluate> asEvaluatorApplicants;  // 평가위원별 지원자 명단
         if (rcrt.equals("0") && deptNo.equals("0")) {
-            asEvaluatorApplicants = applicantService.getEvaluatorApplicants(evlNo);
+            asEvaluatorApplicants = applicantService.getEvaluatorApplicants(evlNo);     // 평가위원이 맡은 모든 학생 출력
         } else if (rcrt.equals("0") && !deptNo.equals("0")) {
-            asEvaluatorApplicants = applicantService.getApplicantByDeptno(deptNum);
+            asEvaluatorApplicants = applicantService.getApplicantByDeptno(deptNum);     // 학과 별 평가위원이 맡은 모든 학생 출력
         } else if (!rcrt.equals("0") && deptNo.equals("0")) {
-            asEvaluatorApplicants = applicantService.getApplicantByRcrtNo(rcrtNum);
+            asEvaluatorApplicants = applicantService.getApplicantByRcrtNo(rcrtNum);     // 모집 전형 별 평가위원이 맡은 모든 학생 출력
         } else {
-            asEvaluatorApplicants = applicantService.getApplicantByOptions(deptNum, rcrtNum);
+            asEvaluatorApplicants = applicantService.getApplicantByOptions(deptNum, rcrtNum);   //  옵션 선택값에 따른 평가위원이 맡은 모든 학생 출력
         }
         model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
+        return "evaluator/document";
+    }
+
+    @GetMapping("insertScore")
+    public String insertScore(){
+        
         return "evaluator/document";
     }
     /* ---------- 서류평가 페이지 종료 ---------- */

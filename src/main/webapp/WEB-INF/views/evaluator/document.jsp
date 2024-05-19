@@ -102,42 +102,48 @@
 
 			<div class="심사인원박스">
 				담당 과정 선택
-				<table>
-					<tr>
-						<td>선택</td>
-						<td>이름</td>
-						<td>학과</td>
-						<td>지원서조회</td>
-						<td>제출서류조회</td>
-						<td>문항1번</td>
-						<td>문항2번</td>
-						<td>합계</td>
-<%--						<td>심사평</td>--%>
-						<td>평가여부</td>
-					</tr>
-					<c:forEach var="evaluateApplicantScore" items="${evaluateApplicantScore}" varStatus="loop">
-						<tr>
+				<div class = "옵션박스">
+					<form method="get" action="insertScore">
+						<input type="submit" value="저장">
+						<table name="applicantTable">
+							<tr>
+								<td>선택</td>
+								<td>이름</td>
+								<td>학과</td>
+								<td>지원서조회</td>
+								<td>제출서류조회</td>
+								<td>문항1번</td>
+								<td>문항2번</td>
+								<td>합계</td>
+								<%--						<td>심사평</td>--%>
+								<td>평가여부</td>
+							</tr>
+							<c:forEach var="evaluateApplicantScore" items="${evaluateApplicantScore}" varStatus="loop">
+								<tr>
 
-							<%-- 체크박스마다 고유 번호를 만들어줌 --%>
-							<td><input type="checkbox" id="apl_ck_${loop.index}" onchange="evlChecked('apl_ck_${loop.index}')"></td>
-							<td>${evaluateApplicantScore.APL_NM}</td>
-							<td>
-								<c:if test="${evaluateApplicantScore.DEPT_CD == 10}"> 시각디자인</c:if>
-								<c:if test="${evaluateApplicantScore.DEPT_CD == 20}"> 무대영화미술</c:if>
-								<c:if test="${evaluateApplicantScore.DEPT_CD == 30}"> 연기</c:if>
-								<c:if test="${evaluateApplicantScore.DEPT_CD == 40}"> 모델</c:if>
-								<c:if test="${evaluateApplicantScore.DEPT_CD == 50}"> 보컬</c:if>
-								<c:if test="${evaluateApplicantScore.DEPT_CD == 60}"> 싱어송라이터</c:if>
-							</td>
-							<td><input type="button" value="확인"></td>
-							<td><input type="button" value="확인"></td>
-							<td><input type="text" id="score1_${loop.index}" oninput="calculateTotal('score1_${loop.index}')"></td>
-							<td><input type="text" id="score2_${loop.index}" oninput="calculateTotal('score2_${loop.index}')"></td>
-							<td id="totalScore_${loop.index}">0점</td>
-							<td id="evlChecked_${loop.index}">평가중</td>
-						</tr>
-					</c:forEach>
-				</table>
+										<%-- 체크박스마다 고유 번호를 만들어줌 --%>
+									<td><input type="checkbox" id="apl_ck_${loop.index}" onchange="evlChecked('apl_ck_${loop.index}')"></td>
+									<td>${evaluateApplicantScore.APL_NM}</td>
+									<td>
+										<c:if test="${evaluateApplicantScore.DEPT_CD == 10}"> 시각디자인</c:if>
+										<c:if test="${evaluateApplicantScore.DEPT_CD == 20}"> 무대영화미술</c:if>
+										<c:if test="${evaluateApplicantScore.DEPT_CD == 30}"> 연기</c:if>
+										<c:if test="${evaluateApplicantScore.DEPT_CD == 40}"> 모델</c:if>
+										<c:if test="${evaluateApplicantScore.DEPT_CD == 50}"> 보컬</c:if>
+										<c:if test="${evaluateApplicantScore.DEPT_CD == 60}"> 싱어송라이터</c:if>
+									</td>
+									<td><input type="button" value="확인"></td>
+									<td><input type="button" value="확인"></td>
+									<td><input type="number" id="score1_${loop.index}" oninput="calculateTotal(${loop.index})"></td>
+									<td><input type="number" id="score2_${loop.index}" oninput="calculateTotal(${loop.index})"></td>
+									<td id="totalScore_${loop.index}" oninput="calculateTotal(${loop.index})">0점</td>
+									<td id="evlChecked_${loop.index}">평가중</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</form>
+				</div>
+
 			</div>
 
 		</div>
@@ -153,9 +159,8 @@
 
 </body>
 <script>
-	function calculateTotal(id) {
-		var score1 = parseInt(document.getElementById(id).value) || 0;
-		var index = id.split('_')[1];
+	function calculateTotal(index) {
+		var score1 = parseInt(document.getElementById('score1_' + index).value) || 0;
 		var score2 = parseInt(document.getElementById('score2_' + index).value) || 0;
 		var total = score1 + score2;
 		document.getElementById('totalScore_' + index).textContent = total + '점';
