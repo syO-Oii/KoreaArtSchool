@@ -1,6 +1,7 @@
 package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.dto.Applicant;
+import com.maximum.koreaartschool.dto.ApplicantEvaluate;
 import com.maximum.koreaartschool.dto.ApplicantProcess;
 import com.maximum.koreaartschool.dto.EvaluateScore;
 import com.maximum.koreaartschool.service.ApplicantService;
@@ -51,36 +52,42 @@ public class EvaluatorController {
     }
 
 
-    /* 서류평가 페이지 */
+    /* ---------- 서류평가 페이지 시작 ---------- */
+
+    // 서류평가 초기화면, (평가위원에게 속한) 전체 지원자 명단 조회
     @GetMapping("/evl_document")
     public String evlDocument(Model model) {
-        List<EvaluateScore> allApplicant = applicantService.getAllApplicant();  // 전체 지원자 명단 추출
-        model.addAttribute("evaluateScore", allApplicant);          // model에 전체 지원자 명단 추가
+        int evlNo = 1;
+        List<ApplicantEvaluate> asEvaluatorApplicants = applicantService.getEvaluatorApplicants(evlNo);  // 전체 지원자 명단 추출
+        model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);          // model에 전체 지원자 명단 추가
         return "evaluator/document";
     }
 
     @GetMapping("selectOption")
     public String print(
             Model model,
-            @RequestParam(value = "year", required = false) String year,
+            //@RequestParam(value = "year", required = false) String year,
             @RequestParam(value = "rcrt", required = false) String rcrt,
-            @RequestParam(value = "dept", required = false) String dept,
+            //@RequestParam(value = "dept", required = false) String dept,
             @RequestParam(value = "deptNo", required = false) String deptNo
     ) {
-        System.out.println("year : " + year + " rcrt : " + rcrt + " dept : " + dept + " deptNo : " + deptNo);
-
+        int evlNo = 1;
+        int deptNum = Integer.parseInt(deptNo);
+        int rcrtNum = Integer.parseInt(rcrt);
+        List<ApplicantEvaluate> asEvaluatorApplicants;
         if (rcrt.equals("0") && deptNo.equals("0")) {
-            List<EvaluateScore> applicantList = applicantService.getAllApplicant();
-            model.addAttribute("evaluateScore", applicantList);
-        } else if (deptNo.equals("10") || deptNo.equals("20")) {
-            List<EvaluateScore> evaluateScoreList = applicantService.getApplicantByDeptno(deptNo);
-            System.out.println(evaluateScoreList);
-            model.addAttribute("evaluateScore", evaluateScoreList);
-
+            asEvaluatorApplicants = applicantService.getEvaluatorApplicants(evlNo);
+        } else if (rcrt.equals("0") && !deptNo.equals("0")) {
+            asEvaluatorApplicants = applicantService.getApplicantByDeptno(deptNum);
+        } else if (!rcrt.equals("0") && deptNo.equals("0")) {
+            asEvaluatorApplicants = applicantService.getApplicantByRcrtNo(rcrtNum);
+        } else {
+            asEvaluatorApplicants = applicantService.getApplicantByOptions(deptNum, rcrtNum);
         }
+        model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
         return "evaluator/document";
     }
-
+    /* ---------- 서류평가 페이지 종료 ---------- */
 
     /* 실기평가 페이지 */
     @GetMapping("/evl_practical")

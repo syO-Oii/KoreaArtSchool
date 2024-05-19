@@ -5,62 +5,15 @@
 
 <mapper namespace="com.maximum.koreaartschool.dao.ApplicantMapper">
 
-    <select id="selectAll" resultType="com.maximum.koreaartschool.dto.EvaluateScore">
-        SELECT
-            ES.EVL_STG_NO AS evl_Stg_No,
-            ES.RCRT_NO AS rcrt_No,
-            ES.EVL_NO AS evl_No,
-            ES.APL_NO AS apl_No,
-            AP.APL_NM AS apl_Nm,
-            AP.DEPT_CD AS dept_Cd,
-            MAX(CASE WHEN ES.EVLQ_NO = 1 THEN ES.SCORE END) AS score1,
-            MAX(CASE WHEN ES.EVLQ_NO = 2 THEN ES.SCORE END) AS score2
-        FROM
-            EVALUATE_SCORE AS ES
-                LEFT JOIN
-            APPLICANT AS AP ON ES.APL_NO = AP.APL_NO
-        GROUP BY
-            ES.EVL_STG_NO,
-            ES.RCRT_NO,
-            ES.EVL_NO,
-            ES.APL_NO,
-            AP.APL_NM,
-            AP.DEPT_CD
+    <select id="selectEvaluatorApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantEvaluate">
+        SELECT *
+        FROM DUMMY_APPLICANT_EVALUATE;
     </select>
-
-    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.dto.EvaluateScore">
-        SELECT DISTINCT ES.EVL_STG_NO, ES.RCRT_NO, ES.EVL_NO, ES.APL_NO, APL_EVL.APL_NM, ES.EVLQ_NO, ES.SCORE
-        FROM EVALUATE_SCORE AS ES
-                 LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
-                           ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
-                               AND ES.RCRT_NO = APL_EVL.RCRT_NO
-                               AND ES.APL_NO = APL_EVL.APL_NO
-        WHERE APL_EVL.DEPT_CD = #{deptNo};
-
-        /*SELECT
-            ES.EVL_STG_NO AS evl_Stg_No,
-            ES.RCRT_NO AS rcrt_No,
-            ES.EVL_NO AS evl_No,
-            ES.APL_NO AS apl_No,
-            APL_EVL.APL_NM AS apl_Nm,
-            APL_EVL.DEPT_CD AS dept_Cd,
-            MAX(CASE WHEN ES.EVLQ_NO = 1 THEN ES.SCORE END) AS score1,
-            MAX(CASE WHEN ES.EVLQ_NO = 2 THEN ES.SCORE END) AS score2
-        FROM
-            EVALUATE_SCORE AS ES
-        LEFT JOIN APPLICANT_EVALUATE AS APL_EVL
-            ON ES.EVL_STG_NO = APL_EVL.EVL_STG_NO
-            AND ES.RCRT_NO = APL_EVL.RCRT_NO
-            AND ES.APL_NO = APL_EVL.APL_NO
-        WHERE
-            APL_EVL.DEPT_CD = #{deptNo}
-        GROUP BY
-            ES.EVL_STG_NO,
-            ES.RCRT_NO,
-            ES.EVL_NO,
-            ES.APL_NO,
-            APL_EVL.APL_NM,
-            APL_EVL.DEPT_CD;*/
-    </select>
+<!--
+    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.dto.ApplicantEvaluate">
+        SELECT *
+        FROM DUMMY_APPLICANT_EVALUATE
+        WHERE DEPT_CD = #{deptNo};
+    </select>-->
 
 </mapper>

@@ -42,14 +42,14 @@
 			<div class="과정박스">
 				담당 과정 선택 <input type="submit" value="조회">
 				<ul>
-					<li>기수</li>
+					<%--<li>기수</li>
 					<li>
 						<select name="year">
 							<option value="0">전체</option>
 							<option value="30">3기</option>
 							<option value="40">4기</option>
 						</select>
-					</li>
+					</li>--%>
 					<li>모집전형</li>
 					<li>
 						<select name="rcrt">
@@ -58,8 +58,20 @@
 							<option value="20">일반전형</option>
 						</select>
 					</li>
+						<li>모집학과</li>
+						<li>
+							<select name="deptNo">
+								<option value="0">전체</option>
+								<option value="10">시각디자인</option>
+								<option value="20">무대영화미술</option>
+								<option value="30">연기</option>
+								<option value="40">모델</option>
+								<option value="50">보컬</option>
+								<option value="60">싱어송라이터</option>
+							</select>
+						</li>
 				</ul>
-				<ul>
+				<%--<ul>
 					<li>모집계열</li>
 					<li>
 						<select name="dept">
@@ -81,7 +93,7 @@
 							<option value="60">싱어송라이터</option>
 						</select>
 					</li>
-				</ul>
+				</ul>--%>
 			</div>
 			</form>
 			<div class="인원박스">
@@ -103,19 +115,19 @@
 <%--						<td>심사평</td>--%>
 						<td>평가여부</td>
 					</tr>
-					<c:forEach var="evaluateScore" items="${evaluateScore}" varStatus="loop">
+					<c:forEach var="evaluateApplicantScore" items="${evaluateApplicantScore}" varStatus="loop">
 						<tr>
 
 							<%-- 체크박스마다 고유 번호를 만들어줌 --%>
 							<td><input type="checkbox" id="apl_ck_${loop.index}" onchange="evlChecked('apl_ck_${loop.index}')"></td>
-							<td>${evaluateScore.apl_Nm}</td>
+							<td>${evaluateApplicantScore.APL_NM}</td>
 							<td>
-								<c:if test="${evaluateScore.dept_Cd == 10}"> 시각디자인</c:if>
-								<c:if test="${evaluateScore.dept_Cd == 20}"> 무대영화미술</c:if>
-								<c:if test="${evaluateScore.dept_Cd == 30}"> 연기</c:if>
-								<c:if test="${evaluateScore.dept_Cd == 40}"> 모델</c:if>
-								<c:if test="${evaluateScore.dept_Cd == 50}"> 보컬</c:if>
-								<c:if test="${evaluateScore.dept_Cd == 60}"> 싱어송라이터</c:if>
+								<c:if test="${evaluateApplicantScore.DEPT_CD == 10}"> 시각디자인</c:if>
+								<c:if test="${evaluateApplicantScore.DEPT_CD == 20}"> 무대영화미술</c:if>
+								<c:if test="${evaluateApplicantScore.DEPT_CD == 30}"> 연기</c:if>
+								<c:if test="${evaluateApplicantScore.DEPT_CD == 40}"> 모델</c:if>
+								<c:if test="${evaluateApplicantScore.DEPT_CD == 50}"> 보컬</c:if>
+								<c:if test="${evaluateApplicantScore.DEPT_CD == 60}"> 싱어송라이터</c:if>
 							</td>
 							<td><input type="button" value="확인"></td>
 							<td><input type="button" value="확인"></td>
