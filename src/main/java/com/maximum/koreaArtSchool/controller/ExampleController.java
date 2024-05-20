@@ -13,18 +13,18 @@ import java.util.List;
 public class ExampleController {
 
     @Autowired
-    private BinderBean binderBean;
+    private CommCdService commCdService;
 
     @GetMapping("/example")
     public String example(Model model) {
         // cdSe와 cd 값을 사용하여 코드 이름 가져오기
-        String cdSeCdName = binderBean.getCdNm("CD0001", "10");
+        String cdSeCdName = commCdService.getCdNmByCdSeAndCd("CD0001", "10");
 
         // cdSe 값을 사용하여 코드 목록 가져오기
-        List<CommCd> cdSeCodeList = binderBean.getCodeList("CD0001");
+        List<CommCd> cdSeCodeList = commCdService.getCommCdsByCdSe("CD0001");
 
         // cdSe 값을 사용하여 코드 목록 가져오기
-        List<CommCd> cdACList = binderBean.getCodeList("AC0002");
+        List<CommCd> cdACList = commCdService.getCommCdsByCdSe("AC0002");
 
         // 모델에 데이터 추가
         model.addAttribute("cdSeCdName", cdSeCdName);
