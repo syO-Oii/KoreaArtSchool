@@ -23,9 +23,13 @@ public class ExampleController {
         // cdSe 값을 사용하여 코드 목록 가져오기
         List<CommCd> cdSeCodeList = binderBean.getCodeList("CD0001");
 
+        // cdSe 값을 사용하여 코드 목록 가져오기
+        List<CommCd> cdACList = binderBean.getCodeList("AC0002");
+
         // 모델에 데이터 추가
         model.addAttribute("cdSeCdName", cdSeCdName);
         model.addAttribute("cdSeCodeList", cdSeCodeList);
+        model.addAttribute("cdACList", cdACList);
 
         // Thymeleaf 템플릿 뷰 이름 반환
         return "example";
