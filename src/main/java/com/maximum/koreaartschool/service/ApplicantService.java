@@ -16,25 +16,6 @@ public class ApplicantService {
     @Autowired
     private ApplicantMapper applicantMapper;
 
-    @Transactional
-    public List<ApplicantEvaluate> getEvaluatorApplicants(int evlNo){
-        return applicantMapper.selectEvaluatorApplicants(evlNo);
-    }
 
-
-    @Transactional
-    public List<ApplicantEvaluate> getApplicantByDeptno(int deptNo){
-        return applicantMapper.selectApplicantByDeptno(deptNo);
-    }
-
-    @Transactional
-    public List<ApplicantEvaluate> getApplicantByRcrtNo(int rcrtNo){
-        return applicantMapper.selectApplicantByRcrtNo(rcrtNo);
-    }
-
-    @Transactional
-    public List<ApplicantEvaluate> getApplicantByOptions(int deptNo, int rcrtNo){
-        return applicantMapper.selectApplicantByOptions(deptNo, rcrtNo);
-    }
 
 }

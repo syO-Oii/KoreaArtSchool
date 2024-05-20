@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -103,7 +105,8 @@
 			<div class="심사인원박스">
 				담당 과정 선택
 				<div class = "옵션박스">
-					<form method="get" action="insertScore">
+					<form method="post" action="insertScore">
+						<input type="hidden" name="applicantCount" value="${fn:length(evaluateApplicantScore)}">
 						<input type="submit" value="저장">
 						<table name="applicantTable">
 							<tr>
@@ -115,16 +118,25 @@
 								<td>문항1번</td>
 								<td>문항2번</td>
 								<td>합계</td>
-								<%--						<td>심사평</td>--%>
 								<td>평가여부</td>
 							</tr>
 							<c:forEach var="evaluateApplicantScore" items="${evaluateApplicantScore}" varStatus="loop">
 								<tr>
-
-										<%-- 체크박스마다 고유 번호를 만들어줌 --%>
-									<td><input type="checkbox" id="apl_ck_${loop.index}" onchange="evlChecked('apl_ck_${loop.index}')"></td>
-									<td>${evaluateApplicantScore.APL_NM}</td>
 									<td>
+										<input type="checkbox" name="apl_ck_${loop.index}" id="apl_ck_${loop.index}"
+											   onchange="evlChecked('apl_ck_${loop.index}', ${loop.index})"
+											   <c:if test="${evaluateApplicantScore.IS_EVALUATED} == 'Y'">checked</c:if>
+										>
+										<input type="hidden" name="is_evaluated_${loop.index}" id="is_evaluated_${loop.index}"
+											   value="${evaluateApplicantScore.IS_EVALUATED}">
+									</td>
+
+									<td>
+										<input type="hidden" name="apl_nm_${loop.index}" value="${evaluateApplicantScore.APL_NM}">
+											${evaluateApplicantScore.APL_NM}
+									</td>
+									<td>
+										<input type="hidden" name="dept_cd_${loop.index}" value="${evaluateApplicantScore.DEPT_CD}">
 										<c:if test="${evaluateApplicantScore.DEPT_CD == 10}"> 시각디자인</c:if>
 										<c:if test="${evaluateApplicantScore.DEPT_CD == 20}"> 무대영화미술</c:if>
 										<c:if test="${evaluateApplicantScore.DEPT_CD == 30}"> 연기</c:if>
@@ -134,10 +146,14 @@
 									</td>
 									<td><input type="button" value="확인"></td>
 									<td><input type="button" value="확인"></td>
-									<td><input type="number" id="score1_${loop.index}" oninput="calculateTotal(${loop.index})"></td>
-									<td><input type="number" id="score2_${loop.index}" oninput="calculateTotal(${loop.index})"></td>
-									<td id="totalScore_${loop.index}" oninput="calculateTotal(${loop.index})">0점</td>
+									<td><input type="number" name="score1_${loop.index}" id="score1_${loop.index}" value="0" oninput="calculateTotal(${loop.index})"></td>
+									<td><input type="number" name="score2_${loop.index}" id="score2_${loop.index}" value="0" oninput="calculateTotal(${loop.index})"></td>
+									<td id="totalScore_${loop.index}">0점</td>
 									<td id="evlChecked_${loop.index}">평가중</td>
+									<input type="hidden" name="evl_stg_no_${loop.index}" value="${evaluateApplicantScore.EVL_STG_NO}">
+									<input type="hidden" name="rcrt_no_${loop.index}" value="${evaluateApplicantScore.RCRT_NO}">
+									<input type="hidden" name="evl_no_${loop.index}" value="${evaluateApplicantScore.EVL_NO}">
+									<input type="hidden" name="apl_no_${loop.index}" value="${evaluateApplicantScore.APL_NO}">
 								</tr>
 							</c:forEach>
 						</table>
@@ -166,14 +182,17 @@
 		document.getElementById('totalScore_' + index).textContent = total + '점';
 	}
 
-	function evlChecked(id) {
+	function evlChecked(id, index) {
 		var isChecked = document.getElementById(id).checked;
-		var index = id.split('_')[2]; // 'apl_ck_1'와 같은 형식에서 인덱스를 가져오기 위해 split의 인덱스 수정
 		var evlCheckedElement = document.getElementById('evlChecked_' + index);
+		var isEvaluatedElement = document.getElementById('is_evaluated_' + index);
+
 		if (isChecked) {
 			evlCheckedElement.textContent = "평가완료";
+			isEvaluatedElement.value = "Y";
 		} else {
 			evlCheckedElement.textContent = "평가중";
+			isEvaluatedElement.value = "N";
 		}
 	}
 </script>
