@@ -74,7 +74,7 @@ public class EvaluatorController {
             //@RequestParam(value = "dept", required = false) String dept,
             @RequestParam(value = "deptNo", required = false) String deptNo
     ) {
-        evlNo = 1;
+        evlNo = 1;                                      // [더미]평가위원 1번 페이지로 가정
         int deptNum = Integer.parseInt(deptNo);
         int rcrtNum = Integer.parseInt(rcrt);
         List<ApplicantEvaluate> asEvaluatorApplicants;  // 평가위원별 지원자 명단
