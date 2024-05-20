@@ -29,4 +29,26 @@
         WHERE sa.DEPT_CD=#{departmentId} AND sa.RCRT_CD=#{recruitmentId} AND sa.EVL_STG_CD=#{stageId};
     </select>
 
+    <select id="findByIsSelected" resultType="com.maximum.koreaartschool.dto.Evaluator">
+        SELECT *
+        FROM EVALUATOR
+        WHERE IS_SELECTED=#{is_selected};
+    </select>
+
+    <select id="findByDepartmentId" resultType="com.maximum.koreaartschool.dto.Evaluator">
+        SELECT *
+        FROM EVALUATOR
+        WHERE DEPT_CD=#{departmentId};
+    </select>
+
+    <select id="findByDepartmentIdAndIsSelected" resultType="com.maximum.koreaartschool.dto.Evaluator">
+        SELECT *
+        FROM EVALUATOR
+        WHERE DEPT_CD=#{departmentId} AND IS_SELECTED=#{is_selected};
+    </select>
+
+    <delete id="deleteEvaluator">
+        DELETE FROM EVALUATOR WHERE evl_no = #{evl_no}
+    </delete>
+
 </mapper>
