@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,8 +66,11 @@ public class EvaluatorController {
     public String evlDocument(Model model) {
         evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
         evlStgCd = 10;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
-        List<ApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo);  // 전체 지원자 명단 추출
-        model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);          // model에 전체 지원자 명단 추가
+        List<ApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo);     // 전체 지원자 명단 추출
+        List<EvaluateScore> existingScores = evaluatorService.getScoresByEvaluator(evlNo);                  // 점수 추출
+
+        model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);                    // model에 전체 지원자 명단 추가
+        model.addAttribute("existingScores", existingScores);
         return "evaluator/document";
     }
 
@@ -101,6 +105,8 @@ public class EvaluatorController {
             @RequestParam("applicantCount") int applicantCount,
             @RequestParam Map<String, String> allParams) {
         List<EvaluateScore> scores = new ArrayList<>();
+        List<ApplicantEvaluate> evaluations = new ArrayList<>();
+
         for (int i = 0; i < applicantCount; i++) {
             String checked = allParams.get("apl_ck_" + i);
             if (checked != null) { // 체크 값이 null이 아닌 경우에만 처리
@@ -108,11 +114,14 @@ public class EvaluatorController {
                     // 메소드를 사용하여 score 값 입력
                     scores.add(createEvaluateScore(allParams, i, 1));
                     scores.add(createEvaluateScore(allParams, i, 2));
+                    evaluations.add(createApplicantEvaluate(allParams, i, 'Y'));
                 } else if (checked.isEmpty()) {
+                    evaluations.add(createApplicantEvaluate(allParams, i, 'N'));
                 }
             }
         }
         evaluatorService.saveScores(scores);
+        evaluatorService.updateEvaluations(evaluations); // 평가여부 업데이트
 
         List<ApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo);
         model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
@@ -146,4 +155,15 @@ public class EvaluatorController {
         score.setScore(Integer.parseInt(params.get("score" + evlQNo + "_" + index)));
         return score;
     }
+
+    private ApplicantEvaluate createApplicantEvaluate(Map<String, String> params, int index, char isEvaluated) {
+        ApplicantEvaluate evaluation = new ApplicantEvaluate();
+        evaluation.setEVL_STG_NO(Integer.parseInt(params.get("evl_stg_no_" + index)));
+        evaluation.setRCRT_NO(Integer.parseInt(params.get("rcrt_no_" + index)));
+        evaluation.setEVL_NO(Integer.parseInt(params.get("evl_no_" + index)));
+        evaluation.setAPL_NO(Integer.parseInt(params.get("apl_no_" + index)));
+        evaluation.setIS_EVALUATED(isEvaluated);
+        return evaluation;
+    }
+
 }

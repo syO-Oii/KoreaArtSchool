@@ -4,10 +4,7 @@ import com.maximum.koreaartschool.dto.ApplicantEvaluate;
 import com.maximum.koreaartschool.dto.ApplicantProcess;
 import com.maximum.koreaartschool.dto.EvaluateScore;
 import com.maximum.koreaartschool.dto.Evaluator;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -40,4 +37,9 @@ public interface EvaluatorMapper {
             "score = VALUES(score)")
     void upsertScore(EvaluateScore score);
 
+    @Select("SELECT * FROM evaluate_score WHERE evl_No = #{evl_No}")
+    List<EvaluateScore> getScoresByEvaluator(int evl_No);
+
+    @Update("UPDATE DUMMY_APPLICANT_EVALUATE SET IS_EVALUATED = #{IS_EVALUATED} WHERE EVL_STG_NO = #{EVL_STG_NO} AND RCRT_NO = #{RCRT_NO} AND EVL_NO = #{EVL_NO} AND APL_NO = #{APL_NO}")
+    void updateEvaluation(ApplicantEvaluate evaluation);
 }

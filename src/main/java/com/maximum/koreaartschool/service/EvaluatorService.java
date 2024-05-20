@@ -55,5 +55,16 @@ public class EvaluatorService {
             evaluatorMapper.upsertScore(score);
         }
     }
+    // 평가위원 번호에 따른 지원자 명단
+    public List<EvaluateScore> getScoresByEvaluator(int evlNo) {
+        return evaluatorMapper.getScoresByEvaluator(evlNo);
+    }
+
+    // 평가 여부 추가
+    public void updateEvaluations(List<ApplicantEvaluate> evaluations) {
+        for (ApplicantEvaluate evaluation : evaluations) {
+            evaluatorMapper.updateEvaluation(evaluation);
+        }
+    }
 
 }

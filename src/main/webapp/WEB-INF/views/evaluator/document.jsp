@@ -56,8 +56,8 @@
 					<li>
 						<select name="rcrt">
 							<option value="0">전체</option>
-							<option value="10">특기생전형</option>
 							<option value="20">일반전형</option>
+							<option value="10">특기생전형</option>
 						</select>
 					</li>
 						<li>모집학과</li>
@@ -146,8 +146,12 @@
 									</td>
 									<td><input type="button" value="확인"></td>
 									<td><input type="button" value="확인"></td>
-									<td><input type="number" name="score1_${loop.index}" id="score1_${loop.index}" value="0" oninput="calculateTotal(${loop.index})"></td>
-									<td><input type="number" name="score2_${loop.index}" id="score2_${loop.index}" value="0" oninput="calculateTotal(${loop.index})"></td>
+									<td>
+										<input type="number" name="score1_${loop.index}" id="score1_${loop.index}" value="0" oninput="calculateTotal(${loop.index})">
+									</td>
+									<td>
+										<input type="number" name="score2_${loop.index}" id="score2_${loop.index}" value="0" oninput="calculateTotal(${loop.index})">
+									</td>
 									<td id="totalScore_${loop.index}">0점</td>
 									<td id="evlChecked_${loop.index}">평가중</td>
 									<input type="hidden" name="evl_stg_no_${loop.index}" value="${evaluateApplicantScore.EVL_STG_NO}">
@@ -195,5 +199,8 @@
 			isEvaluatedElement.value = "N";
 		}
 	}
+
+
+
 </script>
 </html>
