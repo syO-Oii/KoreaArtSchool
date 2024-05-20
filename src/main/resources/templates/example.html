@@ -21,13 +21,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="commCd : ${cdSeCodeList}">
-        <td th:text="${commCd.cd}"></td>
-        <td th:text="${commCd.cdNm}"></td>
-        <td th:text="${commCd.cdDesc}"></td>
-        <td th:text="${commCd.isYn}"></td>
-        <td th:text="${commCd.createdAt}"></td>
-    </tr>
+    <select name="cdSe">
+        <option value="">전체</option>
+        <option th:each="commCd : ${cdSeCodeList}" th:value="${commCd.cdSe}" th:text="${commCd.cdNm}"></option>
+    </select>
+    <select name="cdSe">
+        <option value="">전체</option>
+        <option th:each="commCd : ${cdACList}" th:value="${commCd.cdSe}" th:text="${commCd.cdNm}"></option>
+    </select>
     </tbody>
 </table>
 
