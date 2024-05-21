@@ -3,7 +3,6 @@ package com.maximum.koreaartschool.dao;
 import com.maximum.koreaartschool.dto.ApplicantProcess;
 import com.maximum.koreaartschool.dto.Evaluator;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -27,4 +26,8 @@ public interface EvaluatorMapper {
     List<Evaluator> findByDepartmentIdAndIsSelected(String departmentId, String is_selected);
 
     void deleteEvaluator(int evl_no);
+
+    void updateEvaluator(Evaluator evaluator);
+
+    void insertEvaluator(Evaluator evaluator);
 }

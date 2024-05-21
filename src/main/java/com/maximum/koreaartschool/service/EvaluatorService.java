@@ -3,7 +3,6 @@ package com.maximum.koreaartschool.service;
 import com.maximum.koreaartschool.dao.EvaluatorMapper;
 import com.maximum.koreaartschool.dto.ApplicantProcess;
 import com.maximum.koreaartschool.dto.Evaluator;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +42,11 @@ public class EvaluatorService {
         evaluatorMapper.deleteEvaluator(evl_no);
     }
 
+    public void insertEvaluator(Evaluator evaluator) {
+        evaluatorMapper.insertEvaluator(evaluator);
+    }
+
+    public void updateEvaluator(Evaluator evaluator) {
+        evaluatorMapper.updateEvaluator(evaluator);
+    }
 }

@@ -286,9 +286,9 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link collapsed" href="/admin/evaluator_selection">
                 <i class="bi bi-menu-button-wide"></i>
-                <span>Components</span>
+                <span>평가위원 선정</span>
             </a>
         </li><!-- End Components Nav -->
 
@@ -493,6 +493,8 @@
                                             <input class="form-check-input row-check" type="checkbox"
                                                    id="gridCheck${evaluators.evl_no}"
                                                    data-evl-no="${evaluators.evl_no}"
+                                                   data-gndr-cd="${evaluators.gndr_cd}"
+                                                   data-evl-brdt="${evaluators.evl_brdt}"
                                                    data-evl-nm="${evaluators.evl_nm}"
                                                    data-dept-cd="${evaluators.dept_cd}"
                                                    data-evl-ogdp="${evaluators.evl_ogdp}"
@@ -533,12 +535,13 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Horizontal Form -->
-                        <form id="evaluatorForm" method="post" action="/admin/deleteEvaluator">
+                        <form id="evaluatorForm">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title">Evaluator Information</h5>
                                 <div class="col-mb-2">
-                                    <button class="btn btn-primary" type="submit">삭제</button>
-                                    <button class="btn btn-primary" type="submit">저장</button>
+                                    <button class="btn btn-primary" type="button" onclick="Insert()">신규</button>
+                                    <button class="btn btn-primary" type="button" onclick="Update()">저장</button>
+                                    <button class="btn btn-primary" type="button" onclick="Delete()">삭제</button>
                                 </div>
                             </div>
 
@@ -551,13 +554,29 @@
                             <div class="row mb-3">
                                 <label for="evl_nm" class="col-sm-2 col-form-label">평가위원명</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="evl_nm">
+                                    <input type="text" class="form-control" id="evl_nm" name="evl_nm">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="gndr_cd" class="col-sm-2 col-form-label">성별</label>
+                                <div class="col-sm-10">
+                                    <select name="gndr_cd" class="form-select" id="gndr_cd" >
+                                        <option value="" selected>선택해주세요</option>
+                                        <option value="10">남</option>
+                                        <option value="20">여</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="evl_brdt" class="col-sm-2 col-form-label">생년월일</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="evl_brdt" name="evl_brdt">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="dept_cd" class="col-sm-2 col-form-label">학과</label>
                                 <div class="col-sm-10">
-                                    <select name="department" class="form-select" id="dept_cd">
+                                    <select name="dept_cd" class="form-select" id="dept_cd" >
                                         <option value="" selected>선택해주세요</option>
                                         <option value="10">시각디자인</option>
                                         <option value="20">무대영화미술</option>
@@ -571,13 +590,13 @@
                             <div class="row mb-3">
                                 <label for="evl_ogdp" class="col-sm-2 col-form-label">소속</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="evl_ogdp">
+                                    <input type="text" class="form-control" id="evl_ogdp" name="evl_ogdp">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="evl_eml" class="col-sm-2 col-form-label">이메일</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="evl_eml">
+                                    <input type="email" class="form-control" id="evl_eml" name="evl_eml">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -593,37 +612,37 @@
                             <div class="row mb-3">
                                 <label for="evl_tel" class="col-sm-2 col-form-label">휴대폰번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="evl_tel">
+                                    <input type="text" class="form-control" id="evl_tel" name="evl_tel">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="addr" class="col-sm-2 col-form-label">주소</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="addr">
+                                    <input type="text" class="form-control" id="addr" name="addr">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="addr_detail" class="col-sm-2 col-form-label">상세주소</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="addr_detail">
+                                    <input type="text" class="form-control" id="addr_detail" name="addr_detail">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="bank_nm" class="col-sm-2 col-form-label">은행명</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="bank_nm">
+                                    <input type="text" class="form-control" id="bank_nm" name="bank_nm">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="act_no" class="col-sm-2 col-form-label">계좌번호</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="act_no">
+                                    <input type="text" class="form-control" id="act_no" name="act_no">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="slry" class="col-sm-2 col-form-label">급여</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="slry">
+                                    <input type="text" class="form-control" id="slry" name="slry">
                                 </div>
                             </div>
                         </form><!-- End Horizontal Form -->
@@ -671,6 +690,54 @@
         checkboxes.forEach(checkbox => checkbox.checked = this.checked);
     });
 
+    function validateDeleteForm() {
+        const checkboxes = document.querySelectorAll('.row-check');
+        let isChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+        if (!isChecked) {
+            alert('삭제할 항목을 선택해주세요.');
+            return false;
+        }
+        return true;
+    }
+
+    function validateUpdateForm() {
+        const checkboxes = document.querySelectorAll('.row-check');
+        let isChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+        if (!isChecked) {
+            alert('저장할 항목을 선택해주세요.');
+            return false;
+        }
+        return true;
+    }
+
+    function Delete() {
+        if (validateDeleteForm()) {
+            document.getElementById("evaluatorForm").action = "/admin/deleteEvaluator";
+            document.getElementById("evaluatorForm").submit();
+        }
+    }
+
+    function Update() {
+        if (validateUpdateForm()) {
+            document.getElementById("evaluatorForm").action = "/admin/updateEvaluator";
+            document.getElementById("evaluatorForm").submit();
+        }
+    }
+
+    function Insert() {
+        document.getElementById("evaluatorForm").action = "/admin/insertEvaluator";
+        document.getElementById("evaluatorForm").submit();
+    }
 
     let selectedEvaluators = [];
 
@@ -688,6 +755,8 @@
             const lastChecked = selectedEvaluators[selectedEvaluators.length - 1];
             document.getElementById('evl_no').value = lastChecked.dataset.evlNo;
             document.getElementById('evl_nm').value = lastChecked.dataset.evlNm;
+            document.getElementById('gndr_cd').value = lastChecked.dataset.gndrCd;
+            document.getElementById('evl_brdt').value = lastChecked.dataset.evlBrdt;
             document.getElementById('dept_cd').value = lastChecked.dataset.deptCd;
             document.getElementById('evl_ogdp').value = lastChecked.dataset.evlOgdp;
             document.getElementById('evl_eml').value = lastChecked.dataset.evlEml;
@@ -702,6 +771,8 @@
             // 배열이 비어 있으면 폼을 초기화
             document.getElementById('evl_no').value = '';
             document.getElementById('evl_nm').value = '';
+            document.getElementById('gndr_cd').value = '';
+            document.getElementById('evl_brdt').value = '';
             document.getElementById('dept_cd').value = '';
             document.getElementById('evl_ogdp').value = '';
             document.getElementById('evl_eml').value = '';

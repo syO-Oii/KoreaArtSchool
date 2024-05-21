@@ -47,8 +47,29 @@
         WHERE DEPT_CD=#{departmentId} AND IS_SELECTED=#{is_selected};
     </select>
 
+    <update id="updateEvaluator" parameterType="com.maximum.koreaartschool.dto.Evaluator">
+        UPDATE EVALUATOR
+        SET evl_nm = #{evl_nm},
+            dept_cd = #{dept_cd},
+            evl_ogdp = #{evl_ogdp},
+            evl_eml = #{evl_eml},
+            is_selected = #{is_selected},
+            evl_tel = #{evl_tel},
+            addr = #{addr},
+            addr_detail = #{addr_detail},
+            bank_nm = #{bank_nm},
+            act_no = #{act_no},
+            slry = #{slry}
+        WHERE evl_no = #{evl_no}
+    </update>
+
     <delete id="deleteEvaluator">
         DELETE FROM EVALUATOR WHERE evl_no = #{evl_no}
     </delete>
+
+    <insert id="insertEvaluator" parameterType="com.maximum.koreaartschool.dto.Evaluator">
+        INSERT INTO EVALUATOR (evl_nm, gndr_cd, evl_brdt, dept_cd, evl_ogdp, evl_eml, is_selected, evl_tel, addr, addr_detail, bank_nm, act_no, slry)
+        VALUES (#{evl_nm}, #{gndr_cd}, #{evl_brdt}, #{dept_cd}, #{evl_ogdp}, #{evl_eml}, #{is_selected}, #{evl_tel}, #{addr}, #{addr_detail}, #{bank_nm}, #{act_no}, #{slry})
+    </insert>
 
 </mapper>

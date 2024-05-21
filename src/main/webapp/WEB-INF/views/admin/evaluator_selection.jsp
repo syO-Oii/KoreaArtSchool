@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Forms / Elements - NiceAdmin Bootstrap Template</title>
+    <title>Forms / Layouts - NiceAdmin Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -18,7 +18,8 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +48,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/evaluator" class="logo d-flex align-items-center">
+        <a href="index.html" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
@@ -278,16 +279,16 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="/evaluator/progress">
+            <a class="nav-link collapsed" href="/admin/evaluator_info">
                 <i class="bi bi-grid"></i>
-                <span>평가진행현황</span>
+                <span>평가위원 정보관리</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
+            <a class="nav-link " href="/admin/evaluator_selection">
                 <i class="bi bi-menu-button-wide"></i>
-                <span>Components</span>
+                <span>평가위원 선정</span>
             </a>
         </li><!-- End Components Nav -->
 
@@ -300,7 +301,8 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -428,12 +430,24 @@
                         <h5 class="card-title"></h5>
 
                         <!-- General Form Elements -->
-                        <form action="/evaluator/selectProgress" method="get">
+                        <form action="/admin/selectEvaluator" method="get">
                             <div class="row mb-3">
+                                <label class="col-sm-1 col-form-label">입학년도</label>
+                                <div class="col-sm-2">
+                                    <select name="is_selected" class="form-select" aria-label="Default select example">
+                                        <option selected>선택해주세요</option>
+                                        <option value="0">(전체)</option>
+                                        <option value="10">2021년도</option>
+                                        <option value="20">2022년도</option>
+                                        <option value="30">2023년도</option>
+                                        <option value="40">2024년도</option>
+                                    </select>
+                                </div>
                                 <label class="col-sm-1 col-form-label">학과 선택</label>
                                 <div class="col-sm-2">
                                     <select name="department" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
+                                        <option value="0">(전체)</option>
                                         <option value="10">시각디자인</option>
                                         <option value="20">무대영화미술</option>
                                         <option value="30">연기</option>
@@ -444,19 +458,11 @@
                                 </div>
                                 <label class="col-sm-1 col-form-label">전형 선택</label>
                                 <div class="col-sm-2">
-                                    <select name="recruitment" class="form-select" aria-label="Default select example">
+                                    <select name="is_selected" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
+                                        <option value="0">(전체)</option>
                                         <option value="10">일반전형</option>
                                         <option value="20">특기생전형</option>
-                                    </select>
-                                </div>
-                                <label class="col-sm-1 col-form-label">평가 단계</label>
-                                <div class="col-sm-2">
-                                    <select name="stage" class="form-select" aria-label="Default select example">
-                                        <option selected>선택해주세요</option>
-                                        <option value="10">서류</option>
-                                        <option value="20">실기</option>
-                                        <option value="30">면접</option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2">
@@ -470,62 +476,59 @@
             </div>
 
             <div class="col-lg-12">
-
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Applicant Evaluate Progress Status</h5>
+                        <h5 class="card-title">Recruitment Department Information</h5>
 
-                        <!-- Default Table -->
-                        <table class="table">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">이름</th>
-                                <th scope="col">성별</th>
-                                <th scope="col">생년월일</th>
+                                <th scope="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="selectAll">
+                                        <label class="form-check-label" for="selectAll">
+                                        </label>
+                                    </div>
+                                </th>
+                                <th scope="col">입학년도</th>
+                                <th scope="col">기수</th>
                                 <th scope="col">학과</th>
                                 <th scope="col">전형</th>
+                                <th scope="col">모집시작일</th>
+                                <th scope="col">모집종료일</th>
                                 <th scope="col">평가단계</th>
-                                <th scope="col">평가여부</th>
-                                <th scope="col">점수</th>
+                                <th scope="col">진행상태</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="applicants" items="${applicants}">
+                            <c:forEach var="rcrt" items="${rcrt}">
                                 <tr>
-                                    <td>${applicants.apl_nm}</td>
                                     <td>
-                                        <c:if test="${applicants.gndr_cd == 10}">남</c:if>
-                                        <c:if test="${applicants.gndr_cd == 20}">여</c:if>
+                                        <div class="form-check">
+                                            <input class="form-check-input row-check" type="checkbox">
+                                            <label class="form-check-label" for="gridCheck${rcrt.rcrt_no}">
+                                            </label>
+                                        </div>
                                     </td>
-                                    <td>${applicants.apl_brdt}</td>
+                                    <td>${rcrt.evl_no}</td>
+                                    <td>${rcrt.evl_nm}</td>
                                     <td>
-                                        <c:if test="${applicants.dept_cd == 10}">시각디자인</c:if>
-                                        <c:if test="${applicants.dept_cd == 20}">무대영화미술</c:if>
-                                        <c:if test="${applicants.dept_cd == 30}">연기</c:if>
-                                        <c:if test="${applicants.dept_cd == 40}">모델</c:if>
-                                        <c:if test="${applicants.dept_cd == 50}">보컬</c:if>
-                                        <c:if test="${applicants.dept_cd == 60}">싱어송라이터</c:if>
+                                        <c:if test="${rcrt.dept_cd == 10}">시각디자인</c:if>
+                                        <c:if test="${rcrt.dept_cd == 20}">무대영화미술</c:if>
+                                        <c:if test="${rcrt.dept_cd == 30}">연기</c:if>
+                                        <c:if test="${rcrt.dept_cd == 40}">모델</c:if>
+                                        <c:if test="${rcrt.dept_cd == 50}">보컬</c:if>
+                                        <c:if test="${rcrt.dept_cd == 60}">싱어송라이터</c:if>
                                     </td>
-                                    <td>
-                                        <c:if test="${applicants.rcrt_cd == 10}">일반전형</c:if>
-                                        <c:if test="${applicants.rcrt_cd == 20}">특기생전형</c:if>
-                                    </td>
-                                    <td>
-                                        <c:if test="${applicants.evl_stg_cd == 10}">서류</c:if>
-                                        <c:if test="${applicants.evl_stg_cd == 20}">실기</c:if>
-                                        <c:if test="${applicants.evl_stg_cd == 30}">면접</c:if>
-                                    </td>
-                                    <td>${applicants.is_evaluated}</td>
-                                    <td>${applicants.score}</td>
+                                    <td>${rcrt.is_selected}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
-                        <!-- End Default Table Example -->
                     </div>
                 </div>
-
             </div>
+
         </div>
     </section>
 
@@ -545,7 +548,8 @@
     </div>
 </footer><!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -560,6 +564,108 @@
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
 
+<script>
+    document.getElementById('selectAll').addEventListener('change', function () {
+        const checkboxes = document.querySelectorAll('.row-check');
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+    });
+
+    function validateDeleteForm() {
+        const checkboxes = document.querySelectorAll('.row-check');
+        let isChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+        if (!isChecked) {
+            alert('삭제할 항목을 선택해주세요.');
+            return false;
+        }
+        return true;
+    }
+
+    function validateUpdateForm() {
+        const checkboxes = document.querySelectorAll('.row-check');
+        let isChecked = false;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                isChecked = true;
+            }
+        });
+        if (!isChecked) {
+            alert('저장할 항목을 선택해주세요.');
+            return false;
+        }
+        return true;
+    }
+
+    function Delete() {
+        if (validateDeleteForm()) {
+            document.getElementById("evaluatorForm").action = "/admin/deleteEvaluator";
+            document.getElementById("evaluatorForm").submit();
+        }
+    }
+
+    function Update() {
+        if (validateUpdateForm()) {
+            document.getElementById("evaluatorForm").action = "/admin/updateEvaluator";
+            document.getElementById("evaluatorForm").submit();
+        }
+    }
+
+    function Insert() {
+        document.getElementById("evaluatorForm").action = "/admin/insertEvaluator";
+        document.getElementById("evaluatorForm").submit();
+    }
+
+    let selectedEvaluators = [];
+
+    function fillForm(checkbox) {
+        if (checkbox.checked) {
+            // 체크박스를 선택하면 배열에 추가
+            selectedEvaluators.push(checkbox);
+        } else {
+            // 체크박스를 해제하면 배열에서 제거
+            selectedEvaluators = selectedEvaluators.filter(item => item !== checkbox);
+        }
+
+        // 배열의 마지막 요소로 폼을 채우기
+        if (selectedEvaluators.length > 0) {
+            const lastChecked = selectedEvaluators[selectedEvaluators.length - 1];
+            document.getElementById('evl_no').value = lastChecked.dataset.evlNo;
+            document.getElementById('evl_nm').value = lastChecked.dataset.evlNm;
+            document.getElementById('gndr_cd').value = lastChecked.dataset.gndrCd;
+            document.getElementById('evl_brdt').value = lastChecked.dataset.evlBrdt;
+            document.getElementById('dept_cd').value = lastChecked.dataset.deptCd;
+            document.getElementById('evl_ogdp').value = lastChecked.dataset.evlOgdp;
+            document.getElementById('evl_eml').value = lastChecked.dataset.evlEml;
+            document.getElementById('is_selected').value = lastChecked.dataset.isSelected;
+            document.getElementById('evl_tel').value = lastChecked.dataset.evlTel;
+            document.getElementById('addr').value = lastChecked.dataset.addr;
+            document.getElementById('addr_detail').value = lastChecked.dataset.addrDetail;
+            document.getElementById('bank_nm').value = lastChecked.dataset.bankNm;
+            document.getElementById('act_no').value = lastChecked.dataset.actNo;
+            document.getElementById('slry').value = lastChecked.dataset.slry;
+        } else {
+            // 배열이 비어 있으면 폼을 초기화
+            document.getElementById('evl_no').value = '';
+            document.getElementById('evl_nm').value = '';
+            document.getElementById('gndr_cd').value = '';
+            document.getElementById('evl_brdt').value = '';
+            document.getElementById('dept_cd').value = '';
+            document.getElementById('evl_ogdp').value = '';
+            document.getElementById('evl_eml').value = '';
+            document.getElementById('is_selected').value = '';
+            document.getElementById('evl_tel').value = '';
+            document.getElementById('addr').value = '';
+            document.getElementById('addr_detail').value = '';
+            document.getElementById('bank_nm').value = '';
+            document.getElementById('act_no').value = '';
+            document.getElementById('slry').value = '';
+        }
+    }
+</script>
 </body>
 
 </html>
