@@ -40,16 +40,15 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <nav class="main-nav">
-                    <a href="" class="school-name">
-                        한국예술학교
-<%--                        <span class="sub-name">입학정보</span>--%>
-                    </a>
+                    <nav class="main-nav">
+                        <a href="" class="logo">
+                            한국예술학교
+                        </a>
 
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="apply.jsp" class="active">원서접수</a></li>
+                        <li class="scroll-to-section"><a href="apply_step_one.jsp" class="active">원서접수</a></li>
                         <li><a href="meetings.jsp">공지사항</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">입학 안내</a>
