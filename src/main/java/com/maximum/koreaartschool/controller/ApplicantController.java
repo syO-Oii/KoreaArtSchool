@@ -3,11 +3,13 @@ package com.maximum.koreaartschool.controller;
 import com.maximum.koreaartschool.dao.ApplicantDao;
 import com.maximum.koreaartschool.dto.ApplicantDto;
 import com.maximum.koreaartschool.service.ApplicantService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -16,16 +18,25 @@ public class ApplicantController {
     @Autowired
     private ApplicantDao applicantDao;
 
-    @PostMapping
-        public String apply (@ModelAttribute ApplicantDto applicantDto, Model model){
-            try {
-                applicantDao.insertApplicantInt(applicantDto);
-                model.addAttribute("message", "지원서가 성공적으로 제출되었습니다.");
-            } catch (Exception e) {
-                model.addAttribute("message", "지원서 제출 중 오류가 발생했습니다.");
-                e.printStackTrace();
-            }
-            return "result";  // 결과를 보여줄 JSP 페이지 이름 (result.jsp)
-        }
+    //insert메서드(원서 접수 1단계)
+    @RequestMapping("/submit")
+    public String applySubmit(HttpServletRequest request, Model model) {
+
+        // 폼 데이터에서 필요한 값들을 추출하여 ApplicantDto 객체에 설정
+        applicantDao.insertApplicantInt(
+                request.getParameter("aplName"),
+                request.getParameter("pswd"),
+                request.getParameter("aplBirthDay"),
+                request.getParameter("gndrCode"),
+                request.getParameter("address"),
+                request.getParameter("addressDetail"),
+                request.getParameter("aplEmail"),
+                request.getParameter("aplTelNumber"),
+                request.getParameter("lastAcbg"),
+                request.getParameter("aplImg")
+        );
+
+        return "apply_step_two";  //뷰 페이지
     }
+}
 

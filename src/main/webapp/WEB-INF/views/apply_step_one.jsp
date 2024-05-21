@@ -12,6 +12,12 @@
     <title>Education Template - Meeting Detail Page</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <%--  Bootstrap 및 jQuery 라이브러리  --%>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
@@ -93,7 +99,7 @@
                     <div class="card-body">
 
                         <!-- General Form Elements -->
-                        <form action="/apply" method="post">
+                        <form id="applicationForm" action="/submit" method="post">
                             <main id="main" class="main">
                                 <fieldset class="row mb-3 ">
                                     <style>
@@ -139,9 +145,9 @@
 
                                     <!-- 생년월일 -->
                                     <div class="row mb-3 align-items-center">
-                                        <label for="aplBirthDay" class="col-sm-2 col-form-label">생년월일<span class="required">*</span></label>
+                                        <label for="aplBirthDay" class="col-sm-2 col-form-label">생년월일(8자리)<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input type="date" class="form-control input-element" id="aplBirthDay" name="aplBirthDay" required/>
+                                            <input type="text" class="form-control input-element" id="aplBirthDay" name="aplBirthDay" required/>
                                         </div>
                                     </div>
 
@@ -190,10 +196,10 @@
 
                                     <!-- 이메일 -->
                                     <div class="row mb-3">
-                                        <label for="aplEml" class="col-sm-2 col-form-label">이메일<span class="required">*</span></label>
+                                        <label for="aplEmail" class="col-sm-2 col-form-label">이메일<span class="required">*</span></label>
                                         <div class="col-sm-7">
                                             <div class="input-group">
-                                                <input type="email" class="form-control" id="aplEml" name="aplEml" required/>
+                                                <input type="email" class="form-control" id="aplEmail" name="aplEmail" required/>
                                                 <button class="btn btn-outline-secondary">이메일 확인</button>
                                             </div>
                                         </div>
@@ -224,43 +230,31 @@
 
                                     <!-- 상세주소 -->
                                     <div class="row mb-3">
-                                        <label for="addrDetail" class="col-sm-2 col-form-label">상세주소<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="addressDetail" class="col-sm-2 col-form-label">상세주소<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="addrDetail" name="addrDetail" required minlength="2" maxlength="11" required/>
+                                            <input type="text" class="form-control" id="addressDetail" name="addressDetail" required minlength="2" required/>
                                         </div>
                                     </div>
 
 
-                                    <%--최종학력 (초등/중등/고등/전문학사/석사/박사)--%>
+                                    <%--최종학력 (고등학교 졸업/대학교 졸업/대학원 졸업)--%>
                                     <fieldset class="row mb-3">
                                         <div class="row mb-3 align-items-left">
                                             <label for="lastAcbg" class="col-sm-2 col-form-label">최종학력<span class="required">*</span></label>
                                             <div class="col-sm-7">
                                                 <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="lastAcbg-elementary" name="lastAcbg" value="초등" checked="checked">
-                                                            <label class="form-check-label" for="lastAcbg-elementary">초등</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="lastAcbg-middle" name="lastAcbg" value="중등">
-                                                            <label class="form-check-label" for="lastAcbg-middle">중등</label>
-                                                        </div>
+                                                    <div class="col-sm-5">
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="radio" id="lastAcbg-high" name="lastAcbg" value="고등">
-                                                            <label class="form-check-label" for="lastAcbg-high">고등</label>
+                                                            <label class="form-check-label" for="lastAcbg-high">고등학교 졸업</label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="radio" id="lastAcbg-bachelor" name="lastAcbg" value="학사">
-                                                            <label class="form-check-label" for="lastAcbg-bachelor">학사</label>
+                                                            <label class="form-check-label" for="lastAcbg-bachelor">대학교 졸업</label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="radio" id="lastAcbg-master" name="lastAcbg" value="석사">
-                                                            <label class="form-check-label" for="lastAcbg-master">석사</label>
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="lastAcbg-doctor" name="lastAcbg" value="박사">
-                                                            <label class="form-check-label" for="lastAcbg-doctor">박사</label>
+                                                            <label class="form-check-label" for="lastAcbg-master">대학원 졸업</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -351,9 +345,10 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <div class="text-center"> <!-- col-sm-12를 사용하여 전체 폭을 차지하고, text-center 클래스를 사용하여 가운데 정렬 -->
+                                            <div class="text-center"> <!-- 가운데 정렬 -->
                                                 <input type="checkbox" id="agree" name="agree" value="동의" />
                                                 <label for="agree" class="me-2">개인정보 수집,이용에 동의합니다.</label>
+
                                             </div>
                                         </div>
                                     </fieldset>
@@ -361,9 +356,15 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 
                                 <div class="col-lg-12" >
                                     <label class="col-sm-2 col-form-label "></label>
-                                    <div class="main-button-black text-center">
+                                    <div class="main-button-black text-center form-group">
                                         <button type="submit" class="btn btn-primary btn-next">다음페이지</button>
-                                        <button type="submit" class="btn btn-outline-primary btn-previous">이전페이지</button>
+                                        <button type="button" onclick="goToMain()" class="btn btn-outline-primary btn-previous">취소</button>
+
+                                        <script>
+                                            function goToMain() {
+                                                window.location.href = "/main"; // 메인 페이지 URL로 이동
+                                            }
+                                        </script>
                                     </div>
                                 </div>
                                 <!-- End General Form Elements -->
@@ -379,11 +380,29 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
     </div>
 </section>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">알림</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                필수 항목에 동의하셔야 합니다.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <footer class="footer">
     <p>서울특별시 마포구 신촌로 176 신입학 문의 : 02-123-4567 재학생 문의 : 02-123-4567</p>
     <p>Copyright © 2024 Maximum Co., Ltd. All Rights Reserved.</p>
-    <!-- <p>© CloudStudying | <a href="#">Privacy</a> | <a href="#">Terms</a></p> -->
 </footer>
 
 
@@ -483,62 +502,26 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 </script>
 
 <script>
-    // 폼 제출 시 비밀번호 일치 여부 확인 후 AJAX 요청 (AJAX를 이용한 폼 제출)
-    $(document).ready(function () {
-        $("#applicantForm").on("submit", function (event) {
-            event.preventDefault();
+        // 폼 제출 시 비밀번호 일치 여부 확인 후 AJAX 요청 (AJAX를 이용한 폼 제출)
+        $(document).ready(function () {
+            $("#applicationForm").on("submit", function (e) {
 
-            // 전화번호 필드 결합
-            var aplTelNumber = $("#tel1").val() + $("#tel2").val() + $("#tel3").val();
-            $("#aplTelNumber").val(aplTelNumber);
-
-            //Ajax 요청 설정
-            $.ajax({
-                type: "POST",
-                url: "/apply",
-                contentType: "application/json",
-
-                //전체 폼데이터 비동기식 전달
-                data: JSON.stringify({
-                    aplName: $("#aplName").val(),
-                    dept: $("#dept").val(),
-                    deptCode: $("#deptCode").val(),
-                    rcrtCode: $("#rcrtCode").val(),
-                    yearCode: $("#yearCode").val(),
-                    pswd: $("#pswd").val(),
-                    aplBirthDay: $("#aplBirthDay").val(),
-                    gndrCode: $("#gndrCode").val(),
-                    address: $("#address").val(),
-                    addressDetail: $("#addressDetail").val(),
-                    aplEmail: $("#aplEmail").val(),
-                    aplTelNumber: $("#aplTelNumber").val(),
-                    lastAcbg: $("#lastAcbg").val(),
-                    aplImg: $("#aplImg").val()
-                }),
-                success: function (response) {
-                    $("#resultMessage").text(response.message);
-                    $("#resultModal").modal("show");
-
-                    setTimeout(function () {
-                        window.location.href = "/main.jsp";
-                    }, 3000);
-                },
-                error: function () {
-                    $("#resultMessage").text("지원서 제출 중 오류가 발생했습니다.");
-                    $("#resultModal").modal("show");
+                // 동의 체크박스 확인
+                if (!$("#agree").is(":checked")) {
+                    $('#myModal').modal('show');
+                    return;
                 }
+
+
+                // 휴대폰번호 합치기
+                var phoneNumber = $("#tel1").val() + $("#tel2").val() + $("#tel3").val();
+                $("#aplTelNumber").val(phoneNumber);
+
+
+
             });
         });
-
-        // 휴대폰번호 입력필드에 Backspace 키 입력 시 포커스 이동 방지
-        $("#tel1, #tel2, #tel3").on("keydown", function (event) {
-            if (event.keyCode === 8 && $(this).val().length === 0) {
-                event.preventDefault();
-            }
-        });
-    });
 </script>
-
 
 </body>
 </html>
