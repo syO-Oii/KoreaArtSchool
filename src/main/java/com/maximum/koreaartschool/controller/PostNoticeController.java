@@ -2,6 +2,7 @@ package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.dao.PostDao;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Slf4j
 @Controller
 public class PostNoticeController {  //공지사항 게시판
 
@@ -37,7 +39,7 @@ public class PostNoticeController {  //공지사항 게시판
     @RequestMapping("/list")
     public String listPage(Model model) {
         model.addAttribute("post_list", postDao.listDao());
-        return "apply_post_list_notice"; //뷰페이지
+        return "apply_post_listview_notice"; //뷰페이지
     }
 
     //관리자 - 지원자페이지
@@ -52,8 +54,9 @@ public class PostNoticeController {  //공지사항 게시판
     @RequestMapping("/view")
     public String viewPage(HttpServletRequest request, Model model) {
         String PostId = request.getParameter("postNumber");
+
         model.addAttribute("dto", postDao.viewDao(PostId));
-        return "apply_post_view_notice"; //뷰페이지
+        return "apply_post_detailview_notice"; //뷰페이지
     }
 
     //공지사항 글 작성 폼(jsp파일) 호출
@@ -65,6 +68,13 @@ public class PostNoticeController {  //공지사항 게시판
     //insert메서드(공지사항 글 작성)
     @RequestMapping("/post")
     public String postWrite(HttpServletRequest request, Model model) {
+
+        Integer bbsId = 1; // 기본값 설정
+        try {
+            bbsId = Integer.valueOf(request.getParameter("bbsId"));
+        } catch (NumberFormatException e) {
+            // 오류 처리
+        }
         postDao.postInsertDao(
                 request.getParameter("writer"),
                 request.getParameter("postTitle"),

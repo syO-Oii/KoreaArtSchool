@@ -79,17 +79,18 @@
             <main id="main" class="main">
                 <div class="card">
                     <div class="card-body">
-                        <!-- General Form Elements -->
-                        <%-- name 속성 : DB 테이블의 이름 컬럼과 일치시켜야 함 --%>
-                        <form action="/apply" method="post">
-                            <fieldset class="row mb-3">
-                                <legend>지원자 인적사항</legend>
-                            </fieldset>
-
-                            <section class="section">
-                                제목:${dto.postNumber}
-                                내용:${dto.postContent}
-                                작성자:${dto.writer}
+                        <form action="/view" method="GET">
+                        <section>
+                                <div class="card form-label form-group">
+                                    <div class="card-body">
+                                        <h5 class="card-title"></h5>
+                                        <div class="quill-editor-default">
+                                            ${dto.postTitle}
+                                            ${dto.postContent}
+                                            ${dto.writer}
+                                        </div>
+                                    </div>
+                                </div>
                             </section>
 
                             <div class="col-lg-12">
@@ -97,7 +98,7 @@
                                     <a class="btn btn-primary btn-next" href="/list">목록</a>
                                 </div>
                             </div>
-                        </form>
+<%--                        </form>--%>
                     </div>
                 </div>
             </main>

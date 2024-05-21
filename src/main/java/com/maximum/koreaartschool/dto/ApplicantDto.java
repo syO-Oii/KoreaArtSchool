@@ -12,19 +12,18 @@ import java.util.Date;
 @Data
 @ToString
 public class ApplicantDto {
-
-    private String aplNm;         //지원자명
+    private String aplName;         //지원자명
     private String dept;          //계열코드
-    private String deptCd;        //학과코드
-    private String rcrtCd;        //전형코드(특기생/일반)
-    private String aplPw;         //모집단위코드
+    private String deptCode;        //학과코드
+    private String rcrtCode;        //전형코드(특기생/일반)
+    private String yearCode;         //모집단위코드
     private String pswd;          //비밀번호
-    private String aplBrdt;       //생년월일
-    private String gndrCd;        //성별
-    private String addr;          //주소
-    private String addrDetail;    //상세주소
-    private String aplEml;        //이메일
-    private String aplTel;        //지원자연락처
+    private String aplBirthDay;       //생년월일
+    private String gndrCode;        //성별코드
+    private String address;          //주소
+    private String addressDetail;    //상세주소
+    private String aplEmail;        //이메일
+    private String aplTelNumber;   //지원자연락처
     private String lastAcbg;      //최종학력
     private String aplImg;        //증명사진url
 

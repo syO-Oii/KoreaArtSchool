@@ -19,6 +19,18 @@
     <link rel="stylesheet" href="assets/css/lightbox.css">
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        /* 필수입력항목 *로 표시 */
+        .required {
+            color: red; /* 빨간색 */
+            margin-right: 4px; /* 별표와 레이블 사이의 간격 조절 */
+        }
+
+        /*!* 비밀번호 일치 메시지 *!*/
+        /*#password-match-message {*/
+        /*    color: blue; !* 파란색으로 설정 *!*/
+        /*}*/
+    </style>
 </head>
 <body>
 <!-- ***** Header Area Start ***** -->
@@ -81,7 +93,6 @@
                     <div class="card-body">
 
                         <!-- General Form Elements -->
-                        <%-- name 속성 : DB 테이블의 이름 컬럼과 일치시켜야 함 --%>
                         <form action="/apply" method="post">
                             <main id="main" class="main">
                                 <fieldset class="row mb-3 ">
@@ -98,26 +109,26 @@
                                 <section class="section">
                                     <!-- 이름 -->
                                     <div class="row mb-3">
-                                        <label for="aplNm" class="col-sm-2 col-form-label">이름</label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="aplName" class="col-sm-2 col-form-label">이름<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="aplNm" name="aplNm" required minlength="2" maxlength="11" />
+                                            <input type="text" class="form-control" id="aplName" name="aplName" minlength="2" maxlength="11" required />
                                         </div>
                                     </div>
 
                                     <!-- 성별 -->
                                     <div class="row mb-3 align-items-center">
-                                        <label for="gndrCd" class="col-sm-2 col-form-label">성별</label>
+                                        <label for="male" class="col-sm-2 col-form-label">성별<span class="required">*</span></label>
                                         <div class="col-sm-10">
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" id="male"  name="gndrCd" value="남자" checked="checked">
+                                                        <input class="form-check-input" type="radio" id="male"  name="gndrCode" value="남자" checked="checked">
                                                         <label class="form-check-label" for="male">남자</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" id="female" name="gndrCd" value="여자">
+                                                        <input class="form-check-input" type="radio" id="female" name="gndrCode" value="여자">
                                                         <label class="form-check-label" for="female">여자</label>
                                                     </div>
                                                 </div>
@@ -125,57 +136,64 @@
                                         </div>
                                     </div>
 
+
                                     <!-- 생년월일 -->
                                     <div class="row mb-3 align-items-center">
-
-
-                                        <label for="aplBrdt" class="col-sm-2 col-form-label">생년월일</label>
+                                        <label for="aplBirthDay" class="col-sm-2 col-form-label">생년월일<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control input-element" id="aplBrdt" name="aplBrdt" value="20050101" />
+                                            <input type="date" class="form-control input-element" id="aplBirthDay" name="aplBirthDay" required/>
                                         </div>
                                     </div>
-
 
                                     <!-- 비밀번호 -->
                                     <div class="row mb-3">
-                                        <label for="pswd" class="col-sm-2 col-form-label">비밀번호</label>
+                                        <label for="pswd" class="col-sm-2 col-form-label">비밀번호<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input type="password" class="form-control" id="pswd" name="pswd">
+                                            <input type="password" class="form-control" id="pswd" name="pswd" oninput="checkPasswordMatch(); checkPasswordLength()" required/>
+                                            <div id="password-length-message" style="color: red;"></div>
                                         </div>
                                     </div>
 
+                                    <div class="row mb-3">
+                                        <label for="pswd-validate" class="col-sm-2 col-form-label">비밀번호 확인<span class="required">*</span></label>
+                                        <div class="col-sm-7">
+                                            <input type="password" class="form-control" id="pswd-validate" oninput="checkPasswordMatch()" required/>
+                                            <div id="password-match-message" style="color: red;"></div>
+                                        </div>
+                                    </div>
 
                                     <!-- 휴대폰번호 -->
+                                    <%-- 만아래 js스크립트로 하나로 합침--%>
                                     <div class="row mb-3">
-                                        <label for="aplTel" class="col-sm-2 col-form-label">휴대폰번호</label>
+                                        <label for="aplTelNumber" class="col-sm-2 col-form-label">휴대폰번호<span class="required">*</span></label>
                                         <div class="col-sm-7">
                                             <div class="row g-2">
-                                                <div class="col ">
+                                                <div class="col">
                                                     <div class="input-group">
-                                                        <input class="form-control " type="text" id="tel1" maxLength="3" pattern="01[0-9]{1}" required="required"
-                                                               onkeyup="next(this.value, 3, 'tel2');" onkeydown="checkNum(event, this.value)" />
-
+                                                        <input class="form-control" type="text" id="tel1" maxLength="3" pattern="01[0-9]{1}" onkeyup="next(this, 'tel2');" onkeydown="checkNum(event, this)" required/>
                                                     </div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="input-group">
-                                                        <input class="form-control" type="text" id="tel2" maxLength="4" pattern="[0-9]{4}" required="required" onkeyup="next(this.value, 4, 'tel3');" onkeydown="checkNum(event, this.value)"/>
-
+                                                        <input class="form-control" type="text" id="tel2" maxLength="4" pattern="[0-9]{4}" onkeyup="next(this, 'tel3');" onkeydown="checkNum(event, this)" required/>
                                                     </div>
                                                 </div>
                                                 <div class="col">
-                                                    <input class="form-control" type="text" id="tel3" maxLength="4" pattern="[0-9]{4}" required="required" onkeydown="checkNum(event, this.value)"/>
+                                                    <input class="form-control" type="text" id="tel3" maxLength="4" pattern="[0-9]{4}" onkeydown="checkNum(event, this)" required/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- 숨겨진 필드로 휴대폰번호 전송 -->
+                                    <input type="hidden" id="aplTelNumber" name="aplTelNumber">
+
 
                                     <!-- 이메일 -->
                                     <div class="row mb-3">
-                                        <label for="aplEml" class="col-sm-2 col-form-label">이메일</label>
+                                        <label for="aplEml" class="col-sm-2 col-form-label">이메일<span class="required">*</span></label>
                                         <div class="col-sm-7">
                                             <div class="input-group">
-                                                <input type="email" class="form-control" id="aplEml" name="aplEml">
+                                                <input type="email" class="form-control" id="aplEml" name="aplEml" required/>
                                                 <button class="btn btn-outline-secondary">이메일 확인</button>
                                             </div>
                                         </div>
@@ -185,18 +203,20 @@
 
                                     <!-- 증명사진 -->
                                     <div class="row mb-3">
-                                        <label for="aplImg" class="col-sm-2 col-form-label">증명사진</label>
+                                        <label for="aplImg" class="col-sm-2 col-form-label">증명사진<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input class="form-control" type="file" id="aplImg" name="aplImg">
+                                            <input class="form-control" type="file" id="aplImg" name="aplImg" required/>
                                         </div>
                                     </div>
 
+
+
                                     <!-- 주소 -->
                                     <div class="row mb-3">
-                                        <label for="addr" class="col-sm-2 col-form-label">주소</label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="address" class="col-sm-2 col-form-label">주소<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
                                         <div class="col-sm-7">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="addr" name="addr" required minlength="2" maxlength="11" />
+                                                <input type="text" class="form-control" id="address" name="address" minlength="2" maxlength="11" required/>
                                                 <button class="btn btn-outline-secondary">주소 찾기</button>
                                             </div>
                                         </div>
@@ -204,54 +224,43 @@
 
                                     <!-- 상세주소 -->
                                     <div class="row mb-3">
-                                        <label for="addrDetail" class="col-sm-2 col-form-label">상세주소</label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="addrDetail" class="col-sm-2 col-form-label">상세주소<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="addrDetail" name="addrDetail" required minlength="2" maxlength="11" />
+                                            <input type="text" class="form-control" id="addrDetail" name="addrDetail" required minlength="2" maxlength="11" required/>
                                         </div>
                                     </div>
 
 
-                                    <!-- 최종학력 (초등/중등/고등/전문학사/석사/박사) -->
+                                    <%--최종학력 (초등/중등/고등/전문학사/석사/박사)--%>
                                     <fieldset class="row mb-3">
-
                                         <div class="row mb-3 align-items-left">
-                                            <label for="lastAcbg" class="col-sm-2 col-form-label">최종학력</label>
+                                            <label for="lastAcbg" class="col-sm-2 col-form-label">최종학력<span class="required">*</span></label>
                                             <div class="col-sm-7">
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio"  id="elementary" name="lastAcbg" value="초등" checked="checked">
-                                                            <label class="form-check-label" for="elementary">초등</label>
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-elementary" name="lastAcbg" value="초등" checked="checked">
+                                                            <label class="form-check-label" for="lastAcbg-elementary">초등</label>
                                                         </div>
-                                                        <!-- </div>
-                                                        <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="middle" name="lastAcbg" value="중등">
-                                                            <label class="form-check-label" for="middle">중등</label>
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-middle" name="lastAcbg" value="중등">
+                                                            <label class="form-check-label" for="lastAcbg-middle">중등</label>
                                                         </div>
-                                                        <!-- </div>
-                                                        <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="high" name="lastAcbg" value="고등">
-                                                            <label class="form-check-label" for="female">고등</label>
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-high" name="lastAcbg" value="고등">
+                                                            <label class="form-check-label" for="lastAcbg-high">고등</label>
                                                         </div>
-                                                        <!-- </div>
-                                                        <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="bachelor" name="lastAcbg" value="학사">
-                                                            <label class="form-check-label" for="bachelor">학사</label>
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-bachelor" name="lastAcbg" value="학사">
+                                                            <label class="form-check-label" for="lastAcbg-bachelor">학사</label>
                                                         </div>
-                                                        <!-- </div>
-                                                        <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="master" name="lastAcbg" value="석사">
-                                                            <label class="form-check-label" for="master">석사</label>
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-master" name="lastAcbg" value="석사">
+                                                            <label class="form-check-label" for="lastAcbg-master">석사</label>
                                                         </div>
-                                                        <!-- </div>
-                                                        <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="doctor" name="lastAcbg" value="박사">
-                                                            <label class="form-check-label" for="doctor">박사</label>
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-doctor" name="lastAcbg" value="박사">
+                                                            <label class="form-check-label" for="lastAcbg-doctor">박사</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -370,32 +379,6 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
     </div>
 </section>
 
-<!-- 페이징 코드 -->
-<!-- <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 mt-5">
-      <nav aria-label="Pagination">
-        <ul class="pagination justify-content-center">
-          <li class="page-item">
-            <a href="#" class="page-link">Prev</a>
-          </li>
-          <li class="page-item active">
-            <a href="#" class="page-link">1</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">2</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">3</a>
-          </li>
-          <li class="page-item">
-            <a href="#" class="page-link">Next</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</div> -->
 
 <footer class="footer">
     <p>서울특별시 마포구 신촌로 176 신입학 문의 : 02-123-4567 재학생 문의 : 02-123-4567</p>
@@ -423,70 +406,65 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
 
 <script>
-    //according to loftblog tut
-    $('.nav li:first').addClass('active');
-    var showSection = function showSection(section, isAnimate) {
-        var
-            direction = section.replace(/#/, ''),
-            reqSection = $('.section').filter('[data-section="' + direction + '"]'),
-            reqSectionPos = reqSection.offset().top - 0;
-        if (isAnimate) {
-            $('body, html').animate({
-                scrollTop: reqSectionPos
-            }, 800);
+    //비밀번호 일치 여부 확인 함수 (checkPasswordMatch)
+    function checkPasswordMatch() {
+        var password = document.getElementById("pswd").value;
+        var confirmPassword = document.getElementById("pswd-validate").value;
+
+        var matchMessage = document.getElementById("password-match-message");
+        var lengthMessage = document.getElementById("password-length-message");
+
+        // 비밀번호 일치 여부 확인
+        if (password === confirmPassword) {
+            matchMessage.innerHTML = "비밀번호 일치";
+            matchMessage.style.color = "blue"; // 파란색으로 설정
         } else {
-            $('body, html').scrollTop(reqSectionPos);
+            matchMessage.innerHTML = "비밀번호 불일치";
+            matchMessage.style.color = "red"; // 빨간색으로 설정
         }
-    };
-    var checkSection = function checkSection() {
-        $('.section').each(function () {
-            var
-                $this = $(this),
-                topEdge = $this.offset().top - 80,
-                bottomEdge = topEdge + $this.height(),
-                wScroll = $(window).scrollTop();
-            if (topEdge < wScroll && bottomEdge > wScroll) {
-                var
-                    currentId = $this.data('section'),
-                    reqLink = $('a').filter('[href*=\\#' + currentId + ']');
-                reqLink.closest('li').addClass('active').
-                siblings().removeClass('active');
+
+        // 비밀번호 길이 확인
+        if (password.length >= 8) {
+            lengthMessage.innerHTML = ""; // 길이가 충분하면 안내 메시지를 지움
+        } else {
+            lengthMessage.innerHTML = "비밀번호는 8자 이상이어야 합니다."; // 길이가 충분하지 않으면 안내 메시지 표시
+        }
+    }
+
+    // 비밀번호 입력 필드의 입력 이벤트에 대한 핸들러 등록
+    document.getElementById("pswd").addEventListener("input", function() {
+        var password = document.getElementById("pswd").value;
+        var confirmPassword = document.getElementById("pswd-validate").value;
+
+        // 입력을 시작하면 안내 문구를 표시
+        if (password !== "" || confirmPassword !== "") {
+            checkPasswordMatch();
+        } else {
+            // 입력 필드가 비어있을 때는 안내 문구를 숨김
+            document.getElementById("password-match-message").innerHTML = "";
+            document.getElementById("password-length-message").innerHTML = "";
+        }
+    });
+
+    // 동의 체크박스 상태 변경 시 모달 창 표시/숨김
+    window.onload = function() {
+        var agreeCheckbox = document.getElementById('agree');
+        var modal = document.getElementById('myModal');
+
+        agreeCheckbox.onchange = function() {
+            if (agreeCheckbox.checked) {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'block';
             }
-        });
+        }
+
+        modal.onclick = function() {
+            modal.style.display = 'none';
+        }
     };
-    $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
-        e.preventDefault();
-        showSection($(this).attr('href'), true);
-    });
-    $(window).scroll(function () {
-        checkSection();
-    });
 
-    // 생년월일 script
-    var cleave = new Cleave('.input-element', {
-        date: true,
-        delimiter: '-',
-        datePattern: ['Y', 'm', 'd']
-    });
-
-    function next(val, len, nextId){
-        if(val.length == len){
-            document.getElementById(nextId).focus();
-        }
-    }
-
-    function checkNum(event){
-        var key = event.key;
-        console.log(key);
-        if((key >= 0 && key < 10) || key == 'Backspace'){
-            return true;
-        } else {
-            event.preventDefault();
-        }
-    }
-
-</script>
-<script>
+    // 생년월일 입력 필드에 커스텀 색상 적용
     document.addEventListener('DOMContentLoaded', function () {
         const birthdayInput = document.getElementById('birthday');
 
@@ -498,13 +476,69 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
             }
         }
 
-        // Apply color on page load
         applyCustomColor();
 
-        // Apply color on input change
         birthdayInput.addEventListener('input', applyCustomColor);
     });
 </script>
+
+<script>
+    // 폼 제출 시 비밀번호 일치 여부 확인 후 AJAX 요청 (AJAX를 이용한 폼 제출)
+    $(document).ready(function () {
+        $("#applicantForm").on("submit", function (event) {
+            event.preventDefault();
+
+            // 전화번호 필드 결합
+            var aplTelNumber = $("#tel1").val() + $("#tel2").val() + $("#tel3").val();
+            $("#aplTelNumber").val(aplTelNumber);
+
+            //Ajax 요청 설정
+            $.ajax({
+                type: "POST",
+                url: "/apply",
+                contentType: "application/json",
+
+                //전체 폼데이터 비동기식 전달
+                data: JSON.stringify({
+                    aplName: $("#aplName").val(),
+                    dept: $("#dept").val(),
+                    deptCode: $("#deptCode").val(),
+                    rcrtCode: $("#rcrtCode").val(),
+                    yearCode: $("#yearCode").val(),
+                    pswd: $("#pswd").val(),
+                    aplBirthDay: $("#aplBirthDay").val(),
+                    gndrCode: $("#gndrCode").val(),
+                    address: $("#address").val(),
+                    addressDetail: $("#addressDetail").val(),
+                    aplEmail: $("#aplEmail").val(),
+                    aplTelNumber: $("#aplTelNumber").val(),
+                    lastAcbg: $("#lastAcbg").val(),
+                    aplImg: $("#aplImg").val()
+                }),
+                success: function (response) {
+                    $("#resultMessage").text(response.message);
+                    $("#resultModal").modal("show");
+
+                    setTimeout(function () {
+                        window.location.href = "/main.jsp";
+                    }, 3000);
+                },
+                error: function () {
+                    $("#resultMessage").text("지원서 제출 중 오류가 발생했습니다.");
+                    $("#resultModal").modal("show");
+                }
+            });
+        });
+
+        // 휴대폰번호 입력필드에 Backspace 키 입력 시 포커스 이동 방지
+        $("#tel1, #tel2, #tel3").on("keydown", function (event) {
+            if (event.keyCode === 8 && $(this).val().length === 0) {
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
 
 </body>
 </html>

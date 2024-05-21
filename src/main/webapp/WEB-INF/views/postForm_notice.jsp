@@ -51,7 +51,8 @@
 <body>
 
 <div class="container">
-    <form action="/post" method="post" > <%--enctype="multipart/form-data"--%>
+    <form action="/post" method="post" >
+        <%--enctype="multipart/form-data"--%>
         <div class="form-group">
             <label for="postTitle">제목</label>
             <input type="text" id="postTitle" name="postTitle">
@@ -68,10 +69,7 @@
         <!-- Hidden input : bbsId 값 1로 고정(=공지사항) -->
         <input type="hidden" name="bbsId" value="1">
 
-        <%--        <div class="form-group">--%>
-        <%--            <label for="fileNo">첨부 파일</label>--%>
-        <%--            <input type="file" id="fileNo" name="fileNo">--%>
-        <%--        </div>--%>
+
 
         <input type="hidden" name="delYn" value="N">
         <input type="hidden" name="adminEml" value="admin@example.com">

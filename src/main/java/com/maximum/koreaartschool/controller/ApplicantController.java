@@ -1,10 +1,12 @@
 package com.maximum.koreaartschool.controller;
 
+import com.maximum.koreaartschool.dao.ApplicantDao;
 import com.maximum.koreaartschool.dto.ApplicantDto;
 import com.maximum.koreaartschool.service.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -12,21 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ApplicantController {
 
     @Autowired
-    private ApplicantService applicantService;
+    private ApplicantDao applicantDao;
 
-    @PostMapping("/apply")
-    public String apply(ApplicantDto applicantDto, Model model) {
-
-        // 서비스로 전달하여 저장
-        boolean isSuccess = applicantService.saveApplicant(applicantDto);
-
-        // 결과에 따라 다른 뷰 반환
-        if (isSuccess) {
-            model.addAttribute("message", "지원이 완료되었습니다.");
-            return "success"; // 성공 시 success.html로 이동
-        } else {
-            model.addAttribute("message", "지원에 실패했습니다.");
-            return "error"; // 실패 시 error.html로 이동
+    @PostMapping
+        public String apply (@ModelAttribute ApplicantDto applicantDto, Model model){
+            try {
+                applicantDao.insertApplicantInt(applicantDto);
+                model.addAttribute("message", "지원서가 성공적으로 제출되었습니다.");
+            } catch (Exception e) {
+                model.addAttribute("message", "지원서 제출 중 오류가 발생했습니다.");
+                e.printStackTrace();
+            }
+            return "result";  // 결과를 보여줄 JSP 페이지 이름 (result.jsp)
         }
     }
-}
+

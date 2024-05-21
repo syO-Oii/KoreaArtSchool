@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-        <mapper namespace="com.maximum.koreaartschool.dao.ApplicantMapper">
+        <mapper namespace="com.maximum.koreaartschool.dao.ApplicantDao">
 
        <!-- INSERT 쿼리 -->
-        <insert id="insertApplicant" parameterType="com.maximum.koreaartschool.dto.ApplicantDto">
-        INSERT INTO APPLICANT
-            (APL_NO, RCRT_NO, DEPT, DEPT_CD, RCRT_CD, APL_PW, FIRST_PASS_YN,
-             SECOND_PASS_YN, FINAL_PASS_YN, PSWD, APL_NM, APL_BRDT, GNDR_CD,
-             ADDR, ADDR_DETAIL, APL_EML, APL_TEL, LAST_ACBG, APL_IMG, APL_CRT_DT)
-        VALUES (#{aplNo}, #{rcrtNo}, #{dept}, #{deptCd}, #{rcrtCd}, #{aplPw},
-                #{firstPassYn}, #{secondPassYn}, #{finalPassYn}, #{pswd}, #{aplNm},
-                #{aplBrdt}, #{gndrCd}, #{addr}, #{addrDetail}, #{aplEml}, #{aplTel},
-                #{lastAcbg}, #{aplImg}, #{aplCrtDt})
+        <insert id="insertApplicantInt" parameterType="com.maximum.koreaartschool.dto.ApplicantDto">
+            INSERT INTO `APPLICANT` (`RCRT_NO`, `DEPT`, `DEPT_CD`, `PSCP_SE`, `YEAR_CD`, `FIRST_PASS_YN`, `SECOND_PASS_YN`,
+                                     `FINAL_PASS_YN`, `PSWD`, `APL_NM`, `APL_BRDT`, `GNDR_CD`, `ADDR`, `ADDR_DETAIL`,
+                                     `APL_EML`, `APL_TEL`, `LAST_ACBG`, `APL_IMG`) VALUES
+                (#{rcrtCd}, #{dept}, #{deptCode}, #{rcrtCode}, #{yearCode},'N', 'N', 'N', #{pswd},
+                 #{aplName}, #{aplBirthDay}, #{gndrCode}, #{address}, #{addressDetail}, #{aplEmail}, #{aplTelNumber}, #{lastAcbg}, #{aplImg})
         </insert>
+
 </mapper>
