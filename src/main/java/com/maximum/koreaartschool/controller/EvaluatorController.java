@@ -6,23 +6,28 @@ import com.maximum.koreaartschool.dto.ApplicantProcess;
 import com.maximum.koreaartschool.dto.EvaluateScore;
 import com.maximum.koreaartschool.service.ApplicantService;
 import com.maximum.koreaartschool.service.EvaluatorService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/evaluator")
 @Slf4j
 @RequiredArgsConstructor
 public class EvaluatorController {
-    int evlNo;  // 해당 페이지 심사위원 번호
+    int evlNo = 1;  // 해당 페이지 심사위원 번호
     int evlStgCd;
 
     @Autowired
@@ -61,8 +66,11 @@ public class EvaluatorController {
     public String evlDocument(Model model) {
         evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
         evlStgCd = 10;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
-        List<ApplicantEvaluate> asEvaluatorApplicants = applicantService.getEvaluatorApplicants(evlNo);  // 전체 지원자 명단 추출
-        model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);          // model에 전체 지원자 명단 추가
+        List<ApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo);     // 전체 지원자 명단 추출
+        List<EvaluateScore> existingScores = evaluatorService.getScoresByEvaluator(evlNo);                  // 점수 추출
+
+        model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);                    // model에 전체 지원자 명단 추가
+        model.addAttribute("existingScores", existingScores);
         return "evaluator/document";
     }
 
@@ -74,26 +82,50 @@ public class EvaluatorController {
             //@RequestParam(value = "dept", required = false) String dept,
             @RequestParam(value = "deptNo", required = false) String deptNo
     ) {
-        evlNo = 1;                                      // [더미]평가위원 1번 페이지로 가정
+                                             // [더미]평가위원 1번 페이지로 가정
         int deptNum = Integer.parseInt(deptNo);
         int rcrtNum = Integer.parseInt(rcrt);
         List<ApplicantEvaluate> asEvaluatorApplicants;  // 평가위원별 지원자 명단
         if (rcrt.equals("0") && deptNo.equals("0")) {
-            asEvaluatorApplicants = applicantService.getEvaluatorApplicants(evlNo);     // 평가위원이 맡은 모든 학생 출력
+            asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo);     // 평가위원이 맡은 모든 학생 출력
         } else if (rcrt.equals("0") && !deptNo.equals("0")) {
-            asEvaluatorApplicants = applicantService.getApplicantByDeptno(deptNum);     // 학과 별 평가위원이 맡은 모든 학생 출력
+            asEvaluatorApplicants = evaluatorService.getApplicantByDeptno(deptNum);     // 학과 별 평가위원이 맡은 모든 학생 출력
         } else if (!rcrt.equals("0") && deptNo.equals("0")) {
-            asEvaluatorApplicants = applicantService.getApplicantByRcrtNo(rcrtNum);     // 모집 전형 별 평가위원이 맡은 모든 학생 출력
+            asEvaluatorApplicants = evaluatorService.getApplicantByRcrtNo(rcrtNum);     // 모집 전형 별 평가위원이 맡은 모든 학생 출력
         } else {
-            asEvaluatorApplicants = applicantService.getApplicantByOptions(deptNum, rcrtNum);   //  옵션 선택값에 따른 평가위원이 맡은 모든 학생 출력
+            asEvaluatorApplicants = evaluatorService.getApplicantByOptions(deptNum, rcrtNum);   //  옵션 선택값에 따른 평가위원이 맡은 모든 학생 출력
         }
         model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
         return "evaluator/document";
     }
 
-    @GetMapping("insertScore")
-    public String insertScore(){
-        
+    @PostMapping("insertScore")
+    public String insertScore(
+            Model model,
+            @RequestParam("applicantCount") int applicantCount,
+            @RequestParam Map<String, String> allParams) {
+        List<EvaluateScore> scores = new ArrayList<>();
+        List<ApplicantEvaluate> evaluations = new ArrayList<>();
+
+        for (int i = 0; i < applicantCount; i++) {
+            String checked = allParams.get("apl_ck_" + i);
+            if (checked != null) { // 체크 값이 null이 아닌 경우에만 처리
+                if (checked.equals("on")) {
+                    // 메소드를 사용하여 score 값 입력
+                    scores.add(createEvaluateScore(allParams, i, 1));
+                    scores.add(createEvaluateScore(allParams, i, 2));
+                    evaluations.add(createApplicantEvaluate(allParams, i, 'Y'));
+                } else if (checked.isEmpty()) {
+                    evaluations.add(createApplicantEvaluate(allParams, i, 'N'));
+                }
+            }
+        }
+        evaluatorService.saveScores(scores);
+        evaluatorService.updateEvaluations(evaluations); // 평가여부 업데이트
+
+        List<ApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo);
+        model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
+
         return "evaluator/document";
     }
     /* ---------- 서류평가 페이지 종료 ---------- */
@@ -108,6 +140,30 @@ public class EvaluatorController {
     @GetMapping("/evl_interview")
     public String evlInterview() {
         return "evaluator/interview";
+    }
+
+
+    private EvaluateScore createEvaluateScore(Map<String, String> params, int index, int evlQNo) {
+        EvaluateScore score = new EvaluateScore();
+        score.setEvl_Stg_No(Integer.parseInt(params.get("evl_stg_no_" + index)));
+        score.setRcrt_No(Integer.parseInt(params.get("rcrt_no_" + index)));
+        score.setEvl_No(Integer.parseInt(params.get("evl_no_" + index)));
+        score.setApl_No(Integer.parseInt(params.get("apl_no_" + index)));
+        score.setApl_Nm(params.get("apl_nm_" + index));
+        score.setDept_Cd(Integer.parseInt(params.get("dept_cd_" + index)));
+        score.setEVLQ_NO(evlQNo);
+        score.setScore(Integer.parseInt(params.get("score" + evlQNo + "_" + index)));
+        return score;
+    }
+
+    private ApplicantEvaluate createApplicantEvaluate(Map<String, String> params, int index, char isEvaluated) {
+        ApplicantEvaluate evaluation = new ApplicantEvaluate();
+        evaluation.setEVL_STG_NO(Integer.parseInt(params.get("evl_stg_no_" + index)));
+        evaluation.setRCRT_NO(Integer.parseInt(params.get("rcrt_no_" + index)));
+        evaluation.setEVL_NO(Integer.parseInt(params.get("evl_no_" + index)));
+        evaluation.setAPL_NO(Integer.parseInt(params.get("apl_no_" + index)));
+        evaluation.setIS_EVALUATED(isEvaluated);
+        return evaluation;
     }
 
 }

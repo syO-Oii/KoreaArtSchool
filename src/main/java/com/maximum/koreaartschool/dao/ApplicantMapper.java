@@ -16,15 +16,6 @@ public interface ApplicantMapper {
     @Select("select count(*) from applicant")
     int count();
 
-    List<ApplicantEvaluate> selectEvaluatorApplicants(int evlNo);
 
-    @Select("select * from DUMMY_APPLICANT_EVALUATE where DEPT_CD = #{deptNo}")
-    List<ApplicantEvaluate> selectApplicantByDeptno(int deptNo);
-
-    @Select("select * from DUMMY_APPLICANT_EVALUATE where RCRT_CD = #{rcrtNo}")
-    List<ApplicantEvaluate> selectApplicantByRcrtNo(int rcrtNo);
-
-    @Select("select * from DUMMY_APPLICANT_EVALUATE where DEPT_CD = #{deptNo} AND RCRT_CD = #{rcrtNo}")
-    List<ApplicantEvaluate> selectApplicantByOptions(int deptNo, int rcrtNo);
 
 }

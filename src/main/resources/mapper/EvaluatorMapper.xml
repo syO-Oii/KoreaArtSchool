@@ -24,4 +24,8 @@
         WHERE sa.DEPT_CD=#{departmentId} AND sa.RCRT_CD=#{recruitmentId} AND sa.EVL_STG_CD=#{stageId};
     </select>
 
+    <select id="selectEvaluatorApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantEvaluate">
+        SELECT *
+        FROM DUMMY_APPLICANT_EVALUATE;
+    </select>
 </mapper>
