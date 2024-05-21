@@ -1,10 +1,7 @@
 package com.maximum.koreaartschool.service;
 
 import com.maximum.koreaartschool.dao.EvaluatorMapper;
-import com.maximum.koreaartschool.dto.ApplicantEvaluate;
-import com.maximum.koreaartschool.dto.ApplicantProcess;
-import com.maximum.koreaartschool.dto.EvaluateScore;
-import com.maximum.koreaartschool.dto.Evaluator;
+import com.maximum.koreaartschool.dto.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,10 +31,20 @@ public class EvaluatorService {
         return evaluatorMapper.selectEvaluatorApplicants(evlNo);
     }
 
+    @Transactional
+    public List<ShowApplicantEvaluateScore> getTestEvaluatorApplicants(int evlNo){
+        return evaluatorMapper.selectTestEvaluatorApplicants(evlNo);
+    }
+
 
     @Transactional
     public List<ApplicantEvaluate> getApplicantByDeptno(int deptNo){
         return evaluatorMapper.selectApplicantByDeptno(deptNo);
+    }
+
+    @Transactional
+    public List<ShowApplicantEvaluateScore> getTestApplicantByDeptno(int deptNo){
+        return evaluatorMapper.selectTestApplicantByDeptno(deptNo);
     }
 
     @Transactional
@@ -46,8 +53,18 @@ public class EvaluatorService {
     }
 
     @Transactional
+    public List<ShowApplicantEvaluateScore> getTestApplicantByRcrtNo(int rcrtNo){
+        return evaluatorMapper.selectTestApplicantByRcrtNo(rcrtNo);
+    }
+
+    @Transactional
     public List<ApplicantEvaluate> getApplicantByOptions(int deptNo, int rcrtNo){
         return evaluatorMapper.selectApplicantByOptions(deptNo, rcrtNo);
+    }
+
+    @Transactional
+    public List<ShowApplicantEvaluateScore> getTestApplicantByOptions(int deptNo, int rcrtNo){
+        return evaluatorMapper.selectTestApplicantByOptions(deptNo, rcrtNo);
     }
 
     public void saveScores(List<EvaluateScore> scores) {
@@ -60,9 +77,10 @@ public class EvaluatorService {
         return evaluatorMapper.getScoresByEvaluator(evlNo);
     }
 
+
     // 평가 여부 추가
-    public void updateEvaluations(List<ApplicantEvaluate> evaluations) {
-        for (ApplicantEvaluate evaluation : evaluations) {
+    public void updateEvaluations(List<ShowApplicantEvaluateScore> evaluations) {
+        for (ShowApplicantEvaluateScore evaluation : evaluations) {
             evaluatorMapper.updateEvaluation(evaluation);
         }
     }

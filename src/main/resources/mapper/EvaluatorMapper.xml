@@ -28,4 +28,20 @@
         SELECT *
         FROM DUMMY_APPLICANT_EVALUATE;
     </select>
+
+    <select id="selectTestEvaluatorApplicants" resultType="com.maximum.koreaartschool.dto.ShowApplicantEvaluateScore">
+        select DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
+               (SELECT SCORE FROM evaluate_score where evlq_no = 1 and apl_no = DAE.APL_NO) AS SCORE1,
+               (SELECT SCORE FROM evaluate_score where evlq_no = 2 and apl_no = DAE.APL_NO) AS SCORE2,
+               (SELECT COALESCE(SUM(SCORE), 0)
+                FROM evaluate_score
+                WHERE evlq_no IN (1, 2)
+                  AND apl_no = DAE.APL_NO) AS SCORE,
+               DAE.EVL_RANK, DAE.IS_EVALUATED,
+               DAE.EVL_STG_CD, DAE.RCRT_CD, DAE.DEPT_CD
+        FROM DUMMY_APPLICANT_EVALUATE AS DAE, evaluate_score AS es
+        GROUP BY DAE.APL_NM;
+    </select>
+
+
 </mapper>
