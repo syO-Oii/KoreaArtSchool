@@ -18,7 +18,7 @@ public class StageApplicant {
     private String dept;
     private String deptCd;
     private String rcrtCd;
-    private String aplPw;
+    private String yearCd;
     private String firstPassYn;
     private String secondPassYn;
     private String finalPassYn;
@@ -26,6 +26,7 @@ public class StageApplicant {
     private String aplNm;
     private String aplBrdt;
     private String gndrCd;
+    private String gndrNm;
     private String addr;
     private String addrDetail;
     private String aplEml;
@@ -38,6 +39,11 @@ public class StageApplicant {
     private Integer evlRank;
     private String passYn;
     private String evlStgCd;
+    private Integer rcrtUnitNo;
+    private Integer rcrtPscp;
+    private Integer selectPscp;
+    private Integer evlNo;
+    private Integer evlqNo;
 
 }
 
