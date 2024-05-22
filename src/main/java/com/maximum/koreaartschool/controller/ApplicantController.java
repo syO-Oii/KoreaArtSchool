@@ -1,17 +1,15 @@
 package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.dao.ApplicantDao;
-import com.maximum.koreaartschool.dto.ApplicantDto;
-import com.maximum.koreaartschool.service.ApplicantService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+@Slf4j
 @Controller
 public class ApplicantController {
 
@@ -19,8 +17,11 @@ public class ApplicantController {
     private ApplicantDao applicantDao;
 
     //insert메서드(원서 접수 1단계)
-    @RequestMapping("/submit")
+    @RequestMapping("/submitApply")
     public String applySubmit(HttpServletRequest request, Model model) {
+
+
+        model.addAttribute("msg", "등록 완료");
 
         // 폼 데이터에서 필요한 값들을 추출하여 ApplicantDto 객체에 설정
         applicantDao.insertApplicantInt(

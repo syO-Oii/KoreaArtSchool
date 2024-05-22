@@ -543,51 +543,22 @@
 
 
             </style>
-            <!-- Notice List -->
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
                         <form action="/delete" method="post">
+
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title">Notice List</h5>
+
                                 <div class="col-mb-2">
                                     <button class="btn btn-dark" type="submit">삭제</button>
+                                    <%--                                    <button class="btn btn-primary" type="submit">저장</button>--%>
+
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="selectAll">
-                                                <label class="form-check-label" for="selectAll"></label>
-                                            </div>
-                                        </th>
-                                        <th scope="col">No</th>
-                                        <th scope="col">제목</th>
-                                        <th scope="col">내용</th>
-                                        <th scope="col">작성일자</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach items="${post_list}" var="dto">
-                                        <tr>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input row-check" type="checkbox" id="gridCheck${dto.postNumber}">
-                                                    <label class="form-check-label" for="gridCheck${dto.postNumber}"></label>
-                                                </div>
-                                            </td>
-                                            <td>${dto.postNumber}</td>
-                                            <td><a href="/getPost?postNumber=${dto.postNumber}" class="post-link">${dto.postTitle}</a></td>
-                                            <td>${dto.writer}</td>
-                                            <td>${dto.writeDate}</td>
-                                            <td style="display: none;">${dto.postContent}</td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
+
                             </div>
                         </form>
                     </div>
@@ -599,32 +570,37 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <form id="noticeForm" action="/submit" method="post" enctype="multipart/form-data">
-                            <input type="hidden" id="action" name="action" value="post">
-                            <input type="hidden" id="postNumber" name="postNumber" value="${dto.postNumber}">
+                        <form action="/post" method="post">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title">New Notice</h5>
+
                                 <div class="form-group">
-                                    <button class="btn btn-dark" type="submit" id="saveChanges">변경사항 저장</button>
-                                    <button class="btn btn-primary" type="submit" id="createNew">등록</button>
+                                    <button class="btn btn-dark" type="reset" >초기화</button>
+                                    <button class="btn btn-primary" type="submit">저장</button>
                                 </div>
                             </div>
                             <!-- 제목 -->
                             <div class="form-group col-mb-2">
-                                <label for="postTitle" class="col-sm-3 col-form-label">제목</label>
-                                <input type="text" class="form-control" id="postTitle" name="postTitle" required minlength="2" maxlength="15">
+                                <label for="postTitle" class="col-sm-3 col-form-label">제목</label><!-- 아래의 id값과 같아야 함 -->
+                                <input type="text" class="form-control" id="postTitle" name="postTitle" required minlength="2" maxlength="15" />
                             </div>
-                            <!-- 내용 -->
+
                             <div class="form-group col-mb-2">
-                                <label for="postContent" class="col-sm-3 col-form-label">내용</label>
-                                <textarea class="form-control" id="postContent" name="postContent"></textarea>
+                                <label for="postContent" class="col-sm-3 col-form-label">내용</label><!-- 아래의 id값과 같아야 함 -->
+                                <!-- TinyMCE Editor -->
+                                <textarea class="tinymce-editor" id="postContent" name="postContent"></textarea>
                             </div>
                             <div class="form-group">
+                                <label for="writer">작성자</label>
                                 <input type="hidden" id="writer" name="writer" value="관리자">
                                 <input type="hidden" name="bbsId" value="1">
-                                <label for="fileNm">첨부 파일</label>
-                                <input type="file" id="fileNm" name="fileNm">
-                                <input type="hidden" name="filePath">
+                                <!-- Hidden input : bbsId 값 1로 고정(=공지사항) -->
+
+                                <%--        <div class="form-group">--%>
+                                <%--            <label for="fileNo">첨부 파일</label>--%>
+                                <%--            <input type="file" id="fileNo" name="fileNo">--%>
+                                <%--        </div>--%>
+
                                 <input type="hidden" name="delYn" value="N">
                                 <input type="hidden" name="adminEml" value="admin@example.com">
                             </div>
@@ -668,98 +644,6 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/admin/js/main.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // 제목을 클릭하면 해당 게시물 정보를 불러오는 함수
-        $("body").on("click", "a.post-link", function(event) {
-            event.preventDefault(); // 기본 동작 방지
-
-            // 클릭된 제목의 href 속성을 가져와서 AJAX 요청을 보냄
-            var postLink = $(this).attr("href");
-            $.ajax({
-                url: postLink, // 게시물 정보를 가져올 URL
-                type: "GET", // GET 요청
-                success: function(response) {
-                    // 요청이 성공하면 받은 데이터를 처리
-                    $("#postNumber").val(response.postNumber); // 게시물 번호 설정
-                    $("#postTitle").val(response.postTitle); // 제목 입력란에 제목 설정
-                    $("#postContent").val(response.postContent); // 내용 설정
-                    // 액션을 수정으로 변경
-                    $("#action").val("edit");
-                },
-                error: function(xhr, status, error) {
-                    // 요청이 실패하면 에러 메시지 출력
-                    console.error("Error:", error);
-                }
-            });
-        });
-
-        // 저장 버튼 클릭 시 폼의 action을 수정으로 설정
-        $("#saveChanges").click(function() {
-            $("#action").val("edit");
-        });
-
-        // 등록 버튼 클릭 시 폼의 action을 등록으로 설정
-        $("#createNew").click(function() {
-            $("#action").val("post");
-        });
-    });
-</script>
-
-
-<%--단일 게시물의 정보를 비동기적으로 로드--%>
-<script>
-    document.getElementById('selectAll').addEventListener('change', function () {
-        const checkboxes = document.querySelectorAll('.row-check');
-        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-    });
-
-
-    let selectedEvaluators = [];
-
-    function fillForm(checkbox) {
-        if (checkbox.checked) {
-            // 체크박스를 선택하면 배열에 추가
-            selectedEvaluators.push(checkbox);
-        } else {
-            // 체크박스를 해제하면 배열에서 제거
-            selectedEvaluators = selectedEvaluators.filter(item => item !== checkbox);
-        }
-
-        // 배열의 마지막 요소로 폼을 채우기
-        if (selectedEvaluators.length > 0) {
-            const lastChecked = selectedEvaluators[selectedEvaluators.length - 1];
-            document.getElementById('evl_no').value = lastChecked.dataset.evlNo;
-            document.getElementById('evl_nm').value = lastChecked.dataset.evlNm;
-            document.getElementById('dept_cd').value = lastChecked.dataset.deptCd;
-            document.getElementById('evl_ogdp').value = lastChecked.dataset.evlOgdp;
-            document.getElementById('evl_eml').value = lastChecked.dataset.evlEml;
-            document.getElementById('is_selected').value = lastChecked.dataset.isSelected;
-            document.getElementById('evl_tel').value = lastChecked.dataset.evlTel;
-            document.getElementById('addr').value = lastChecked.dataset.addr;
-            document.getElementById('addr_detail').value = lastChecked.dataset.addrDetail;
-            document.getElementById('bank_nm').value = lastChecked.dataset.bankNm;
-            document.getElementById('act_no').value = lastChecked.dataset.actNo;
-            document.getElementById('slry').value = lastChecked.dataset.slry;
-        } else {
-            // 배열이 비어 있으면 폼을 초기화
-            document.getElementById('evl_no').value = '';
-            document.getElementById('evl_nm').value = '';
-            document.getElementById('dept_cd').value = '';
-            document.getElementById('evl_ogdp').value = '';
-            document.getElementById('evl_eml').value = '';
-            document.getElementById('is_selected').value = '';
-            document.getElementById('evl_tel').value = '';
-            document.getElementById('addr').value = '';
-            document.getElementById('addr_detail').value = '';
-            document.getElementById('bank_nm').value = '';
-            document.getElementById('act_no').value = '';
-            document.getElementById('slry').value = '';
-        }
-    }
-</script>
 
 </body>
 

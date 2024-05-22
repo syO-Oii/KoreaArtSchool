@@ -22,7 +22,7 @@
                PST_TTL AS postTitle,
                PST_CN AS postContent,
                WRT_DT AS writeDate,
-               FILE_NO AS fileNo,
+               FILE_NM AS fileNm,
                DEL_YN AS delYn,
                ADMIN_EML AS adminEml
         FROM POST_INFO
@@ -38,7 +38,8 @@
                PST_TTL AS postTitle,
                PST_CN AS postContent,
                WRT_DT AS writeDate,
-               FILE_NO AS fileNo,
+               FILE_NM AS fileNm,
+               FILE_PATH AS filePath,
                DEL_YN AS delYn,
                ADMIN_EML AS adminEml
         FROM POST_INFO
@@ -47,14 +48,29 @@
 
     <!-- PostDao에 정의된 insert메서드(글 작성) -->
     <insert id="postInsertDao">
-        INSERT INTO POST_INFO(BBS_ID, PST_TTL, PST_CN, WRTR, WRT_DT, FILE_NO, DEL_YN, ADMIN_EML)
-        VALUES (#{bbsId}, #{postTitle}, #{postContent}, #{writer}, DEFAULT, NULL, #{delYn}, #{adminEml})
+        INSERT INTO POST_INFO(BBS_ID, PST_TTL, PST_CN, WRTR, WRT_DT, FILE_NM, FILE_PATH, DEL_YN, ADMIN_EML)
+        VALUES (#{bbsId}, #{postTitle}, #{postContent}, #{writer}, DEFAULT, #{fileName}, NULL, 'N', #{adminEml})
     </insert>
+
+    <!-- PostDao에 정의된 update메서드(글 수정) -->
+    <update id="postUpdateDao">
+        UPDATE POST_INFO
+        SET PST_TTL = #{postTitle},
+            PST_CN = #{postContent}
+        WHERE PST_NO = #{postNumber}
+    </update>
 
     <!-- PostDao에 정의된 delete메서드(글 삭제) -->
     <delete id="postDeleteDao">
         DELETE FROM POST_INFO
         WHERE PST_NO = #{postNumber}
     </delete>
+
+    <!-- 단일 게시물 정보를 가져오는 쿼리 -->
+    <select id="getPostByNo" parameterType="java.lang.Integer" resultType="com.maximum.koreaartschool.dto.PostDto">
+        SELECT PST_NO AS postNumber, WRTR AS writer, PST_TTL AS postTitle, PST_CN AS postContent, WRT_DT AS writeDate, FILE_NM AS fileNm
+        FROM POST_INFO
+        WHERE PST_NO = #{postNumber}
+    </select>
 
 </mapper>

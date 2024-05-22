@@ -81,11 +81,11 @@
                     <div class="card-body">
 
                         <!-- General Form Elements -->
-                        <form action="/apply" method="post">
+<%--                        <form action="/apply" method="post">--%>
                             <main id="main" class="main">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form action="/admin/list" method="get">
+                                        <form action="/view" method="get">
                                             <div class="table-responsive">
                                                 <table class="table table-hover">
                                                     <thead>
@@ -120,7 +120,7 @@
                                                                 var post = postData[i];
                                                                 var row = "<tr>" +
                                                                     "<td>" + post.postNumber + "</td>" +
-                                                                    "<td><a href='view?PostId=" + post.postNumber + "'>" + post.postTitle + "</a></td>" +
+                                                                    "<td><a href='view?postNumber=" + post.postNumber + "'>" + post.postTitle + "</a></td>" +
                                                                     "<td>" + post.writer + "</td>" +
                                                                     "<td>" + post.writeDate + "</td>" +
                                                                     "</tr>";
@@ -165,7 +165,7 @@
                                                     <c:forEach items="${post_list}" var="dto">
                                                         <tr>
                                                             <td>${dto.postNumber}</td>
-                                                            <td><a href="view?id=${dto.postNumber}">${dto.postTitle}</a></td>
+                                                            <td><a href="view?postNumber=${dto.postNumber}">${dto.postTitle}</a></td>
                                                             <td>${dto.writer}</td>
                                                             <td>${dto.writeDate}</td>
                                                         </tr>
@@ -180,7 +180,7 @@
 </section>
 <!-- 페이징 코드 -->
 <style>
-    /* '다음페이지', '이전페이지' 버튼 CSS코드 */
+    /* '다음페이지', '이전페이지' 버튼 */
     .page-item {
         background-color: #22201e; /* 다음페이지 버튼의 배경색 */
         border-color: white;

@@ -99,7 +99,7 @@
                     <div class="card-body">
 
                         <!-- General Form Elements -->
-                        <form id="applicationForm" action="/submit" method="post">
+                        <form id="applicationForm" action="/submitApply" method="post">
                             <main id="main" class="main">
                                 <fieldset class="row mb-3 ">
                                     <style>
@@ -423,6 +423,59 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 
 <!-- 생년월일 설정 script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+
+<%-- 이미지 업로드 설정 --%>
+<script src="/js/jQuery-2.1.4.min.js"></script>
+
+<script>
+    $(document).ready(function (){
+     var formObj = $("#item");
+        $("#btnRegister").on("click",function (){
+           formObj.attr("action", "/item/register");
+           formObj.attr("method","post");
+           formObj.submit();
+        });
+
+        $("#btnList").on("click",function (){
+            self.location="/item/list"
+        })
+    });
+</script>
+
+<body>
+<form:form modelAttribute="item" action="register" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td>파일</td>
+            <td><input type="file" name="picture"/></td>
+        </tr>
+    </table>
+</form:form>
+
+<div>
+    <button type="submit" id="btnRegister">등록</button>
+    <button type="submit" id="btnList">리스트</button>
+</div>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
     //비밀번호 일치 여부 확인 함수 (checkPasswordMatch)

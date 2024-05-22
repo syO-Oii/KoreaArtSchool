@@ -79,26 +79,41 @@
             <main id="main" class="main">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/view" method="GET">
+                        <form>
                         <section>
                                 <div class="card form-label form-group">
                                     <div class="card-body">
-                                        <h5 class="card-title"></h5>
+                                        <h5 class="card-title">${dto.postTitle}</h5>
                                         <div class="quill-editor-default">
-                                            ${dto.postTitle}
-                                            ${dto.postContent}
-                                            ${dto.writer}
+                                            <textarea class="form-control"  rows="10"> ${dto.postContent}</textarea>
+
+<%--                                            ${dto.writer}--%>
                                         </div>
                                     </div>
                                 </div>
                             </section>
+                            <style>
+                                /* '목록' 버튼 */
+                                .page-list {
+                                    color: white;
+                                    background-color: #22201e; /* 이전페이지 버튼의 배경색 */
 
+                                    border-color: white; /* 이전페이지 버튼의 테두리색 */
+                                }
+                                .page-list:hover {
+                                    color: white;
+                                    background-color:#f5a425; /* 이전페이지 버튼의 배경색 */
+                                    border-color: #f5a425; /* 이전페이지 버튼의 테두리색 */
+
+                                    color:#22201e
+                                }
+                            </style>
                             <div class="col-lg-12">
-                                <div class="main-button-black text-center">
-                                    <a class="btn btn-primary btn-next" href="/list">목록</a>
+                                <div class="main-button-black text-center ">
+                                    <a class="btn btn-primary btn-next page-list" href="/list">목록</a>
                                 </div>
                             </div>
-<%--                        </form>--%>
+                        </form>
                     </div>
                 </div>
             </main>
