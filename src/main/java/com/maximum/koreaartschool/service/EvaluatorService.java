@@ -32,8 +32,9 @@ public class EvaluatorService {
     }
 
     @Transactional
-    public List<ShowApplicantEvaluateScore> getTestEvaluatorApplicants(int evlNo){
-        return evaluatorMapper.selectTestEvaluatorApplicants(evlNo);
+    public List<ViewApplicantEvaluate> getTestEvaluatorApplicants(int evlNo, int evlStgCd){
+        System.out.println(evlNo + " " + evlStgCd);
+        return evaluatorMapper.selectTestEvaluatorApplicants(evlNo, evlStgCd);
     }
 
 
@@ -43,7 +44,7 @@ public class EvaluatorService {
     }
 
     @Transactional
-    public List<ShowApplicantEvaluateScore> getTestApplicantByDeptno(int deptNo){
+    public List<ViewApplicantEvaluate> getTestApplicantByDeptno(int deptNo){
         return evaluatorMapper.selectTestApplicantByDeptno(deptNo);
     }
 
@@ -53,7 +54,7 @@ public class EvaluatorService {
     }
 
     @Transactional
-    public List<ShowApplicantEvaluateScore> getTestApplicantByRcrtNo(int rcrtNo){
+    public List<ViewApplicantEvaluate> getTestApplicantByRcrtNo(int rcrtNo){
         return evaluatorMapper.selectTestApplicantByRcrtNo(rcrtNo);
     }
 
@@ -63,7 +64,7 @@ public class EvaluatorService {
     }
 
     @Transactional
-    public List<ShowApplicantEvaluateScore> getTestApplicantByOptions(int deptNo, int rcrtNo){
+    public List<ViewApplicantEvaluate> getTestApplicantByOptions(int deptNo, int rcrtNo){
         return evaluatorMapper.selectTestApplicantByOptions(deptNo, rcrtNo);
     }
 
@@ -79,8 +80,8 @@ public class EvaluatorService {
 
 
     // 평가 여부 추가
-    public void updateEvaluations(List<ShowApplicantEvaluateScore> evaluations) {
-        for (ShowApplicantEvaluateScore evaluation : evaluations) {
+    public void updateEvaluations(List<ViewApplicantEvaluate> evaluations) {
+        for (ViewApplicantEvaluate evaluation : evaluations) {
             evaluatorMapper.updateEvaluation(evaluation);
         }
     }

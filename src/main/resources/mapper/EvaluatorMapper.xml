@@ -29,8 +29,8 @@
         FROM DUMMY_APPLICANT_EVALUATE;
     </select>
 
-    <select id="selectTestEvaluatorApplicants" resultType="com.maximum.koreaartschool.dto.ShowApplicantEvaluateScore">
-        select DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
+    <select id="selectTestEvaluatorApplicants" resultType="com.maximum.koreaartschool.dto.ViewApplicantEvaluate">
+        /*select DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
                (SELECT SCORE FROM evaluate_score where evlq_no = 1 and apl_no = DAE.APL_NO) AS SCORE1,
                (SELECT SCORE FROM evaluate_score where evlq_no = 2 and apl_no = DAE.APL_NO) AS SCORE2,
                (SELECT COALESCE(SUM(SCORE), 0)
@@ -40,7 +40,46 @@
                DAE.EVL_RANK, DAE.IS_EVALUATED,
                DAE.EVL_STG_CD, DAE.RCRT_CD, DAE.DEPT_CD
         FROM DUMMY_APPLICANT_EVALUATE AS DAE, evaluate_score AS es
-        GROUP BY DAE.APL_NM;
+        GROUP BY DAE.APL_NM;*/
+
+        SELECT
+            DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 1
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD) AS SCORE1,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 2
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD) AS SCORE2,
+            (SELECT COALESCE(SUM(SCORE), 0)
+             FROM EVALUATE_SCORE
+             WHERE evlq_no IN (1, 2)
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD) AS SCORE,
+            DAE.EVL_RANK, DAE.IS_EVALUATED, DAE.EVL_STG_CD, DAE.RCRT_CD, DAE.DEPT_CD
+        FROM
+            DUMMY_APPLICANT_EVALUATE AS DAE
+                LEFT JOIN
+            EVALUATE_SCORE AS ES
+            ON DAE.EVL_STG_CD = ES.EVL_STG_CD
+                AND DAE.APL_NO = ES.APL_NO
+        WHERE
+            DAE.EVL_STG_CD = #{evlStgCd}
+        GROUP BY
+            DAE.EVL_STG_NO,
+            DAE.RCRT_NO,
+            DAE.EVL_NO,
+            DAE.APL_NO,
+            DAE.APL_NM,
+            DAE.EVL_RANK,
+            DAE.IS_EVALUATED,
+            DAE.EVL_STG_CD,
+            DAE.RCRT_CD,
+            DAE.DEPT_CD;
+
     </select>
 
 

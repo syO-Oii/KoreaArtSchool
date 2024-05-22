@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
-public class ShowApplicantEvaluateScore {
+public class ViewApplicantEvaluate {
 	// 뷰 페이지용 평가위원별 대상자 평가 DTO, SCORE1, SCORE2는 각각 EVALUATOR
 	private int EVL_STG_NO;		// 평가단계번호
 	private int EVL_STG_CD;		// 평가단계코드

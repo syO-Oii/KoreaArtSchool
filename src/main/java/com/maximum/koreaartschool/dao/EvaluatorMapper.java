@@ -20,25 +20,25 @@ public interface EvaluatorMapper {
     List<ApplicantEvaluate> selectEvaluatorApplicants(int evlNo);
 
     //@Select("select * from DUMMY_APPLICANT_EVALUATE")
-    List<ShowApplicantEvaluateScore> selectTestEvaluatorApplicants(int evlNo);
+    List<ViewApplicantEvaluate> selectTestEvaluatorApplicants(@Param("evlNo") int evlNo, @Param("evlStgCd") int evlStgCd);
 
     @Select("select * from DUMMY_APPLICANT_EVALUATE where DEPT_CD = #{deptNo}")
     List<ApplicantEvaluate> selectApplicantByDeptno(@Param("deptNo") int deptNo);
 
     @Select("select * from DUMMY_APPLICANT_EVALUATE where DEPT_CD = #{deptNo}")
-    List<ShowApplicantEvaluateScore> selectTestApplicantByDeptno(@Param("deptNo") int deptNo);
+    List<ViewApplicantEvaluate> selectTestApplicantByDeptno(@Param("deptNo") int deptNo);
 
     @Select("select * from DUMMY_APPLICANT_EVALUATE where RCRT_CD = #{rcrt}")
     List<ApplicantEvaluate> selectApplicantByRcrtNo(@Param("rcrt") int rcrt);
 
     @Select("select * from DUMMY_APPLICANT_EVALUATE where RCRT_CD = #{rcrt}")
-    List<ShowApplicantEvaluateScore> selectTestApplicantByRcrtNo(@Param("rcrt") int rcrt);
+    List<ViewApplicantEvaluate> selectTestApplicantByRcrtNo(@Param("rcrt") int rcrt);
 
     @Select("select * from DUMMY_APPLICANT_EVALUATE where DEPT_CD = #{deptNo} AND RCRT_CD = #{rcrt}")
     List<ApplicantEvaluate> selectApplicantByOptions(@Param("deptNo") int deptNo, @Param("rcrt") int rcrt);
 
     @Select("select * from DUMMY_APPLICANT_EVALUATE where DEPT_CD = #{deptNo} AND RCRT_CD = #{rcrt}")
-    List<ShowApplicantEvaluateScore> selectTestApplicantByOptions(@Param("deptNo") int deptNo, @Param("rcrt") int rcrt);
+    List<ViewApplicantEvaluate> selectTestApplicantByOptions(@Param("deptNo") int deptNo, @Param("rcrt") int rcrt);
 
     @Insert("INSERT INTO evaluate_score (evl_Stg_No, rcrt_No, evl_No, apl_No, apl_Nm, EVLQ_NO, score, dept_Cd) " +
             "VALUES (#{evl_Stg_No}, #{rcrt_No}, #{evl_No}, #{apl_No}, #{apl_Nm}, #{EVLQ_NO}, #{score}, #{dept_Cd})" +
@@ -50,5 +50,5 @@ public interface EvaluatorMapper {
     List<EvaluateScore> getScoresByEvaluator(int evl_No);
 
     @Update("UPDATE DUMMY_APPLICANT_EVALUATE SET IS_EVALUATED = #{IS_EVALUATED} WHERE EVL_STG_NO = #{EVL_STG_NO} AND RCRT_NO = #{RCRT_NO} AND EVL_NO = #{EVL_NO} AND APL_NO = #{APL_NO}")
-    void updateEvaluation(ShowApplicantEvaluateScore evaluation);
+    void updateEvaluation(ViewApplicantEvaluate evaluation);
 }

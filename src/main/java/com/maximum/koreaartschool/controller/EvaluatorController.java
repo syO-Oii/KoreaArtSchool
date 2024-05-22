@@ -4,13 +4,9 @@ package com.maximum.koreaartschool.controller;
 import com.maximum.koreaartschool.dto.ApplicantEvaluate;
 import com.maximum.koreaartschool.dto.ApplicantProcess;
 import com.maximum.koreaartschool.dto.EvaluateScore;
-import com.maximum.koreaartschool.dto.ShowApplicantEvaluateScore;
+import com.maximum.koreaartschool.dto.ViewApplicantEvaluate;
 import com.maximum.koreaartschool.service.ApplicantService;
 import com.maximum.koreaartschool.service.EvaluatorService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,9 +75,9 @@ public class EvaluatorController {
     @GetMapping("/Test_document")
     public String testEvlDocument(Model model) {
         evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
-        evlStgCd = 10;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
+        evlStgCd = 20;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
         char a = 'Y';
-        List<ShowApplicantEvaluateScore> testAsEvaluatorApplicants = evaluatorService.getTestEvaluatorApplicants(evlNo);     // 전체 지원자 명단 추출
+        List<ViewApplicantEvaluate> testAsEvaluatorApplicants = evaluatorService.getTestEvaluatorApplicants(evlNo, evlStgCd);     // 전체 지원자 명단 추출
         //List<EvaluateScore> existingScores = evaluatorService.getScoresByEvaluator(evlNo);                  // 점수 추출
         model.addAttribute("evaluateApplicantScore", testAsEvaluatorApplicants);                    // model에 전체 지원자 명단 추가
         //model.addAttribute("existingScores", existingScores);
@@ -94,19 +90,21 @@ public class EvaluatorController {
     public String print(
             Model model,
             //@RequestParam(value = "year", required = false) String year,
-            @RequestParam(value = "rcrt", required = false) String rcrt,
+            @RequestParam(value = "recruitment", required = false) String recruitment,
             //@RequestParam(value = "dept", required = false) String dept,
-            @RequestParam(value = "deptNo", required = false) String deptNo
+            @RequestParam(value = "department", required = false) String department
     ) {
+        evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
+        evlStgCd = 10;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
                                              // [더미]평가위원 1번 페이지로 가정
-        int deptNum = Integer.parseInt(deptNo);
-        int rcrtNum = Integer.parseInt(rcrt);
-        List<ShowApplicantEvaluateScore> asEvaluatorApplicants;  // 평가위원별 지원자 명단
-        if (rcrt.equals("0") && deptNo.equals("0")) {
-            asEvaluatorApplicants = evaluatorService.getTestEvaluatorApplicants(evlNo);     // 평가위원이 맡은 모든 학생 출력
-        } else if (rcrt.equals("0") && !deptNo.equals("0")) {
+        int deptNum = Integer.parseInt(department);
+        int rcrtNum = Integer.parseInt(recruitment);
+        List<ViewApplicantEvaluate> asEvaluatorApplicants;  // 평가위원별 지원자 명단
+        if (recruitment.equals("0") && department.equals("0")) {
+            asEvaluatorApplicants = evaluatorService.getTestEvaluatorApplicants(evlNo, evlStgCd);     // 평가위원이 맡은 모든 학생 출력
+        } else if (recruitment.equals("0") && !department.equals("0")) {
             asEvaluatorApplicants = evaluatorService.getTestApplicantByDeptno(deptNum);     // 학과 별 평가위원이 맡은 모든 학생 출력
-        } else if (!rcrt.equals("0") && deptNo.equals("0")) {
+        } else if (!recruitment.equals("0") && department.equals("0")) {
             asEvaluatorApplicants = evaluatorService.getTestApplicantByRcrtNo(rcrtNum);     // 모집 전형 별 평가위원이 맡은 모든 학생 출력
         } else {
             asEvaluatorApplicants = evaluatorService.getTestApplicantByOptions(deptNum, rcrtNum);   //  옵션 선택값에 따른 평가위원이 맡은 모든 학생 출력
@@ -121,8 +119,11 @@ public class EvaluatorController {
             @RequestParam("applicantCount") int applicantCount,
             @RequestParam Map<String, String> allParams) {
 
+        evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
+        evlStgCd = 10;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
+
         List<EvaluateScore> scores = new ArrayList<>();     // 평가 점수 리스트 생성
-        List<ShowApplicantEvaluateScore> evaluations = new ArrayList<>();
+        List<ViewApplicantEvaluate> evaluations = new ArrayList<>();
 
         for (int i = 0; i < applicantCount; i++) {
             String checked = allParams.get("apl_ck_" + i);
@@ -143,7 +144,7 @@ public class EvaluatorController {
         evaluatorService.saveScores(scores);
         evaluatorService.updateEvaluations(evaluations); // 평가여부 업데이트
 
-        List<ShowApplicantEvaluateScore> asEvaluatorApplicants = evaluatorService.getTestEvaluatorApplicants(evlNo);
+        List<ViewApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getTestEvaluatorApplicants(evlNo, evlStgCd);
         model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
 
         return "evaluator/document";
@@ -176,8 +177,8 @@ public class EvaluatorController {
         return score;
     }
 
-    private ShowApplicantEvaluateScore createApplicantEvaluate(Map<String, String> params, int index, String isEvaluated) {
-        ShowApplicantEvaluateScore evaluation = new ShowApplicantEvaluateScore();
+    private ViewApplicantEvaluate createApplicantEvaluate(Map<String, String> params, int index, String isEvaluated) {
+        ViewApplicantEvaluate evaluation = new ViewApplicantEvaluate();
         evaluation.setEVL_STG_NO(Integer.parseInt(params.get("evl_stg_no_" + index)));
         evaluation.setRCRT_NO(Integer.parseInt(params.get("rcrt_no_" + index)));
         evaluation.setEVL_NO(Integer.parseInt(params.get("evl_no_" + index)));
