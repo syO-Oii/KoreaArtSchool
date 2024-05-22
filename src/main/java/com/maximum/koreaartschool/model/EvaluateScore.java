@@ -17,5 +17,6 @@ public class EvaluateScore {
 	private int aplNo;
 	private int evlqNo;
 	private Integer score;
+	private int evlStgCd;
 	
 }

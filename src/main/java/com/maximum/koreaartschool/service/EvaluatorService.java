@@ -27,45 +27,43 @@ public class EvaluatorService {
     }
 
     @Transactional
-    public List<ApplicantEvaluate> getEvaluatorApplicants(int evlNo){
-        return evaluatorMapper.selectEvaluatorApplicants(evlNo);
+    public List<ViewApplicantEvaluate> getEvaluatorApplicants(int evlNo, int evlStgCd){
+        return evaluatorMapper.selectEvaluatorApplicants(evlNo, evlStgCd);
     }
 
     @Transactional
-    public List<ViewApplicantEvaluate> getTestEvaluatorApplicants(int evlNo, int evlStgCd){
-        System.out.println(evlNo + " " + evlStgCd);
-        return evaluatorMapper.selectTestEvaluatorApplicants(evlNo, evlStgCd);
-    }
-
-
-    @Transactional
-    public List<ApplicantEvaluate> getApplicantByDeptno(int deptNo){
+    public List<ViewApplicantEvaluate> getApplicantByDeptno(int deptNo){
         return evaluatorMapper.selectApplicantByDeptno(deptNo);
     }
 
-    @Transactional
+    /*@Transactional
     public List<ViewApplicantEvaluate> getTestApplicantByDeptno(int deptNo){
         return evaluatorMapper.selectTestApplicantByDeptno(deptNo);
-    }
+    }*/
 
     @Transactional
-    public List<ApplicantEvaluate> getApplicantByRcrtNo(int rcrtNo){
+    public List<ViewApplicantEvaluate> getApplicantByRcrtNo(int rcrtNo){
         return evaluatorMapper.selectApplicantByRcrtNo(rcrtNo);
     }
 
-    @Transactional
+    /*@Transactional
     public List<ViewApplicantEvaluate> getTestApplicantByRcrtNo(int rcrtNo){
         return evaluatorMapper.selectTestApplicantByRcrtNo(rcrtNo);
-    }
+    }*/
 
     @Transactional
-    public List<ApplicantEvaluate> getApplicantByOptions(int deptNo, int rcrtNo){
+    public List<ViewApplicantEvaluate> getApplicantByOptions(int deptNo, int rcrtNo){
         return evaluatorMapper.selectApplicantByOptions(deptNo, rcrtNo);
     }
 
-    @Transactional
+   /* @Transactional
     public List<ViewApplicantEvaluate> getTestApplicantByOptions(int deptNo, int rcrtNo){
         return evaluatorMapper.selectTestApplicantByOptions(deptNo, rcrtNo);
+    }*/
+
+    @Transactional
+    public void updateEvaluateScoreSum(){
+        evaluatorMapper.updateEvaluateScoreSum();
     }
 
     public void saveScores(List<EvaluateScore> scores) {
@@ -85,5 +83,6 @@ public class EvaluatorService {
             evaluatorMapper.updateEvaluation(evaluation);
         }
     }
+
 
 }

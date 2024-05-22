@@ -48,18 +48,6 @@
 </head>
 
 <body>
-
-<%-- 사이드바 시작 --%>
-<div class="sidebar">
-	<ul>
-		<li><a href="evl_document">서류평가</a></li>
-		<li><a href="evl_practical">실기평가</a></li>
-		<li><a href="evl_interview">면접평가</a></li>
-		<li><a href="/">메인메뉴</a></li>
-	</ul>
-</div>
-<%-- 사이드바 종료 --%>
-
 <%-- 헤더 시작 --%>
 <div class="headerDiv">
 	<!-- ======= Header ======= -->
@@ -280,21 +268,21 @@
 		</li><!-- End Dashboard Nav -->
 
 		<li class="nav-item">
-			<a class="nav-link collapsed" href="evaluator/Test_document">
+			<a class="nav-link collapsed" href="evl_document">
 				<i class="bi bi-journal-text"></i>
 				<span>서류평가</span>
 			</a>
 		</li><!-- 서류평가 끝 -->
 
 		<li class="nav-item">
-			<a class="nav-link collapsed" href="evaluator/Test_document">
+			<a class="nav-link collapsed" href="evl_practical">
 				<i class="bi bi-journal-text"></i>
 				<span>실기평가</span>
 			</a>
 		</li><!-- 실기평가 끝 -->
 
 		<li class="nav-item">
-			<a class="nav-link collapsed" href="evaluator/interview">
+			<a class="nav-link collapsed" href="evl_interview">
 				<i class="bi bi-journal-text"></i>
 				<span>면접평가</span>
 			</a>
@@ -326,6 +314,7 @@
 
 						<!-- 옵션 선택 Form -->
 						<form method="get" action="/evaluator/selectOption">
+							<input type="hidden" name="evaluateStage" value="10">
 							<div class="row mb-3">
 								<!-- 학과 선택 리스트 -->
 								<label class="col-sm-1 col-form-label">학과 선택</label>
@@ -369,7 +358,7 @@
 						<!-- 학생 정보 테이블 -->
 						<form method="post" action="/evaluator/insertScore">
 							<input type="hidden" name="applicantCount" value="${fn:length(evaluateApplicantScore)}">
-
+							<input type="hidden" name="evaluateStage" value="10">
 							<!-- 저장버튼 -->
 							<div class="col-sm-2">
 								<input type="submit" class="btn btn-primary" value="저장">
@@ -435,6 +424,7 @@
 										<input type="hidden" name="rcrt_no_${loop.index}" value="${evaluateApplicantScore.RCRT_NO}">
 										<input type="hidden" name="evl_no_${loop.index}" value="${evaluateApplicantScore.EVL_NO}">
 										<input type="hidden" name="apl_no_${loop.index}" value="${evaluateApplicantScore.APL_NO}">
+										<input type="hidden" name="evl_stg_cd_${loop.index}" value="${evaluateApplicantScore.EVL_STG_CD}">
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -489,11 +479,33 @@
 
 </body>
 <script>
+	window.onload = function() {
+		// 페이지가 로드될 때 모든 입력란의 합계를 계산
+		var inputElements = document.querySelectorAll('input[type="number"]');
+		inputElements.forEach(function(inputElement) {
+			// 인덱스 가져오기
+			var index = inputElement.id.split('_')[1];
+			calculateTotal(index);
+		});
+	};
 	function calculateTotal(index) {
-		var score1 = parseInt(document.getElementById('score1_' + index).value) || 0;
-		var score2 = parseInt(document.getElementById('score2_' + index).value) || 0;
-		var total = score1 + score2;
-		document.getElementById('totalScore_' + index).textContent = total + '점';
+		var score1Input = document.getElementById('score1_' + index);
+		var score2Input = document.getElementById('score2_' + index);
+		var totalScoreElement = document.getElementById('totalScore_' + index);
+
+		// 기존 값과 새로운 값 가져오기
+		var score1 = parseInt(score1Input.value) || 0;
+		var score2 = parseInt(score2Input.value) || 0;
+
+		// 기존 값이 있을 때만 합계 계산
+		var originalScore1 = parseInt(score1Input.getAttribute('data-original-value')) || 0;
+		var originalScore2 = parseInt(score2Input.getAttribute('data-original-value')) || 0;
+
+		// 입력된 값이나 기존 값 중에서 최종 합계 계산
+		var total = (isNaN(score1) ? originalScore1 : score1) + (isNaN(score2) ? originalScore2 : score2);
+
+		// 합계 업데이트
+		totalScoreElement.textContent = total + '점';
 	}
 
 	function evlChecked(id, index) {
