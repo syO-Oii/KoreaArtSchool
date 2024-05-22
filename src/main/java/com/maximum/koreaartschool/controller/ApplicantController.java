@@ -38,5 +38,11 @@ public class ApplicantController {
 
         return "apply_step_two";  //뷰 페이지
     }
+
+    @RequestMapping(value="/apply_pageTest")
+    public String applyPageTwo(){
+
+        return "apply_step_two"; //뷰페이지
+    }
 }
 

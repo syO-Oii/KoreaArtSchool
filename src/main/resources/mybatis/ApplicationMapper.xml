@@ -23,3 +23,5 @@
 <!--    (#{rcrtCd}, #{dept}, #{deptCode}, #{rcrtCode}, #{yearCode},'N', 'N', 'N', #{pswd},-->
 <!--     #{aplName}, #{aplBirthDay}, #{gndrCode}, #{address}, #{addressDetail}, #{aplEmail}, #{aplTelNumber}, #{lastAcbg}, #{aplImg})-->
 <!--</insert>-->
+
+

@@ -50,6 +50,7 @@ public class PostNoticeController {  //공지사항 게시판
         return "admin_post_notice"; //뷰페이지
     }
 
+    //지원자페이지
     //select메서드(공지사항 개별 뷰 보기)
     @RequestMapping("/view")
     public String viewPage(HttpServletRequest request, Model model) {
@@ -57,6 +58,16 @@ public class PostNoticeController {  //공지사항 게시판
 
         model.addAttribute("dto", postDao.viewDao(PostId));
         return "apply_post_detailview_notice"; //뷰페이지
+    }
+
+    //관리자 - 지원자페이지
+    //select메서드(공지사항 개별 뷰 보기)
+    @RequestMapping("/view")
+    public String adminViewPage(HttpServletRequest request, Model model) {
+        String PostId = request.getParameter("postNumber");
+
+        model.addAttribute("dto", postDao.viewDao(PostId));
+        return "ddd"; //뷰페이지
     }
 
     //공지사항 글 작성 폼(jsp파일) 호출
@@ -84,7 +95,7 @@ public class PostNoticeController {  //공지사항 게시판
                 request.getParameter("adminEml")
         );
 
-        return "redirect:list";  //url
+        return "redirect:admin/list";  //url
     }
 
 
@@ -95,5 +106,4 @@ public class PostNoticeController {  //공지사항 게시판
         postDao.postDeleteDao(request.getParameter("postNumber"));
         return "redirect:list"; //url
     }
-
 }

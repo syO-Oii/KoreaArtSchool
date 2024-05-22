@@ -51,23 +51,23 @@
                     </a>
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="apply.jsp" class="active">원서접수</a></li>
-                        <li><a href="meetings.jsp">공지사항</a></li>
+                        <li class="scroll-to-section"><a href="apply_step_one.jsp" class="active">원서접수</a></li>
+                        <li><a href="#">공지사항</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">입학 안내</a>
                             <ul class="sub-menu">
-                                <li><a href="meetings.html">전형일정</a></li>
-                                <li><a href="meeting-details.html">학과소개</a></li>
+                                <li><a href="#">전형일정</a></li>
+                                <li><a href="#">학과소개</a></li>
                             </ul>
                         </li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">접수/결과 조회</a>
                             <ul class="sub-menu">
-                                <li><a href="">접수조회</a></li>
-                                <li><a href="">결과조회</a></li>
+                                <li><a href="#">접수조회</a></li>
+                                <li><a href="#">결과조회</a></li>
                             </ul>
                         </li>
-                        <li class="scroll-to-section"><a href="#apply">입학 Q&A</a></li>
+                        <li class="scroll-to-section"><a href="#">입학 Q&A</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -147,7 +147,7 @@
                                     <div class="row mb-3 align-items-center">
                                         <label for="aplBirthDay" class="col-sm-2 col-form-label">생년월일(8자리)<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control input-element" id="aplBirthDay" name="aplBirthDay" required/>
+                                            <input type="text" class="form-control input-element" id="aplBirthDay" name="aplBirthDay" placeholder="20050101" required/>
                                         </div>
                                     </div>
 
@@ -199,7 +199,7 @@
                                         <label for="aplEmail" class="col-sm-2 col-form-label">이메일<span class="required">*</span></label>
                                         <div class="col-sm-7">
                                             <div class="input-group">
-                                                <input type="email" class="form-control" id="aplEmail" name="aplEmail" required/>
+                                                <input type="email" class="form-control" id="aplEmail" name="aplEmail" placeholder="maximum@gmail.com" required/>
                                                 <button class="btn btn-outline-secondary">이메일 확인</button>
                                             </div>
                                         </div>

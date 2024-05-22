@@ -546,14 +546,15 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="/admin/list" method="get">
+                        <form action="/delete" method="post">
 
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title">Notice List</h5>
 
                                 <div class="col-mb-2">
                                     <button class="btn btn-dark" type="submit">삭제</button>
-                                    <button class="btn btn-primary" type="submit">저장</button>
+<%--                                    <button class="btn btn-primary" type="submit">저장</button>--%>
+
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -577,7 +578,7 @@
                                         <tr>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input row-check" type="checkbox" id="gridCheck${evaluators.evl_no}"
+                                                    <input class="form-check-input row-check" onchange="fillForm(this)" type="checkbox" id="gridCheck${evaluators.evl_no}"
 
                                                            onclick="fillForm(this)">
                                                     <label class="form-check-label" for="gridCheck${evaluators.evl_no}"></label>
@@ -676,6 +677,57 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/admin/js/main.js"></script>
+
+<script>
+    document.getElementById('selectAll').addEventListener('change', function () {
+        const checkboxes = document.querySelectorAll('.row-check');
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
+    });
+
+
+    let selectedEvaluators = [];
+
+    function fillForm(checkbox) {
+        if (checkbox.checked) {
+            // 체크박스를 선택하면 배열에 추가
+            selectedEvaluators.push(checkbox);
+        } else {
+            // 체크박스를 해제하면 배열에서 제거
+            selectedEvaluators = selectedEvaluators.filter(item => item !== checkbox);
+        }
+
+        // 배열의 마지막 요소로 폼을 채우기
+        if (selectedEvaluators.length > 0) {
+            const lastChecked = selectedEvaluators[selectedEvaluators.length - 1];
+            document.getElementById('evl_no').value = lastChecked.dataset.evlNo;
+            document.getElementById('evl_nm').value = lastChecked.dataset.evlNm;
+            document.getElementById('dept_cd').value = lastChecked.dataset.deptCd;
+            document.getElementById('evl_ogdp').value = lastChecked.dataset.evlOgdp;
+            document.getElementById('evl_eml').value = lastChecked.dataset.evlEml;
+            document.getElementById('is_selected').value = lastChecked.dataset.isSelected;
+            document.getElementById('evl_tel').value = lastChecked.dataset.evlTel;
+            document.getElementById('addr').value = lastChecked.dataset.addr;
+            document.getElementById('addr_detail').value = lastChecked.dataset.addrDetail;
+            document.getElementById('bank_nm').value = lastChecked.dataset.bankNm;
+            document.getElementById('act_no').value = lastChecked.dataset.actNo;
+            document.getElementById('slry').value = lastChecked.dataset.slry;
+        } else {
+            // 배열이 비어 있으면 폼을 초기화
+            document.getElementById('evl_no').value = '';
+            document.getElementById('evl_nm').value = '';
+            document.getElementById('dept_cd').value = '';
+            document.getElementById('evl_ogdp').value = '';
+            document.getElementById('evl_eml').value = '';
+            document.getElementById('is_selected').value = '';
+            document.getElementById('evl_tel').value = '';
+            document.getElementById('addr').value = '';
+            document.getElementById('addr_detail').value = '';
+            document.getElementById('bank_nm').value = '';
+            document.getElementById('act_no').value = '';
+            document.getElementById('slry').value = '';
+        }
+    }
+</script>
 
 </body>
 
