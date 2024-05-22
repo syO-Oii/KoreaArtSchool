@@ -1,6 +1,8 @@
 package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.dto.Evaluator;
+import com.maximum.koreaartschool.dto.RecruitmentInformation;
+import com.maximum.koreaartschool.service.AdminService;
 import com.maximum.koreaartschool.service.EvaluatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +19,21 @@ public class AdminController {
     @Autowired
     EvaluatorService evaluatorService;
 
+    @Autowired
+    AdminService adminService;
+
     @GetMapping("/evaluator_selection")
     public String selection(Model model) {
         return "/admin/evaluator_selection";
     }
 
     @GetMapping("/selectRecruitment")
-    public String recruitment(Model model) {
+    public String recruitment(@RequestParam("mtcltn_yd_cd") String mtcltn_yd_cd,
+                              @RequestParam("department") String dept_cd,
+                              @RequestParam("rcrt_cd") String rcrt_cd,
+                              Model model) {
+        List<RecruitmentInformation> rcrtInformation = adminService.selectRecruitment(mtcltn_yd_cd, dept_cd, rcrt_cd);
+        model.addAttribute("rcrtInformation", rcrtInformation);
         return "/admin/evaluator_selection";
     }
 

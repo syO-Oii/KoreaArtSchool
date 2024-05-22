@@ -734,9 +734,47 @@
         }
     }
 
+    function validateInsertForm() {
+        const requiredFields = [
+            { id: 'evl_nm', message: '평가위원명을 입력해주세요.' },
+            { id: 'gndr_cd', message: '성별을 선택해주세요.', isSelect: true },
+            { id: 'evl_brdt', message: '생년월일을 입력해주세요.' },
+            { id: 'dept_cd', message: '학과를 선택해주세요.', isSelect: true },
+            { id: 'evl_ogdp', message: '소속을 입력해주세요.' },
+            { id: 'evl_eml', message: '이메일을 입력해주세요.' },
+            { id: 'is_selected', message: '선정여부를 선택해주세요.', isSelect: true },
+            { id: 'evl_tel', message: '휴대폰번호를 입력해주세요.' },
+            { id: 'addr', message: '주소를 입력해주세요.' },
+            { id: 'addr_detail', message: '상세주소를 입력해주세요.' },
+            { id: 'bank_nm', message: '은행명을 입력해주세요.' },
+            { id: 'act_no', message: '계좌번호를 입력해주세요.' },
+            { id: 'slry', message: '급여를 입력해주세요.' },
+        ];
+
+        for (let field of requiredFields) {
+            const element = document.getElementById(field.id);
+            if (field.isSelect) {
+                if (element.value === '') {
+                    alert(field.message);
+                    element.focus();
+                    return false;
+                }
+            } else {
+                if (element.value.trim() === '') {
+                    alert(field.message);
+                    element.focus();
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     function Insert() {
-        document.getElementById("evaluatorForm").action = "/admin/insertEvaluator";
-        document.getElementById("evaluatorForm").submit();
+        if (validateInsertForm()) {
+            document.getElementById("evaluatorForm").action = "/admin/insertEvaluator";
+            document.getElementById("evaluatorForm").submit();
+        }
     }
 
     let selectedEvaluators = [];
