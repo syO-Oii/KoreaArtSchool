@@ -58,18 +58,18 @@ public class EvaluatorService {
     }
 
     @Transactional
-    public List<ViewApplicantEvaluate> getApplicantByDeptno(int deptNo){
-        return evaluatorMapper.selectApplicantByDeptno(deptNo);
+    public List<ViewApplicantEvaluate> getApplicantByDeptno(int evlNo, int evlStgCd, int deptNo){
+        return evaluatorMapper.selectApplicantByDeptno(evlNo, evlStgCd, deptNo);
     }
 
     @Transactional
-    public List<ViewApplicantEvaluate> getApplicantByRcrtNo(int rcrtNo){
-        return evaluatorMapper.selectApplicantByRcrtNo(rcrtNo);
+    public List<ViewApplicantEvaluate> getApplicantByRcrtNo(int evlNo, int evlStgCd, int rcrtNo){
+        return evaluatorMapper.selectApplicantByRcrtNo(evlNo, evlStgCd, rcrtNo);
     }
 
     @Transactional
-    public List<ViewApplicantEvaluate> getApplicantByOptions(int deptNo, int rcrtNo){
-        return evaluatorMapper.selectApplicantByOptions(deptNo, rcrtNo);
+    public List<ViewApplicantEvaluate> getApplicantByOptions(int evlNo, int evlStgCd, int deptNo, int rcrtNo){
+        return evaluatorMapper.selectApplicantByOptions(evlNo, evlStgCd, deptNo, rcrtNo);
     }
 
     @Transactional

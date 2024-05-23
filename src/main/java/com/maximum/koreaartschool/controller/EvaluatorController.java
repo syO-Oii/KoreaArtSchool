@@ -71,12 +71,12 @@ public class EvaluatorController {
         return "evaluator/document";
     }
     @GetMapping("selectOption")
-    public String print(
+    public String selectOption(
             Model model,
             @RequestParam(value = "recruitment", required = false) String recruitment,
             @RequestParam(value = "department", required = false) String department,
             @RequestParam(value = "evaluateStage", required = false) String evaluateStage,
-            HttpServletRequest request
+            @RequestParam(value = "currentUrl", required = false) String currentUrl
     ) {
 
         int deptNum = Integer.parseInt(department);
@@ -86,18 +86,27 @@ public class EvaluatorController {
         if (recruitment.equals("0") && department.equals("0")) {
             asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo, evlStgCd);     // 평가위원이 맡은 모든 학생 출력
         } else if (recruitment.equals("0") && !department.equals("0")) {
-            asEvaluatorApplicants = evaluatorService.getApplicantByDeptno(deptNum);     // 학과 별 평가위원이 맡은 모든 학생 출력
+            asEvaluatorApplicants = evaluatorService.getApplicantByDeptno(evlNo, evlStgCd, deptNum);     // 학과 별 평가위원이 맡은 모든 학생 출력
         } else if (!recruitment.equals("0") && department.equals("0")) {
-            asEvaluatorApplicants = evaluatorService.getApplicantByRcrtNo(rcrtNum);     // 모집 전형 별 평가위원이 맡은 모든 학생 출력
+            asEvaluatorApplicants = evaluatorService.getApplicantByRcrtNo(evlNo, evlStgCd, rcrtNum);     // 모집 전형 별 평가위원이 맡은 모든 학생 출력
         } else {
-            asEvaluatorApplicants = evaluatorService.getApplicantByOptions(deptNum, rcrtNum);   //  옵션 선택값에 따른 평가위원이 맡은 모든 학생 출력
+            asEvaluatorApplicants = evaluatorService.getApplicantByOptions(evlNo, evlStgCd, deptNum, rcrtNum);   //  옵션 선택값에 따른 평가위원이 맡은 모든 학생 출력
         }
         model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
 
-        // 이전 요청의 URL 가져오기
-        String referer = request.getHeader("Referer");
 
-        return "redirect:" + referer;
+        // 해당 URL에 따라 적절한 페이지로 redirect
+        if (currentUrl.equals("/evl_document")) {
+            return "evaluator/document";
+        } else if (currentUrl.contains("/evl_practical")) {
+            return "evaluator/practical";
+        } else if (currentUrl.contains("/evl_interview")) {
+            return "evaluator/interview";
+        } else {
+            // 다른 페이지로 이동해야 하는 경우에 대한 처리
+            return "redirect:/evaluator/evl_document"; // 예시로 루트 페이지로 이동하는 것으로 설정
+        }
+
     }
 
     @PostMapping("insertScore")

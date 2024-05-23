@@ -314,6 +314,7 @@
 
 						<!-- 옵션 선택 Form -->
 						<form method="get" action="/evaluator/selectOption">
+							<input type="hidden" name="currentUrl" value="/evl_document">
 							<input type="hidden" name="evaluateStage" value="10">
 							<div class="row mb-3">
 								<!-- 학과 선택 리스트 -->
