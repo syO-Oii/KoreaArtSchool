@@ -9,6 +9,16 @@
 			 pageEncoding="UTF-8"%>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<!-- Bootstrap core CSS -->
+	<link href="${pageContext.request.contextPath}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Additional CSS Files -->
+	<link rel="stylesheet" href="../../../resources/static/assets/css/fontawesome.css">
+	<link rel="stylesheet" href="../../../resources/static/assets/css/templatemo-edu-meeting.css">
+	<link rel="stylesheet" href="../../../resources/static/assets/css/owl.css">
+	<link rel="stylesheet" href="../../../resources/static/assets/css/lightbox.css">
 	<title>서류평가</title>
 
 	<meta charset="utf-8">
@@ -509,7 +519,7 @@
 
 
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 <script>
 	window.onload = function() {
@@ -575,5 +585,8 @@
 		// 선택한 페이지에 해당하는 학생들을 보여줄 수 있도록 서버에 요청하고, 페이지 업데이트
 		// 여기에 필요한 AJAX 요청 등을 추가하세요.
 	}
+
+
+
 </script>
 </html>

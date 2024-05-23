@@ -427,6 +427,32 @@
 								</tbody>
 
 							</table>
+							<!-- 페이징 컨테이너 시작 -->
+							<div class="paging container"> <!-- 컨테이너를 추가하여 페이지의 폭을 조절할 수 있습니다. -->
+								<div class="row justify-content-center">
+									<div class="col-lg-2">
+										<div class="d-flex align-items-center">
+											<nav aria-label="Page navigation example">
+												<ul class="pagination">
+													<li class="page-item">
+														<a class="page-link" href="#" aria-label="Previous">
+															<span aria-hidden="true">&laquo;</span>
+														</a>
+													</li>
+													<li class="page-item"><a class="page-link" href="#">1</a></li>
+													<li class="page-item">
+														<a class="page-link" href="#" aria-label="Next">
+															<span aria-hidden="true">&raquo;</span>
+														</a>
+													</li>
+												</ul>
+											</nav><!-- End Pagination with icons -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 페이징 컨테이너 종료 -->
+
 						</form>
 
 
