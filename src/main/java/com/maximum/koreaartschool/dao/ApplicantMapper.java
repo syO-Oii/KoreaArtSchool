@@ -1,15 +1,14 @@
 package com.maximum.koreaartschool.dao;
 
 import com.maximum.koreaartschool.dto.ApplicantDto;
+import com.maximum.koreaartschool.dto.ApplyCoverLetterDto;
+import com.maximum.koreaartschool.dto.ApplyFileDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ApplicantMapper {
 
-
-    // 지원자 정보를 데이터베이스에 삽입하는 메서드
-//    public int insertApplicantInt(ApplicantDto applicantDto);
-
+    //원서접수 1단계 insert (APPLICANT 지원자 테이블)
     public int insertApplicantStepOne(
                             String aplName,
                             String pswd,
@@ -22,9 +21,14 @@ public interface ApplicantMapper {
                             String lastAcbg,
                             String aplImg);
 
-
+    //원서접수 2단계 update (APPLICANT 지원자 테이블)
     public int updateApplicantStepTwo(ApplicantDto applicantDto);
 
-//    public int insert
+    //원서접수 2단계 insert (APLY_FILE 서류제출 테이블)
+    public int insertApplyFile(ApplyCoverLetterDto applyFileDto);
 
+    //원서접수 2단계 insert (APLY_INTRO 자소서 테이블)
+    public int insertApplyCoverLetter(ApplyFileDto coverLetterDto);
+
+    void insertApplicantStepOne(ApplicantDto applicantDto);
 }

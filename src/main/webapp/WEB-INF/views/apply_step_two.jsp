@@ -141,12 +141,23 @@
 
                                             <!-- 학과/전형 선택 Start -->
                                                 <div class="row mb-3">
-                                                    <label class="col-sm-1 col-form-label">학과<span class="required">*</span></label>
+                                                    <label class="col-sm-1 col-form-label">계열<span class="required">*</span></label>
                                                     <div class="col-sm-4">
-                                                        <select name="dept_value" class="form-select" aria-label="Default select example">
+                                                        <select name="dept" id="deptSelect" class="form-select" aria-label="Default select example">
                                                             <%--시각디자인: 10, 무대영화미술: 20, 연기: 30, 모델: 40, 보컬: 50, 싱어송라이터: 60--%>
                                                             <option selected >선택해주세요</option>
-                                                            <option value="0">(전체)</option>
+                                                            <option value="10">디자인</option>
+                                                            <option value="20">연기</option>
+                                                            <option value="30">음악</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <label class="col-sm-1 col-form-label">학과<span class="required">*</span></label>
+                                                    <div class="col-sm-4">
+                                                        <select name="deptCode" class="form-select" id="deptCodeSelect" aria-label="Default select example">
+                                                            <%--시각디자인: 10, 무대영화미술: 20, 연기: 30, 모델: 40, 보컬: 50, 싱어송라이터: 60--%>
+                                                            <option selected >선택해주세요</option>
                                                             <option value="10">시각디자인</option>
                                                             <option value="20">무대영화미술</option>
                                                             <option value="30">연기</option>
@@ -155,17 +166,17 @@
                                                             <option value="60">싱어송라이터</option>
                                                         </select>
                                                     </div>
+                                                </div>
+                                                <div class="row mb-3">
                                                     <label class="col-sm-1 col-form-label">전형<span class="required">*</span></label>
                                                     <div class="col-sm-4">
-                                                        <select name="rcrt_value" class="form-select" aria-label="Default select example">
-                                                            <option selected>선택해주세요</option><%--일반: 10, 특기생: 20--%>
+                                                        <select name="rcrtCode" class="form-select" aria-label="Default select example">
+                                                            <%--일반: 10, 특기생: 20--%>
+                                                            <option selected>선택해주세요</option>
                                                             <option value="10">일반</option>
                                                             <option value="20">특기생</option>
                                                         </select>
                                                     </div>
-<%--                                                    <div class="col-sm-2 d-flex align-items-center">--%>
-<%--                                                        <button class="btn btn-primary btn-select" type="submit">조회</button>--%>
-<%--                                                    </div>--%>
                                                 </div>
                                             <!-- 학과/전형 선택 End -->
                                     </section>
@@ -197,9 +208,9 @@
                                     <section class="section" style="margin-top: 50px; margin-bottom: 60px;" >
                                             <!-- 파일제출 폼 Start -->
                                                 <div class="row mb-3">
-                                                    <label for="aplImg" class="col-sm-2 col-form-label">첨부파일<span class="required">*</span></label>
+                                                    <label for="dcmNm" class="col-sm-2 col-form-label">첨부파일<span class="required">*</span></label>
                                                     <div class="col-sm-7">
-                                                        <input class="form-control" type="file" id="aplImg" name="aplImg" required/>
+                                                        <input class="form-control" type="file" id="dcmNm" name="dcmNm" required/>
                                                     </div>
                                                 </div>
                                             <!-- 파일제출 폼 End -->
@@ -311,7 +322,72 @@
     }
 </script>
 
+<%--multi select--%>
+<script>
+    document.getElementById('deptSelect').addEventListener('change', function() {
+        var dept = this.value;
+        var deptCodeSelect = document.getElementById('deptCodeSelect');
+        deptCodeSelect.innerHTML = ''; // Clear previous options
 
+        switch (dept) {
+            case '10': // 디자인
+                addOption(deptCodeSelect, '', '선택해주세요');
+                addOption(deptCodeSelect, '10', '시각디자인');
+                addOption(deptCodeSelect, '20', '무대영화미술');
+                break;
+            case '20': // 연기
+                addOption(deptCodeSelect, '', '선택해주세요');
+                addOption(deptCodeSelect, '30', '연기');
+                addOption(deptCodeSelect, '40', '모델');
+                break;
+            case '30': // 음악
+                addOption(deptCodeSelect, '', '선택해주세요');
+                addOption(deptCodeSelect, '50', '보컬');
+                addOption(deptCodeSelect, '60', '싱어송라이터');
+                break;
+            default:
+                addOption(deptCodeSelect, '', '선택해주세요');
+                break;
+        }
+    });
+
+    function addOption(selectElement, value, text) {
+        var option = document.createElement('option');
+        option.value = value;
+        option.text = text;
+        selectElement.appendChild(option);
+    }
+</script>
+
+
+<script>
+    // 폼 제출을 막기 위한 함수
+    function preventFormSubmission(event) {
+        event.preventDefault(); // 폼 제출 막음
+        alert('셀렉트 박스를 모두 선택하세요.');
+    }
+
+    //'선택해주세요'가 아닌 옵션이 선택된 경우에만 폼 제출 허용
+    document.querySelectorAll('.form-select').forEach(function(select) {
+        select.addEventListener('change', function() {
+            var allSelected = true; // 모든 셀렉트 박스가 선택되었는지 확인하는 변수
+
+            // 각 셀렉트 박스의 값을 확인하여 '선택해주세요'를 선택한 경우 allSelected를 false로 설정
+            document.querySelectorAll('.form-select').forEach(function(option) {
+                if (option.value === '') {
+                    allSelected = false;
+                }
+            });
+
+            // 모든 셀렉트 박스가 선택되었으면 폼 제출 허용
+            if (allSelected) {
+                document.querySelector('form').removeEventListener('submit', preventFormSubmission);
+            } else { // 하나라도 선택되지 않은 셀렉트 박스가 있으면 폼 제출 막음
+                document.querySelector('form').addEventListener('submit', preventFormSubmission);
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
