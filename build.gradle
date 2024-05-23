@@ -23,17 +23,15 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-<<<<<<< HEAD
-=======
 	implementation 'org.mybatis.generator:mybatis-generator-core:1.4.0'
 	// security 일단 막기
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 //	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 // 	testImplementation 'org.springframework.security:spring-security-test'
 	// jsp 사용할꺼면 막아야함
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+//	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
->>>>>>> 🛠️develop
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	// jsp 사용할꺼면 막아야함
 //	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -45,10 +43,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
-<<<<<<< HEAD
-=======
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
->>>>>>> 🛠️develop
 	// JSP 설정 수정함
 	implementation 'jakarta.servlet:jakarta.servlet-api'
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
