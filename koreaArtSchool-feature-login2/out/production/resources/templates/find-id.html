@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find ID</title>
+</head>
+<body>
+<h2>아이디 찾기</h2>
+<p>회원 가입 시 입력한 이메일 주소와 핸드폰 번호를 입력하세요.</p>
+<div class="find-id">
+    <form action="/user/find-id" method="POST">
+        <div>
+            <label>Birthdate</label>
+            <input type="date" name="birthdate">
+        </div>
+        <div>
+            <label>Phone Number</label>
+            <input type="text" name="phoneNumber">
+        </div>
+        <button type="submit">Find ID</button>
+    </form>
+</div>
+</body>
+</html>
