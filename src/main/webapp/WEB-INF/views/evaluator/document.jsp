@@ -310,7 +310,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title">과정선택</h5>
+						<h5 class="card-title"></h5>
 
 						<!-- 옵션 선택 Form -->
 						<form method="get" action="/evaluator/selectOption">
@@ -360,11 +360,14 @@
 						<form method="post" action="/evaluator/insertScore">
 							<input type="hidden" name="applicantCount" value="${fn:length(evaluateApplicantScore)}">
 							<input type="hidden" name="evaluateStage" value="10">
-							<!-- 저장버튼 -->
-							<div class="col-sm-2">
-								<input type="submit" class="btn btn-primary" value="저장">
-							</div>
 
+							<div class="d-flex align-items-center justify-content-between">
+								<h5 class="card-title">Applicant Information</h5>
+								<!-- 저장버튼 -->
+								<div class="col-mb-2">
+									<input type="submit" class="btn btn-primary" value="저장">
+								</div>
+							</div>
 							<table class="table">
 								<thead>
 								<tr>
@@ -406,8 +409,8 @@
 											<c:if test="${evaluateApplicantScore.DEPT_CD eq '50'}"> 보컬</c:if>
 											<c:if test="${evaluateApplicantScore.DEPT_CD eq '60'}"> 싱어송라이터</c:if>
 										</td>
-										<td><input type="button" value="확인"></td>
-										<td><input type="button" value="확인"></td>
+										<td><input type="button" class="btn btn-outline-primary" value="확인"></td>
+										<td><input type="button" class="btn btn-outline-primary" value="확인"></td>
 										<td>
 											<input type="number" name="score1_${loop.index}" id="score1_${loop.index}" value="${evaluateApplicantScore.SCORE1}" oninput="calculateTotal(${loop.index})">
 										</td>
@@ -431,11 +434,40 @@
 								</tbody>
 
 							</table>
+							<!-- 페이징 컨테이너 시작 -->
+							<div class="paging container"> <!-- 컨테이너를 추가하여 페이지의 폭을 조절할 수 있습니다. -->
+								<div class="row justify-content-center">
+									<div class="col-lg-2">
+										<div class="d-flex align-items-center">
+											<nav aria-label="Page navigation example">
+												<ul class="pagination">
+													<li class="page-item">
+														<a class="page-link" href="#" aria-label="Previous">
+															<span aria-hidden="true">&laquo;</span>
+														</a>
+													</li>
+													<li class="page-item"><a class="page-link" href="#">1</a></li>
+													<li class="page-item"><a class="page-link" href="#">2</a></li>
+													<li class="page-item"><a class="page-link" href="#">3</a></li>
+													<li class="page-item"><a class="page-link" href="#">4</a></li>
+													<li class="page-item">
+														<a class="page-link" href="#" aria-label="Next">
+															<span aria-hidden="true">&raquo;</span>
+														</a>
+													</li>
+												</ul>
+											</nav><!-- End Pagination with icons -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 페이징 컨테이너 종료 -->
+
 						</form>
 
 
 					</div>
-				</div>
+				</div>	<!-- card end -->
 			</div>
 
 		</div>
@@ -521,6 +553,27 @@
 			evlCheckedElement.textContent = "평가중";
 			isEvaluatedElement.value = "N";
 		}
+	}
+
+	// 페이지가 로드될 때 실행
+	$(document).ready(function() {
+		// 총 학생 수
+		var totalStudents = ${fn:length(evaluateApplicantScore)};
+		// 페이지당 학생 수
+		var studentsPerPage = 10;
+		// 총 페이지 수 계산
+		var totalPages = Math.ceil(totalStudents / studentsPerPage);
+
+		// 페이징 버튼 생성
+		for (var i = 1; i <= totalPages; i++) {
+			$('#pagination').append('<button class="btn btn-sm btn-outline-primary mr-2" onclick="changePage(' + i + ')">' + i + '</button>');
+		}
+	});
+
+	// 페이지 변경 함수
+	function changePage(pageNumber) {
+		// 선택한 페이지에 해당하는 학생들을 보여줄 수 있도록 서버에 요청하고, 페이지 업데이트
+		// 여기에 필요한 AJAX 요청 등을 추가하세요.
 	}
 </script>
 </html>

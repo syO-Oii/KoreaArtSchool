@@ -155,7 +155,7 @@ public class EvaluatorController {
 
     /* 실기평가 페이지 */
     @GetMapping("/evl_practical")
-    public String evlPractical(Model model) {
+    public String evlPractical(Model model, int page) {
         evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
         evlStgCd = 20;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
         List<ViewApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo, evlStgCd);     // 전체 지원자 명단 추출
