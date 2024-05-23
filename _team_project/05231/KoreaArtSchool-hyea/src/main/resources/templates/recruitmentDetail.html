@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모집전형 상세정보</title>
+</head>
+<body>
+<h2>모집전형 상세정보</h2>
+<table>
+    <tr>
+        <th>학과구분</th>
+        <td th:text="${recruitment.deptCd}"></td>
+    </tr>
+    <tr>
+        <th>모집전형</th>
+        <td th:text="${recruitment.recruitmentCd}"></td>
+    </tr>
+    <tr>
+        <th>입학년도</th>
+        <td th:text="${recruitment.yearCd}"></td>
+    </tr>
+    <tr>
+        <th>기수코드</th>
+        <td th:text="${recruitment.mtcltnYdCd}"></td>
+    </tr>
+    <tr>
+        <th>교육시작년월</th>
+        <td th:text="${recruitment.eduBgngYmd}"></td>
+    </tr>
+    <tr>
+        <th>교육종료년월</th>
+        <td th:text="${recruitment.eduEndYmd}"></td>
+    </tr>
+    <tr>
+        <th>모집정원</th>
+        <td>
+            <p th:each="stageSchedule : ${recruitment.rcrtApplicants}" th:text="${rcrtApplicants.rcrtPscp}"></p>
+        </td>
+    </tr>
+    <tr>
+        <th>선발인원</th>
+        <td>
+            <p th:each="stageSchedule : ${recruitment.rcrtApplicants}" th:text="${rcrtApplicants.selectPscp}"></p>
+        </td>
+    </tr>
+</table>
+<button onclick="openEditPopup()">수정</button>
+</body>
+</html>

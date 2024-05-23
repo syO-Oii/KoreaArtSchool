@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모집전형 상세 정보</title>
+</head>
+<body>
+<div th:fragment="detail">
+    <h2>모집전형 상세 정보</h2>
+    <p><strong>학과구분:</strong> <span th:text="${recruitment.deptCd}"></span></p>
+    <p><strong>모집전형:</strong> <span th:text="${recruitment.recruitmentCd}"></span></p>
+    <p><strong>기수:</strong> <span th:text="${recruitment.mtcltnYdCd}"></span></p>
+    <p><strong>모집시작기간:</strong> <span th:each="schedule : ${recruitment.rcrtSchdls}" th:text="${schedule.beginYmd}"></span></p>
+    <p><strong>모집마감기간:</strong> <span th:each="schedule : ${recruitment.rcrtSchdls}" th:text="${schedule.endYmd}"></span></p>
+    <p><strong>발표일자:</strong> <span th:each="schedule : ${recruitment.rcrtSchdls}" th:text="${schedule.prsntnYmd}"></span></p>
+</div>
+</body>
+</html>
