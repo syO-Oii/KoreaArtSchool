@@ -12,7 +12,7 @@
     <meta name="author" content="TemplateMo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>한국예술학교</title>
+    <title>KAS :: 한국예술학교 입학페이지</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,16 +40,15 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <nav class="main-nav">
-                    <a href="" class="school-name">
-                        한국예술학교
-<%--                        <span class="sub-name">입학정보</span>--%>
-                    </a>
+                    <nav class="main-nav">
+                        <a href="" class="logo">
+                            한국예술학교
+                        </a>
 
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="apply.jsp" class="active">원서접수</a></li>
+                        <li class="scroll-to-section"><a href="apply_step_one.jsp" class="active">원서접수</a></li>
                         <li><a href="meetings.jsp">공지사항</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)">입학 안내</a>
@@ -90,11 +89,20 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="caption">
-                        <h5>예술과 창의력의 새로운 표준</h5>
-                        <h1>Korea Art School</h1>
-                        <p>한국예술학교는 창의적인 예술 교육으로 미래를 준비합니다. 다양한 예술적 영역을 탐구하고 교수진이 탄탄한 지도 아래에서 자신만의 예술적 목소리를 발견할 수 있으며, 예술의 세계에서 독창적으로 발전할 수 있는 기반을 마련할 수 있습니다</a>.</p><br>
+                        <h6>한국예술학교 입학정보</h6>
+                        <h2>Korea National University of Arts</h2>
+                        <p>한국예술학교는 창의적인 예술 교육으로 미래를 준비합니다. 예술의 다양한 측면을 탐구하는 과정 속에서 자신만의 예술적 목소리를 발견하며, 예술의 세계에서 독창적으로 발전할 수 있는 기반을 마련할 수 있습니다</a>.</p>
                         <div class="main-button-yellow">
-                            <div class="scroll-to-section"><a href="#">입학 지원하기</a></div>
+                            <style>
+                                .scroll-to-section a {
+                                    color: black;
+                                    font-weight: bold;
+                                }
+                            </style>
+
+                            <div class="main-button-yellow">
+                                <div class="scroll-to-section"><a href="#contact">원서 접수</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,33 +117,43 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="owl-service-item owl-carousel">
+
+
                     <div class="item">
                         <div class="icon">
-                            <img src="../../../resources/static/assets/images/service-icon-01.png" alt="">
+                            <img src="assets/images/service-icon-01.png" alt="">
                         </div>
+                        <style>
+                            .down-content h4 {
+                                font-size: 18px; /* 기존 크기 */
+                            }
+                            .down-content h4 small {
+                                font-size: 14px; /* 작은 폰트 크기 */
+                            }
+                        </style>
                         <div class="down-content">
-                            <h4>디자인 계열<br><span class="sub-text">시각디자인 / 무대영화미술</span></h4>
-                            <p>현대 디자인의 핵심 기술과 이론을 깊이 있게 학습하여 실무 능력을 함양한 디자인 전문가로 성장할 수 있도록 지원합니다<br>      </p>
+                            <h4>디자인 계열<br><small>시각디자인/무대영화미술</small></h4>
+                            <p>현대 디자인의 핵심 기술과 이론을 깊이 있게 학습하여 실무 능력을 함양한 전문가로 성장할 수 있도록 지원합니다 </p>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="icon">
-                            <img src="../../../resources/static/assets/images/service-icon-02.png" alt="">
+                            <img src="assets/images/service-icon-02.png" alt="">
                         </div>
                         <div class="down-content">
-                            <h4>연기 계열<br><span class="sub-text">연기 / 모델</span></h4>
-                            <p>연기 분야에 대한 기본기를 다지고 다채로운 표현력을 갖춘 연기자로 성장하여 다양한 모델링 분야에서 활동할 수 있도록 지원합니다 </p>
+                            <h4>연기 계열<br><small>연기/모델</small></h4>
+                            <p>연기 분야에 대한 기본기를 다지고, 창의적이고 표현력 있는 연기 능력을 개발하여 다양한 모델링 분야에서 활동할 수 있도록 지원합니다 </p>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="icon">
-                            <img src="../../../resources/static/assets/images/service-icon-03.png" alt="">
+                            <img src="assets/images/service-icon-03.png" alt="">
                         </div>
                         <div class="down-content">
-                            <h4>음악 계열<br><span class="sub-text">보컬 / 싱어송라이터</span></h4>
-                            <p>다양한 음악 장르와 스타일을 배울 수 있는 기회를 제공하여 전문가로 활약할 수 있는 능력을 기를 수 있도록 지원합니다 </p>
+                            <h4>음악 계열<br><small>보컬/싱어송라이터</small></h4>
+                            <p>모든 음악 장르와 스타일을 배울 수 있는 기회를 제공하여 다양한 영역에서 전문가로 활약할 수 있는 능력을 기를 수 있도록 지원합니다 </p>
                         </div>
                     </div>
                 </div>
@@ -147,13 +165,14 @@
 <section class="upcoming-meetings" id="meetings">
     <div class="container">
         <div class="row">
-<%--            <div class="col-lg-12">--%>
-
-<%--                <h2>Upcoming Meetings</h2>--%>
-<%--            </div>--%>
+            <div class="col-lg-12">
+                <div class="section-heading">
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
 
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
@@ -215,5 +234,5 @@
 </script>
 </body>
 
-
+</body>
 </html>

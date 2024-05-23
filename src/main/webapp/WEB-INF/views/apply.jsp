@@ -19,16 +19,6 @@
     <link rel="stylesheet" href="assets/css/lightbox.css">
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
-    <!--
-      <style>
-        .input-element {
-               color: #000; /* 기본 색상 */
-           }
-        .custom-color {
-               color: #979797; /* 특정 값일 때 색상 */
-           }
-      </style> -->
-
 </head>
 <body>
 <!-- ***** Header Area Start ***** -->
@@ -91,13 +81,14 @@
                     <div class="card-body">
 
                         <!-- General Form Elements -->
-                        <form>
+                        <%-- name 속성 : DB 테이블의 이름 컬럼과 일치시켜야 함 --%>
+                       <form action="/apply" method="post">
                             <main id="main" class="main">
                                 <fieldset class="row mb-3 ">
                                     <style>
                                         legend {
-                                            font-weight: bold; /* 텍스트를 bold체로 설정 */
-                                            font-size: 1.5em; /* 텍스트 크기를 1.5em으로 설정 */
+                                            font-weight: bold; /* 텍스트 bold */
+                                            font-size: 1.5em; /* 텍스트 크기 1.5em으로 설정 */
                                             text-align: center;
                                         }
                                     </style>
@@ -107,26 +98,26 @@
                                 <section class="section">
                                     <!-- 이름 -->
                                     <div class="row mb-3">
-                                        <label for="username" class="col-sm-2 col-form-label">이름</label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="aplNm" class="col-sm-2 col-form-label">이름</label>            <!-- 아래의 id값과 같아야 함 -->
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="username" name="username" required minlength="2" maxlength="11" />
+                                            <input type="text" class="form-control" id="aplNm" name="aplNm" required minlength="2" maxlength="11" />
                                         </div>
                                     </div>
 
                                     <!-- 성별 -->
                                     <div class="row mb-3 align-items-center">
-                                        <label for="gender" class="col-sm-2 col-form-label">성별</label>
+                                        <label for="gndrCd" class="col-sm-2 col-form-label">성별</label>
                                         <div class="col-sm-10">
                                             <div class="row">
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" id="male" name="gender" value="남자" checked="checked">
+                                                        <input class="form-check-input" type="radio" id="male"  name="gndrCd" value="남자" checked="checked">
                                                         <label class="form-check-label" for="male">남자</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" id="female" name="gender" value="여자">
+                                                        <input class="form-check-input" type="radio" id="female" name="gndrCd" value="여자">
                                                         <label class="form-check-label" for="female">여자</label>
                                                     </div>
                                                 </div>
@@ -138,25 +129,25 @@
                                     <div class="row mb-3 align-items-center">
 
 
-                                        <label for="birthday" class="col-sm-2 col-form-label">생년월일</label>
+                                        <label for="aplBrdt" class="col-sm-2 col-form-label">생년월일</label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control input-element" id="birthday" value="20050101" />
+                                            <input type="text" class="form-control input-element" id="aplBrdt" name="aplBrdt" value="20050101" />
                                         </div>
                                     </div>
 
 
                                     <!-- 비밀번호 -->
                                     <div class="row mb-3">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
+                                        <label for="pswd" class="col-sm-2 col-form-label">비밀번호</label>
                                         <div class="col-sm-7">
-                                            <input type="password" class="form-control">
+                                            <input type="password" class="form-control" id="pswd" name="pswd">
                                         </div>
                                     </div>
 
 
                                     <!-- 휴대폰번호 -->
                                     <div class="row mb-3">
-                                        <label for="phonenumber" class="col-sm-2 col-form-label">휴대폰번호</label>
+                                        <label for="aplTel" class="col-sm-2 col-form-label">휴대폰번호</label>
                                         <div class="col-sm-7">
                                             <div class="row g-2">
                                                 <div class="col ">
@@ -181,10 +172,10 @@
 
                                     <!-- 이메일 -->
                                     <div class="row mb-3">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">이메일</label>
+                                        <label for="aplEml" class="col-sm-2 col-form-label">이메일</label>
                                         <div class="col-sm-7">
                                             <div class="input-group">
-                                                <input type="email" class="form-control" id="useremails" name="useremails">
+                                                <input type="email" class="form-control" id="aplEml" name="aplEml">
                                                 <button class="btn btn-outline-secondary">이메일 확인</button>
                                             </div>
                                         </div>
@@ -194,18 +185,18 @@
 
                                     <!-- 증명사진 -->
                                     <div class="row mb-3">
-                                        <label for="profileImg" class="col-sm-2 col-form-label">증명사진</label>
+                                        <label for="aplImg" class="col-sm-2 col-form-label">증명사진</label>
                                         <div class="col-sm-7">
-                                            <input class="form-control" type="file" id="formFile">
+                                            <input class="form-control" type="file" id="aplImg" name="aplImg">
                                         </div>
                                     </div>
 
                                     <!-- 주소 -->
                                     <div class="row mb-3">
-                                        <label for="address" class="col-sm-2 col-form-label">주소</label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="addr" class="col-sm-2 col-form-label">주소</label>            <!-- 아래의 id값과 같아야 함 -->
                                         <div class="col-sm-7">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="username" name="username" required minlength="2" maxlength="11" />
+                                                <input type="text" class="form-control" id="addr" name="addr" required minlength="2" maxlength="11" />
                                                 <button class="btn btn-outline-secondary">주소 찾기</button>
                                             </div>
                                         </div>
@@ -213,9 +204,9 @@
 
                                     <!-- 상세주소 -->
                                     <div class="row mb-3">
-                                        <label for="addressDetail" class="col-sm-2 col-form-label">상세주소</label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="addrDetail" class="col-sm-2 col-form-label">상세주소</label>            <!-- 아래의 id값과 같아야 함 -->
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="username" name="username" required minlength="2" maxlength="11" />
+                                            <input type="text" class="form-control" id="addrDetail" name="addrDetail" required minlength="2" maxlength="11" />
                                         </div>
                                     </div>
 
@@ -224,43 +215,43 @@
                                     <fieldset class="row mb-3">
 
                                         <div class="row mb-3 align-items-left">
-                                            <label for="gender" class="col-sm-2 col-form-label">최종학력</label>
+                                            <label for="lastAcbg" class="col-sm-2 col-form-label">최종학력</label>
                                             <div class="col-sm-7">
                                                 <div class="row">
                                                     <div class="col-sm-3">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="male" name="gender" value="남자" checked="checked">
-                                                            <label class="form-check-label" for="male">초등</label>
+                                                            <input class="form-check-input" type="radio"  id="elementary" name="lastAcbg" value="초등" checked="checked">
+                                                            <label class="form-check-label" for="elementary">초등</label>
                                                         </div>
                                                         <!-- </div>
                                                         <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="female" name="gender" value="여자">
-                                                            <label class="form-check-label" for="female">중등</label>
+                                                            <input class="form-check-input" type="radio" id="middle" name="lastAcbg" value="중등">
+                                                            <label class="form-check-label" for="middle">중등</label>
                                                         </div>
                                                         <!-- </div>
                                                         <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="female" name="gender" value="여자">
+                                                            <input class="form-check-input" type="radio" id="high" name="lastAcbg" value="고등">
                                                             <label class="form-check-label" for="female">고등</label>
                                                         </div>
                                                         <!-- </div>
                                                         <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="female" name="gender" value="여자">
-                                                            <label class="form-check-label" for="female">학사</label>
+                                                            <input class="form-check-input" type="radio" id="bachelor" name="lastAcbg" value="학사">
+                                                            <label class="form-check-label" for="bachelor">학사</label>
                                                         </div>
                                                         <!-- </div>
                                                         <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="female" name="gender" value="여자">
-                                                            <label class="form-check-label" for="female">석사</label>
+                                                            <input class="form-check-input" type="radio" id="master" name="lastAcbg" value="석사">
+                                                            <label class="form-check-label" for="master">석사</label>
                                                         </div>
                                                         <!-- </div>
                                                         <div class="col-sm-3"> -->
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="female" name="gender" value="여자">
-                                                            <label class="form-check-label" for="female">박사</label>
+                                                            <input class="form-check-input" type="radio" id="doctor" name="lastAcbg" value="박사">
+                                                            <label class="form-check-label" for="doctor">박사</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -368,11 +359,10 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
                                 </div>
                                 <!-- End General Form Elements -->
                             </main><!-- End #main -->
-                    </div>
+
                     <!-- End General Form Elements -->
-
-
-                    </form>
+                     </form>
+                    </div>
                 </div>
             </main>
             <!-- ***** 두 번째 페이지의 main 태그 끝 ***** -->
