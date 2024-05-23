@@ -4,11 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.maximum.koreaartschool.dao.EvaluatorMapper">
-    <select id="selectAllEvaluator" resultType="com.maximum.koreaartschool.dto.Evaluator">
-        SELECT *
-        FROM EVALUATOR
-    </select>
-
     <select id="selectAllApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantProcess">
         SELECT sa.APL_NM, sa.GNDR_CD, sa.APL_BRDT, sa.DEPT_CD, sa.RCRT_CD, sa.EVL_STG_CD,
                ae.IS_EVALUATED, ae.SCORE

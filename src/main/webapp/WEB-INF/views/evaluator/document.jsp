@@ -366,17 +366,17 @@
 
 							<table class="table">
 								<thead>
-									<tr>
-										<td>선택</td>
-										<td>이름</td>
-										<td>학과</td>
-										<td>지원서조회</td>
-										<td>제출서류조회</td>
-										<td>문항1번</td>
-										<td>문항2번</td>
-										<td>합계</td>
-										<td>평가여부</td>
-									</tr>
+								<tr>
+									<td>선택</td>
+									<td>이름</td>
+									<td>학과</td>
+									<td>지원서조회</td>
+									<td>제출서류조회</td>
+									<td>문항1번</td>
+									<td>문항2번</td>
+									<td>합계</td>
+									<td>평가여부</td>
+								</tr>
 								</thead>
 								<tbody>
 								<c:forEach var="evaluateApplicantScore" items="${evaluateApplicantScore}" varStatus="loop">

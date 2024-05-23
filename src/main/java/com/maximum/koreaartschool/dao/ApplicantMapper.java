@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ApplicantMapper {
 
 
+
+
     // 지원자 정보를 데이터베이스에 삽입하는 메서드
 //    public int insertApplicantInt(ApplicantDto applicantDto);
 

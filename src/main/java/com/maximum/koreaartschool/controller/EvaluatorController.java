@@ -170,7 +170,7 @@ public class EvaluatorController {
         return "evaluator/interview";
     }
 
-
+    /* -------------------- 메소드 영역 -------------------- */
     private EvaluateScore createEvaluateScore(Map<String, String> params, int index, int evlQNo) {
         EvaluateScore score = new EvaluateScore();
         score.setEVL_STG_NO(Integer.parseInt(params.get("evl_stg_no_" + index)));
