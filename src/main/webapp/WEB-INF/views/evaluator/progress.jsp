@@ -473,7 +473,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">지원자 평가 진행현황</h5>
+                        <h5 class="card-title">Applicant Evaluate Progress Status</h5>
 
                         <!-- Default Table -->
                         <table class="table">
@@ -508,7 +508,7 @@
                                     </td>
                                     <td>
                                         <c:if test="${applicants.rcrt_cd == 10}">일반전형</c:if>
-                                        <c:if test="${applicants.rcrt_cd == 20}">특기자전형</c:if>
+                                        <c:if test="${applicants.rcrt_cd == 20}">특기생전형</c:if>
                                     </td>
                                     <td>
                                         <c:if test="${applicants.evl_stg_cd == 10}">서류</c:if>

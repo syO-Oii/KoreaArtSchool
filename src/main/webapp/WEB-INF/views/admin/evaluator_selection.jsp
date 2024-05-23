@@ -430,13 +430,12 @@
                         <h5 class="card-title"></h5>
 
                         <!-- General Form Elements -->
-                        <form action="/admin/selectEvaluator" method="get">
+                        <form action="/admin/selectRecruitment" method="get">
                             <div class="row mb-3">
                                 <label class="col-sm-1 col-form-label">입학년도</label>
                                 <div class="col-sm-2">
-                                    <select name="is_selected" class="form-select" aria-label="Default select example">
+                                    <select name="mtcltn_yd_cd" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
-                                        <option value="0">(전체)</option>
                                         <option value="10">2021년도</option>
                                         <option value="20">2022년도</option>
                                         <option value="30">2023년도</option>
@@ -447,7 +446,6 @@
                                 <div class="col-sm-2">
                                     <select name="department" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
-                                        <option value="0">(전체)</option>
                                         <option value="10">시각디자인</option>
                                         <option value="20">무대영화미술</option>
                                         <option value="30">연기</option>
@@ -458,9 +456,8 @@
                                 </div>
                                 <label class="col-sm-1 col-form-label">전형 선택</label>
                                 <div class="col-sm-2">
-                                    <select name="is_selected" class="form-select" aria-label="Default select example">
+                                    <select name="rcrt_cd" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
-                                        <option value="0">(전체)</option>
                                         <option value="10">일반전형</option>
                                         <option value="20">특기생전형</option>
                                     </select>
@@ -501,17 +498,27 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="rcrt" items="${rcrt}">
+                            <c:forEach var="rcrt" items="${rcrtInformation}">
                                 <tr>
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input row-check" type="checkbox">
+                                            <input class="form-check-input row-check" type="checkbox" onclick="sendRcrtNo(${rcrt.rcrt_no})">
                                             <label class="form-check-label" for="gridCheck${rcrt.rcrt_no}">
                                             </label>
                                         </div>
                                     </td>
-                                    <td>${rcrt.evl_no}</td>
-                                    <td>${rcrt.evl_nm}</td>
+                                    <td>
+                                        <c:if test="${rcrt.mtcltn_yd_cd == 10}">2021년도</c:if>
+                                        <c:if test="${rcrt.mtcltn_yd_cd == 20}">2022년도</c:if>
+                                        <c:if test="${rcrt.mtcltn_yd_cd == 30}">2023년도</c:if>
+                                        <c:if test="${rcrt.mtcltn_yd_cd == 40}">2024년도</c:if>
+                                    </td>
+                                    <td>
+                                        <c:if test="${rcrt.year_cd == 10}">1기</c:if>
+                                        <c:if test="${rcrt.year_cd == 20}">2기</c:if>
+                                        <c:if test="${rcrt.year_cd == 30}">3기</c:if>
+                                        <c:if test="${rcrt.year_cd == 40}">4기</c:if>
+                                    </td>
                                     <td>
                                         <c:if test="${rcrt.dept_cd == 10}">시각디자인</c:if>
                                         <c:if test="${rcrt.dept_cd == 20}">무대영화미술</c:if>
@@ -520,7 +527,17 @@
                                         <c:if test="${rcrt.dept_cd == 50}">보컬</c:if>
                                         <c:if test="${rcrt.dept_cd == 60}">싱어송라이터</c:if>
                                     </td>
-                                    <td>${rcrt.is_selected}</td>
+                                    <td>
+                                        <c:if test="${rcrt.rcrt_cd == 10}">일반전형</c:if>
+                                        <c:if test="${rcrt.rcrt_cd == 20}">특기생전형</c:if>
+                                    </td>
+                                    <td>${rcrt.bgng_ymd}</td>
+                                    <td>${rcrt.end_ymd}</td>
+                                    <td>${rcrt.evl_stg_nm}</td>
+                                    <td>
+                                        <c:if test="${rcrt.rcrt_cd == 10}">진행중</c:if>
+                                        <c:if test="${rcrt.rcrt_cd == 20}">완료</c:if>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -529,6 +546,70 @@
                 </div>
             </div>
 
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="evaluatorForm">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h5 class="card-title">Evaluator Selection</h5>
+                                <div class="col-mb-2">
+                                    <button class="btn btn-primary" type="button" onclick="Select()">조회</button>
+                                    <button class="btn btn-primary" type="button" onclick="Update()">저장</button>
+                                </div>
+                            </div>
+
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="selectAll">
+                                            <label class="form-check-label" for="selectAll">
+                                            </label>
+                                        </div>
+                                    </th>
+                                    <th scope="col">위원번호</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">성별</th>
+                                    <th scope="col">학과</th>
+                                    <th scope="col">이메일</th>
+                                    <th scope="col">휴대폰번호</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="evl" items="${stageEvaluator}">
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input row-check" type="checkbox">
+                                                <label class="form-check-label" for="gridCheck${evl.rcrt_no}">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>${evl.evl_no}</td>
+                                        <td>${evl.evl_nm}</td>
+                                        <td>
+                                            <c:if test="${evl.gndr_cd == 10}">남</c:if>
+                                            <c:if test="${evl.gndr_cd == 20}">여</c:if>
+                                        </td>
+                                        <td>
+                                            <c:if test="${evl.dept_cd == 10}">시각디자인</c:if>
+                                            <c:if test="${evl.dept_cd == 20}">무대영화미술</c:if>
+                                            <c:if test="${evl.dept_cd == 30}">연기</c:if>
+                                            <c:if test="${evl.dept_cd == 40}">모델</c:if>
+                                            <c:if test="${evl.dept_cd == 50}">보컬</c:if>
+                                            <c:if test="${evl.dept_cd == 60}">싱어송라이터</c:if>
+                                        </td>
+                                        <td>${evl.evl_eml}</td>
+                                        <td>${evl.evl_tel}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -570,101 +651,29 @@
         checkboxes.forEach(checkbox => checkbox.checked = this.checked);
     });
 
-    function validateDeleteForm() {
-        const checkboxes = document.querySelectorAll('.row-check');
-        let isChecked = false;
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                isChecked = true;
-            }
+    $(document).ready(function(){
+        // 각 체크박스의 변경 이벤트 감지
+        $('.row-check').change(function(){
+            // 체크된 체크박스의 값을 가져옴
+            var rcrtNo = $(this).data('rcrt-no');
+            var isChecked = $(this).prop('checked');
+
+            // 서버로 rcrtNo와 isChecked 값을 전송
+            $.ajax({
+                url: '/your_controller_url',
+                method: 'POST',
+                data: { rcrtNo: rcrtNo, isChecked: isChecked },
+                success: function(response) {
+                    // 서버에서 응답을 받았을 때 수행할 작업
+                    console.log(response); // 응답 확인용
+                },
+                error: function(xhr, status, error) {
+                    // 에러 처리
+                    console.error(error);
+                }
+            });
         });
-        if (!isChecked) {
-            alert('삭제할 항목을 선택해주세요.');
-            return false;
-        }
-        return true;
-    }
-
-    function validateUpdateForm() {
-        const checkboxes = document.querySelectorAll('.row-check');
-        let isChecked = false;
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                isChecked = true;
-            }
-        });
-        if (!isChecked) {
-            alert('저장할 항목을 선택해주세요.');
-            return false;
-        }
-        return true;
-    }
-
-    function Delete() {
-        if (validateDeleteForm()) {
-            document.getElementById("evaluatorForm").action = "/admin/deleteEvaluator";
-            document.getElementById("evaluatorForm").submit();
-        }
-    }
-
-    function Update() {
-        if (validateUpdateForm()) {
-            document.getElementById("evaluatorForm").action = "/admin/updateEvaluator";
-            document.getElementById("evaluatorForm").submit();
-        }
-    }
-
-    function Insert() {
-        document.getElementById("evaluatorForm").action = "/admin/insertEvaluator";
-        document.getElementById("evaluatorForm").submit();
-    }
-
-    let selectedEvaluators = [];
-
-    function fillForm(checkbox) {
-        if (checkbox.checked) {
-            // 체크박스를 선택하면 배열에 추가
-            selectedEvaluators.push(checkbox);
-        } else {
-            // 체크박스를 해제하면 배열에서 제거
-            selectedEvaluators = selectedEvaluators.filter(item => item !== checkbox);
-        }
-
-        // 배열의 마지막 요소로 폼을 채우기
-        if (selectedEvaluators.length > 0) {
-            const lastChecked = selectedEvaluators[selectedEvaluators.length - 1];
-            document.getElementById('evl_no').value = lastChecked.dataset.evlNo;
-            document.getElementById('evl_nm').value = lastChecked.dataset.evlNm;
-            document.getElementById('gndr_cd').value = lastChecked.dataset.gndrCd;
-            document.getElementById('evl_brdt').value = lastChecked.dataset.evlBrdt;
-            document.getElementById('dept_cd').value = lastChecked.dataset.deptCd;
-            document.getElementById('evl_ogdp').value = lastChecked.dataset.evlOgdp;
-            document.getElementById('evl_eml').value = lastChecked.dataset.evlEml;
-            document.getElementById('is_selected').value = lastChecked.dataset.isSelected;
-            document.getElementById('evl_tel').value = lastChecked.dataset.evlTel;
-            document.getElementById('addr').value = lastChecked.dataset.addr;
-            document.getElementById('addr_detail').value = lastChecked.dataset.addrDetail;
-            document.getElementById('bank_nm').value = lastChecked.dataset.bankNm;
-            document.getElementById('act_no').value = lastChecked.dataset.actNo;
-            document.getElementById('slry').value = lastChecked.dataset.slry;
-        } else {
-            // 배열이 비어 있으면 폼을 초기화
-            document.getElementById('evl_no').value = '';
-            document.getElementById('evl_nm').value = '';
-            document.getElementById('gndr_cd').value = '';
-            document.getElementById('evl_brdt').value = '';
-            document.getElementById('dept_cd').value = '';
-            document.getElementById('evl_ogdp').value = '';
-            document.getElementById('evl_eml').value = '';
-            document.getElementById('is_selected').value = '';
-            document.getElementById('evl_tel').value = '';
-            document.getElementById('addr').value = '';
-            document.getElementById('addr_detail').value = '';
-            document.getElementById('bank_nm').value = '';
-            document.getElementById('act_no').value = '';
-            document.getElementById('slry').value = '';
-        }
-    }
+    });
 </script>
 </body>
 
