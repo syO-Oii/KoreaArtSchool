@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공통 코드 예시</title>
+</head>
+<body>
+
+<!-- cdSe와 cd 값을 사용하여 가져온 코드 이름 출력 -->
+<div>코드 이름: <span th:text="${cdSeCdName}"></span></div>
+
+<!-- cdSe 값을 사용하여 가져온 코드 목록 출력 -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>코드</th>
+        <th>코드 이름</th>
+        <th>설명</th>
+        <th>활성화 여부</th>
+        <th>생성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <select name="cdSe">
+        <option value="">전체</option>
+        <option th:each="commCd : ${cdSeCodeList}" th:value="${commCd.cdSe}" th:text="${commCd.cdNm}"></option>
+    </select>
+    <select name="cdSe">
+        <option value="">전체</option>
+        <option th:each="commCd : ${cdACList}" th:value="${commCd.cdSe}" th:text="${commCd.cdNm}"></option>
+    </select>
+    </tbody>
+</table>
+
+</body>
+</html>
