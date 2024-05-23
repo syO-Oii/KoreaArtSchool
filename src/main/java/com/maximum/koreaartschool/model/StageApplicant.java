@@ -11,7 +11,7 @@ import java.security.Timestamp;
 @ToString
 @Builder
 public class StageApplicant {
-
+//한곳에 합침
     private int aplNo;
     private int rcrtNo;
     private int evlStgNo;

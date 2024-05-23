@@ -33,7 +33,7 @@ public class StageApplicantService2 {
     public void processCandidates(int rcrtNo,int rcrtPscp) {
         int multipliedRcrtPscp = rcrtPscp * 2;
 
-        // 임시 테이블 생성
+        // 임시 테이블 생성하기
         stageApplicantMapper2.createTopCandidatesTable(rcrtNo);
 
         // STAGE_APPLICANT 테이블 업데이트
