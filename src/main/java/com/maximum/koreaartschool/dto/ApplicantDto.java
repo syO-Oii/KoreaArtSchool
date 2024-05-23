@@ -12,6 +12,8 @@ import java.util.Date;
 @Data
 @ToString
 public class ApplicantDto {
+
+    private Integer aplNumber;      //지원자번호(PK)
     private String aplName;         //지원자명
     private String dept;          //계열코드
     private String deptCode;        //학과코드

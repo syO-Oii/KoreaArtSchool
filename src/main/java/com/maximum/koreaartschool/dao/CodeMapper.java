@@ -1,13 +1,9 @@
 package com.maximum.koreaartschool.dao;
 
-import com.maximum.koreaartschool.dto.CommCd;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 @Mapper
-public interface CodeDao {
+public interface CodeMapper {
 //    public List<CommCd> findAll() {
 //        return null;
 //    }

@@ -3,13 +3,11 @@ package com.maximum.koreaartschool.dao;
 import com.maximum.koreaartschool.dto.PostDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
-public interface PostDao {
+public interface PostMapper {
 
     //select메서드(리스트 보기)
     public List<PostDto> listDao();

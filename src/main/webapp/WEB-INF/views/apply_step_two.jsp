@@ -43,13 +43,18 @@
             margin-right: 4px; /* 별표와 레이블 사이의 간격 조절 */
         }
 
-        /*!* 비밀번호 일치 메시지 *!*/
-        /*#password-match-message {*/
-        /*    color: blue; !* 파란색으로 설정 *!*/
-        /*}*/
     </style>
 </head>
 <body>
+
+<%--msg 변수를 이용한 "등록 완료" 메시지 출력--%>
+<c:if test="${not empty msg}">
+    <script type="text/javascript">
+        showMessage("${msg}");
+    </script>
+</c:if>
+
+
 <!-- ***** Header Area Start ***** -->
 
 <header class="header-area header-sticky">
@@ -110,7 +115,7 @@
                     <div class="card-body">
 
                         <!-- General Form Elements -->
-                        <form action="/admin/selectDept" method="get">
+                        <form action="/submitApplyStepTwo" method="post" enctype="multipart/form-data">
                             <main id="main" class="main">
                                     <fieldset class="row mb-3 ">
                                         <style>
@@ -136,7 +141,7 @@
 
                                             <!-- 학과/전형 선택 Start -->
                                                 <div class="row mb-3">
-                                                    <label class="col-sm-1 col-form-label">학과</label>
+                                                    <label class="col-sm-1 col-form-label">학과<span class="required">*</span></label>
                                                     <div class="col-sm-4">
                                                         <select name="dept_value" class="form-select" aria-label="Default select example">
                                                             <%--시각디자인: 10, 무대영화미술: 20, 연기: 30, 모델: 40, 보컬: 50, 싱어송라이터: 60--%>
@@ -150,7 +155,7 @@
                                                             <option value="60">싱어송라이터</option>
                                                         </select>
                                                     </div>
-                                                    <label class="col-sm-1 col-form-label">전형</label>
+                                                    <label class="col-sm-1 col-form-label">전형<span class="required">*</span></label>
                                                     <div class="col-sm-4">
                                                         <select name="rcrt_value" class="form-select" aria-label="Default select example">
                                                             <option selected>선택해주세요</option><%--일반: 10, 특기생: 20--%>
@@ -297,6 +302,16 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
+
+
+<%-- msg 변수를 활용하여 "등록 완료" 메시지 출력 --%>
+<script type="text/javascript">
+    function showMessage(message) {
+        alert(message);
+    }
+</script>
+
+
 
 </body>
 </html>

@@ -1,18 +1,14 @@
 package com.maximum.koreaartschool.service;
 
-import com.maximum.koreaartschool.dao.CodeDao;
-import com.maximum.koreaartschool.dto.CommCd;
+import com.maximum.koreaartschool.dao.CodeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CommCdService {
 
     @Autowired
-    private CodeDao codeDao;
+    private CodeMapper codeDao;
 
 //    @Cacheable("commCds")
 //    public List<CommCd> getAllCommCds() {

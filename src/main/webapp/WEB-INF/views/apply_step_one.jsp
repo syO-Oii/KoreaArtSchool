@@ -99,7 +99,7 @@
                     <div class="card-body">
 
                         <!-- General Form Elements -->
-                        <form id="applicationForm" action="/submitApply" method="post">
+                        <form id="applicationForm" action="/submitApplyStepOne" method="post" enctype="multipart/form-data">
                             <main id="main" class="main">
                                 <fieldset class="row mb-3 ">
                                     <style>

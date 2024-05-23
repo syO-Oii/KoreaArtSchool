@@ -1,6 +1,6 @@
 package com.maximum.koreaartschool.controller;
 
-import com.maximum.koreaartschool.dao.PostDao;
+import com.maximum.koreaartschool.dao.PostMapper;
 import com.maximum.koreaartschool.dto.PostDto;
 import com.maximum.koreaartschool.service.PostService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 public class PostNoticeController {  //공지사항 게시판
 
     @Autowired
-    private PostDao postDao;   //dao 객체 변수 생성
+    private PostMapper postDao;   //dao 객체 변수 생성
     @Autowired
     private PostService postService;
 
@@ -92,28 +92,6 @@ public class PostNoticeController {  //공지사항 게시판
     }
 
 
-//    //관리자페이지
-//    //insert메서드(공지사항 글 작성)
-//    @RequestMapping("/post")
-//    public String postWrite(HttpServletRequest request, Model model) {
-//
-//        Integer bbsId = 1; // 기본값 설정
-//        try {
-//            bbsId = Integer.valueOf(request.getParameter("bbsId"));
-//        } catch (NumberFormatException e) {
-//            // 오류 처리
-//        }
-//        postDao.postInsertDao(
-//                request.getParameter("writer"),
-//                request.getParameter("postTitle"),
-//                request.getParameter("postContent"),
-//                Integer.valueOf(request.getParameter("bbsId")),
-//                request.getParameter("delYn"),
-//                request.getParameter("adminEml")
-//        );
-//
-//        return "redirect:admin/list";  //url
-//    }
 
     //관리자페이지
     //update메서드(공지사항 글 수정)

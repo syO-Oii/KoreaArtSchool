@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.maximum.koreaartschool.dao.PostDao"> <!--PostDao 인터페이스와 관련된 mapper-->
+<mapper namespace="com.maximum.koreaartschool.dao.PostMapper"> <!--PostDao 인터페이스와 관련된 mapper-->
 
     <resultMap id="postInfoResultMap" type="com.maximum.koreaartschool.dto.PostDto">
         <id property="postNumber" column="PST_NO"/>
