@@ -19,9 +19,9 @@ public class AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
-    /*public List<Evaluator> getAllEvaluator() {
+    public List<Evaluator> getAllEvaluator() {
         return evaluatorMapper.selectAllEvaluator();
-    }*/
+    }
 
     public List<RecruitmentInformation> selectRecruitment(String mtcltn_yd_cd, String dept_cd, String rcrt_cd) {
         return adminMapper.selectRecruitment(mtcltn_yd_cd, dept_cd, rcrt_cd);
