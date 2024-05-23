@@ -2,6 +2,7 @@ package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.dto.Evaluator;
 import com.maximum.koreaartschool.dto.RecruitmentInformation;
+import com.maximum.koreaartschool.dto.StageEvaluator;
 import com.maximum.koreaartschool.service.AdminService;
 import com.maximum.koreaartschool.service.EvaluatorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,14 @@ public class AdminController {
     @GetMapping("/evaluator_selection")
     public String selection(Model model) {
         return "/admin/evaluator_selection";
+    }
+
+    @GetMapping("/selectStgEvaluator")
+    @ResponseBody
+    public List<StageEvaluator> stgEvaluator(@RequestParam("evl_stg_no") int evl_stg_no,
+                                             @RequestParam("rcrt_no") int rcrt_no) {
+        List<StageEvaluator> stgEvaluators = adminService.selectStgEvaluators(evl_stg_no, rcrt_no);
+        return stgEvaluators;
     }
 
     @GetMapping("/selectRecruitment")

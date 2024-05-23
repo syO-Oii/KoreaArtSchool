@@ -40,6 +40,7 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+
 </head>
 
 <body>
@@ -55,21 +56,8 @@
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
-
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown">
 
@@ -222,17 +210,6 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
                         <h6>Kevin Anderson</h6>
-                        <span>Web Designer</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -241,17 +218,7 @@
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                             <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                            <i class="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
+                            <span>설정</span>
                         </a>
                     </li>
                     <li>
@@ -261,7 +228,7 @@
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
+                            <span>로그아웃</span>
                         </a>
                     </li>
 
@@ -364,57 +331,6 @@
             </ul>
         </li><!-- End Icons Nav -->
 
-        <li class="nav-heading">Pages</li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>F.A.Q</span>
-            </a>
-        </li><!-- End F.A.Q Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-contact.html">
-                <i class="bi bi-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </li><!-- End Contact Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-register.html">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
-            </a>
-        </li><!-- End Register Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li><!-- End Login Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
-                <i class="bi bi-dash-circle"></i>
-                <span>Error 404</span>
-            </a>
-        </li><!-- End Error 404 Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
-                <i class="bi bi-file-earmark"></i>
-                <span>Blank</span>
-            </a>
-        </li><!-- End Blank Page Nav -->
-
     </ul>
 
 </aside><!-- End Sidebar-->
@@ -480,13 +396,6 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="selectAll">
-                                        <label class="form-check-label" for="selectAll">
-                                        </label>
-                                    </div>
-                                </th>
                                 <th scope="col">입학년도</th>
                                 <th scope="col">기수</th>
                                 <th scope="col">학과</th>
@@ -500,13 +409,6 @@
                             <tbody>
                             <c:forEach var="rcrt" items="${rcrtInformation}">
                                 <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input row-check" type="checkbox" onclick="sendRcrtNo(${rcrt.rcrt_no})">
-                                            <label class="form-check-label" for="gridCheck${rcrt.rcrt_no}">
-                                            </label>
-                                        </div>
-                                    </td>
                                     <td>
                                         <c:if test="${rcrt.mtcltn_yd_cd == 10}">2021년도</c:if>
                                         <c:if test="${rcrt.mtcltn_yd_cd == 20}">2022년도</c:if>
@@ -533,7 +435,11 @@
                                     </td>
                                     <td>${rcrt.bgng_ymd}</td>
                                     <td>${rcrt.end_ymd}</td>
-                                    <td>${rcrt.evl_stg_nm}</td>
+                                    <td>
+                                        <a href="/admin/selectStgEvaluator?rcrt_no=${rcrt.rcrt_no}&evl_stg_no=${rcrt.evl_stg_no}" class="selectStgEvaluator">
+                                                ${rcrt.evl_stg_nm}
+                                        </a>
+                                    </td>
                                     <td>
                                         <c:if test="${rcrt.rcrt_cd == 10}">진행중</c:if>
                                         <c:if test="${rcrt.rcrt_cd == 20}">완료</c:if>
@@ -552,9 +458,23 @@
                         <form id="evaluatorForm">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="card-title">Evaluator Selection</h5>
+                                <div class="d-flex gap-2">
+                                <div class="d-flex align-items-end gap-2">
+                                <label class="col-sm-4 col-form-label">입학년도</label>
+<%--                                <div class="col-sm-2">--%>
+                                    <select name="mtcltn_yd_cd" class="form-select col-sm-2" aria-label="Default select example">
+                                        <option selected>선택해주세요</option>
+                                        <option value="10">2021년도</option>
+                                        <option value="20">2022년도</option>
+                                        <option value="30">2023년도</option>
+                                        <option value="40">2024년도</option>
+                                    </select>
+<%--                                </div>--%>
+                                </div>
                                 <div class="col-mb-2">
                                     <button class="btn btn-primary" type="button" onclick="Select()">조회</button>
                                     <button class="btn btn-primary" type="button" onclick="Update()">저장</button>
+                                </div>
                                 </div>
                             </div>
 
@@ -576,8 +496,8 @@
                                     <th scope="col">휴대폰번호</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <c:forEach var="evl" items="${stageEvaluator}">
+                                <tbody id="evaluatorTable">
+                                <c:forEach var="evl" items="${stgEvaluators}">
                                     <tr>
                                         <td>
                                             <div class="form-check">
@@ -645,35 +565,63 @@
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    document.getElementById('selectAll').addEventListener('change', function () {
-        const checkboxes = document.querySelectorAll('.row-check');
-        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
-    });
 
-    $(document).ready(function(){
-        // 각 체크박스의 변경 이벤트 감지
-        $('.row-check').change(function(){
-            // 체크된 체크박스의 값을 가져옴
-            var rcrtNo = $(this).data('rcrt-no');
-            var isChecked = $(this).prop('checked');
+    $(document).ready(function() {
+        // .selectStgEvaluator 클래스를 가진 요소가 클릭되면 실행됩니다.
+        $("body").on("click", "a.selectStgEvaluator", function(event) {
+            // 기본 동작을 중지시킵니다.
+            event.preventDefault();
 
-            // 서버로 rcrtNo와 isChecked 값을 전송
+            var selectStgEvaluator = $(this).attr("href");
+
+            // AJAX 요청을 보냅니다.
             $.ajax({
-                url: '/your_controller_url',
-                method: 'POST',
-                data: { rcrtNo: rcrtNo, isChecked: isChecked },
+                type: 'GET',
+                url: selectStgEvaluator,
                 success: function(response) {
-                    // 서버에서 응답을 받았을 때 수행할 작업
-                    console.log(response); // 응답 확인용
+                    // 성공적으로 응답을 받았을 때 실행됩니다.
+                    displayEvaluators(response);
                 },
                 error: function(xhr, status, error) {
-                    // 에러 처리
-                    console.error(error);
+                    // 오류가 발생했을 때 실행됩니다.
+                    console.error(xhr.responseText);
                 }
             });
         });
     });
+
+    //서버로부터 받은 JSON 데이터를 처리하여 화면에 표시하는 함수
+    function displayEvaluators(data) {
+        var tableBody = $("#evaluatorTable");
+        tableBody.empty(); // 테이블 내용 비우기
+
+        var deptMap = {
+            "10": "시각디자인",
+            "20": "무대영화미술",
+            "30": "연기",
+            "40": "모델",
+            "50": "보컬",
+            "60": "싱어송라이터"
+        };
+
+        // 각 평가자 정보를 테이블에 추가
+        data.forEach(function(evl) {
+            var newRow = $("<tr>");
+            newRow.append("<td><input class='form-check-input row-check' type='checkbox'></td>");
+            newRow.append("<td>" + evl.evl_no + "</td>");
+            newRow.append("<td>" + evl.evl_nm + "</td>");
+            newRow.append("<td>" + (evl.gndr_cd == 10 ? '남' : '여') + "</td>");
+            var deptName = deptMap[evl.dept_cd] || evl.dept_cd;
+            newRow.append("<td>" + deptName + "</td>");
+            newRow.append("<td>" + evl.evl_eml + "</td>");
+            newRow.append("<td>" + evl.evl_tel + "</td>");
+
+            tableBody.append(newRow);
+        });
+    }
 </script>
 </body>
 
