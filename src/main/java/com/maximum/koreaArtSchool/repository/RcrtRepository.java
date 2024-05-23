@@ -15,7 +15,6 @@ public interface RcrtRepository extends JpaRepository<Rcrt, Integer> {
             "LEFT JOIN FETCH r.rcrtApplicants ra " +
             "WHERE r.rcrtNo = :rcrtNo")
     Optional<Rcrt> findRcrtWithDetails(@Param("rcrtNo") Integer rcrtNo);
-
     Page<Rcrt> findByDeptCd(String deptCd, Pageable pageable);
     Page<Rcrt> findByYearCd(String yearCd, Pageable pageable);
     Page<Rcrt> findByDeptCdAndYearCd(String deptCd, String yearCd, Pageable pageable);
