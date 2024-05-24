@@ -61,17 +61,4 @@ public class CommCdController {
         return "redirect:/admin/common-code";
     }
 
-    @PostMapping("/common-code/search")
-    public String showCommonCode(Model model, @RequestParam(name = "cdSe", required = false) String cdSe,
-                                 @RequestParam(name = "cdNm", required = false) String cdNm) {
-        List<CommCd> commCds;
-        if (cdSe != null || cdNm != null) {
-            commCds = commCdServiceImpl.searchByCdSeAndCdNm(cdSe, cdNm);
-        } else {
-            commCds = commCdServiceImpl.getAllCommCds();
-        }
-        model.addAttribute("commCds", commCds);
-        return "common-code";
-    }
-
 }
