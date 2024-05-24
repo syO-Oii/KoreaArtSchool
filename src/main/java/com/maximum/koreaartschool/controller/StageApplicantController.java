@@ -56,7 +56,7 @@ public class StageApplicantController {
         return "redirect:/admin/stepevaluation1";
     }
 
-    // 패스 여부 업데이트를 처리하는 핸들러 메서드
+    // 패스 여부 업데이트를 처리하는  메서드
     @PostMapping("/updatePass")
     public String updatePass(@RequestParam("firstPassYn") String firstPassYn,
                              @RequestParam("aplNo") int aplNo) {

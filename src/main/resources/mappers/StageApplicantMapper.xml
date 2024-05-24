@@ -58,7 +58,7 @@
 			SA.EVL_STG_CD = 10 AND SA.RCRT_NO = #{rcrtNo}
 	</update>
 
-	<!-- 나머지 STAGE_APPLICANT 업데이트 -->
+	<!-- STAGE_APPLICANT 업데이트 -->
 	<update id="updateStageApplicantAll" parameterType="com.maximum.koreaartschool.model.StageApplicant">
 		UPDATE STAGE_APPLICANT SA
 			LEFT JOIN TopCandidates TC ON SA.APL_NO = TC.APL_NO

@@ -314,6 +314,7 @@
 
 						<!-- 옵션 선택 Form -->
 						<form method="get" action="/evaluator/selectOption">
+							<input type="hidden" name="currentUrl" value="/evl_practical">
 							<input type="hidden" name="evaluateStage" value="10">
 							<div class="row mb-3">
 								<!-- 학과 선택 리스트 -->
@@ -358,7 +359,7 @@
 						<!-- 학생 정보 테이블 -->
 						<form method="post" action="/evaluator/insertScore">
 							<input type="hidden" name="applicantCount" value="${fn:length(evaluateApplicantScore)}">
-							<input type="hidden" name="evaluateStage" value="10">
+							<input type="hidden" name="evaluateStage" value="20">
 							<!-- 저장버튼 -->
 							<div class="col-sm-2">
 								<input type="submit" class="btn btn-primary" value="저장">
