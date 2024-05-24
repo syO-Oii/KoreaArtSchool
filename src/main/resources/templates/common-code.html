@@ -305,34 +305,6 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"></h5>
-
-                        <!-- General Form Elements -->
-                        <form action="/admin/common-code/search" method="post">
-                            <div class="row mb-3">
-                                <label class="col-sm-1 col-form-label">코드</label>
-                                <div class="col-sm-2">
-                                    <select name="cdSe" class="form-select">
-                                        <option selected>전체</option>
-                                        <option th:each="commCd : ${cdSeList}" th:value="${commCd.cd}" th:text="${commCd.cdNm}"></option>
-                                    </select>
-                                </div>
-                                <label class="col-sm-1 col-form-label">코드이름</label>
-                                <div class="col-sm-2">
-                                    <input type="text" class="form-control" name="cdNm">
-                                </div>
-                                <div class="col-sm-2">
-                                <button class="btn btn-primary" type="submit">조회</button>
-                                </div>
-                            </div>
-                        </form>
-                        <!-- End General Form Elements -->
-                    </div>
-                </div>
-            </div>
-
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
@@ -483,8 +455,7 @@
         editForm.style.display = 'block';
     }
 </script>
-</body>
-</html>
+
 </body>
 
 </html>
