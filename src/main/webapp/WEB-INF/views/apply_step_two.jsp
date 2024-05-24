@@ -179,6 +179,11 @@
                                                     </div>
                                                 </div>
                                             <!-- 학과/전형 선택 End -->
+
+                                            <%-- start hidden : 1단계에서 model로 받아온 aplEmail, pswd--%>
+                                            <input type="hidden" id="aplEmail" name="aplEmail" value="${aplEmail}">
+                                            <input type="hidden" id="pswd" name="pswd" value="${pswd}">
+                                            <%-- end hidden --%>
                                     </section>
                                     <section class="section" style="margin-top: 50px; margin-bottom: 60px;" >
 

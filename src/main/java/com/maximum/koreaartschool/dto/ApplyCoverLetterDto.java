@@ -1,14 +1,13 @@
 package com.maximum.koreaartschool.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data   //롬복 사용
 @ToString
+@Getter
+@Setter
 public class ApplyCoverLetterDto {      //APLY_INTRO 테이블
 
     private int aplNo;          //지원자번호

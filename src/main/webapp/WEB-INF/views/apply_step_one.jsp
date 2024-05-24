@@ -211,10 +211,10 @@
                                     <div class="row mb-3">
                                         <label for="aplImg" class="col-sm-2 col-form-label">증명사진<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input class="form-control" type="file" id="aplImg" name="aplImg" required/>
+                                            <input type="file" id="aplImg" name="aplImg" required/>
+<%--                                            <button class="uploadBtn"></button>--%>
                                         </div>
                                     </div>
-
 
 
                                     <!-- 주소 -->

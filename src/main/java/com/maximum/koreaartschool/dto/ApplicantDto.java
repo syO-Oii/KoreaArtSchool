@@ -25,7 +25,7 @@ public class ApplicantDto {
     private String aplEmail;        //이메일
     private String aplTelNumber;   //지원자연락처
     private String lastAcbg;      //최종학력
-    private String aplImg;
+    private MultipartFile aplImg;
     private Integer rcrtNumber;       //모집전형번호
 
 }

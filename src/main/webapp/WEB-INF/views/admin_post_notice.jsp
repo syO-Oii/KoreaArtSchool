@@ -603,7 +603,7 @@
                             <input type="hidden" id="action" name="action" value="post">
                             <input type="hidden" id="postNumber" name="postNumber" value="${dto.postNumber}">
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title">New Notice</h5>
+                                <h5 class="card-title">Notice View</h5>
                                 <div class="form-group">
                                     <button class="btn btn-dark" type="submit" id="saveChanges">변경사항 저장</button>
                                     <button class="btn btn-primary" type="submit" id="createNew">등록</button>
@@ -612,7 +612,7 @@
                             <!-- 제목 -->
                             <div class="form-group col-mb-2">
                                 <label for="postTitle" class="col-sm-3 col-form-label">제목</label>
-                                <input type="text" class="form-control" id="postTitle" name="postTitle" required minlength="2" maxlength="15">
+                                <input type="text" class="form-control" id="postTitle" name="postTitle" required minlength="2" maxlength="22">
                             </div>
                             <!-- 내용 -->
                             <div class="form-group col-mb-2">

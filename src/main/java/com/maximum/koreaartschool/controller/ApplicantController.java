@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.UUID;
 
 @Slf4j
@@ -31,8 +31,7 @@ public class ApplicantController {
 
     //insert메서드(원서 접수 1단계)
     @PostMapping("/submitApplyStepOne")
-    public String applySubmit(ApplicantDto applicantDto,
-                              @RequestParam("aplName") String aplName,
+    public String applySubmit(@RequestParam("aplName") String aplName,
                               @RequestParam("pswd") String pswd,
                               @RequestParam("aplBirthDay") String aplBirthDay,
                               @RequestParam("gndrCode") String gndrCode,
@@ -42,90 +41,83 @@ public class ApplicantController {
                               @RequestParam("aplTelNumber") String aplTelNumber,
                               @RequestParam("lastAcbg") String lastAcbg,
                               @RequestParam(value = "aplImg", required = false) MultipartFile aplImg,
-                              Model model)
-    {
+                              Model model) throws IOException {
 
-        // 파일 저장 로직 (사용자의 컴퓨터에 저장)
-        String ImgName = null;
+        // 원본 파일명
+        String originalFilename = aplImg.getOriginalFilename();
 
-        if (aplImg != null && !aplImg.isEmpty()) {
-            ImgName = aplImg.getOriginalFilename();
-            try {
-                // 파일을 임시 폴더에 저장
-                byte[] bytes = aplImg.getBytes();
-                Path tempPath = Paths.get("temp/" + UUID.randomUUID().toString());
-                Files.createDirectories(tempPath.getParent());
-                Files.write(tempPath, bytes);
-//
-//
-//                // 파일 경로를 문자열로 변환하여 applicantDto에 설정
-//                applicantDto.setAplImg(tempPath.toString());
-//
-//                // 데이터베이스에 저장하고 생성된 aplNo를 받아옴
-//                applicantMapper.insertApplicantStepOne(applicantDto);
+        // 저장할 파일 이름 설정 (여기서는 원본 파일명 그대로 사용)
+        String saveName = originalFilename;
+
+        // 파일 저장 경로 설정
+        String uploadPath = "C:\\upload"; // application.properties에서 설정한 경로를 사용
+
+        // 파일 저장
+        File saveFile = new File(uploadPath + File.separator + saveName);
+        aplImg.transferTo(saveFile);
+
+        // 데이터베이스에 정보 저장
+        // 데이터베이스에 정보 저장
+        applicantMapper.insertApplicantStepOne(aplName, pswd,
+                aplBirthDay, gndrCode, address, addressDetail,
+                aplEmail, aplTelNumber, lastAcbg, saveName);
 
 
-                // 등록 완료 메시지 반환
-                return "등록 완료";
-            } catch (IOException e) {
-                e.printStackTrace();
-                // 파일 업로드 실패 메시지 반환
-                return "파일 업로드 실패";
-            }
-        } else {
-            // 파일 선택 경고 메시지 반환
-            return "파일을 선택해주세요.";
-        }
+        // 이메일과 비밀번호를 모델에 추가하여 2단계로 전달
+        model.addAttribute("aplEmail", aplEmail);
+        model.addAttribute("pswd", pswd);
+
+        return "apply_step_two";  // 뷰 페이지
     }
-}
+
+
+
 
     //insert메서드(원서 접수 2단계)
     @PostMapping("/submitApplyStepTwo")
-    public String applySubmitTwo(ApplicantDto applicantDto,
+    public String applySubmitTwo(@RequestParam("aplEmail") String aplEmail,   //1단계에서 model로 전달
+                                 @RequestParam("pswd") String pswd,           //1단계에서 model로 전달
                                  ApplyCoverLetterDto coverLetterDto,
                                  ApplyFileDto applyFileDto,
-                                 @RequestParam(value = "dcmFile", required = false) MultipartFile dcmFile,
-                                 HttpSession session) throws IOException {
+                                 @RequestParam("dept") String dept,
+                                 @RequestParam("deptCode") String deptCode,
+                                 @RequestParam("rcrtCode") String rcrtCode,
+                                 @RequestParam(value = "dcmFile", required = false) MultipartFile dcmFile)
+            throws IOException {
 
-        Integer aplNo = (Integer) session.getAttribute("aplNo");
-        if (aplNo == null) {
-            return "redirect:/submitApplyStepOne"; // aplNo가 없으면 1단계로 리다이렉트
-        }
+        // 원본 파일명
+        String originalFilename = dcmFile.getOriginalFilename();
 
+        // 저장할 파일 이름 설정 (여기서는 원본 파일명 그대로 사용)
+        String saveName = originalFilename;
 
+        // 파일 저장 경로 설정
+        String uploadPath = "C:\\upload"; // application.properties에서 설정한 경로를 사용
 
-        // 파일 저장 로직 (사용자의 컴퓨터에 저장)
-        String dcmFileSave = null;
+        // 파일 저장
+        File saveFile = new File(uploadPath + File.separator + saveName);
+        dcmFile.transferTo(saveFile);
 
-        if (dcmFile != null && !dcmFile.isEmpty()) {
-            dcmFileSave = dcmFile.getOriginalFilename();
-            try {
-                // 파일을 임시 폴더에 저장
-                byte[] bytes = dcmFile.getBytes();
-                Path tempPath = Paths.get("temp/" + UUID.randomUUID().toString());
-                Files.createDirectories(tempPath.getParent());
-                Files.write(tempPath, bytes);
+        // 이메일과 비밀번호로 기존 데이터 조회하여 'aplNo' 가져오기
+        Integer aplNo = applicantMapper.findAplNoByEmailAndPassword(aplEmail, pswd);
 
-                // ApplyFileDto 객체 생성 및 설정
-                applyFileDto.setDcmFile(dcmFileSave);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "파일 업로드 실패";
-            }
-        }
+        // 오류 처리: aplNo가 null이거나 aplEmail이 비어있는 경우
+        if (aplNo == null || aplEmail == null || aplEmail.isEmpty()) {
+            throw new RuntimeException("aplNo 또는 aplEmail 값이 Null: " + aplEmail);
 
-        applicantDto.setAplNo(aplNo); // 세션에서 가져온 aplNo 설정
-        coverLetterDto.setAplNo(aplNo);
+        }log.info("aplNo를 가져오는 단계의 결과: aplNo = " + aplNo + ", aplEmail = " + aplEmail);
+
+        applicantMapper.updateApplicantStepTwo(aplNo, dept, deptCode, rcrtCode);
+
+        // 매개변수 변경: aplNo 추가
         applyFileDto.setAplNo(aplNo);
+        coverLetterDto.setAplNo(aplNo);
 
-
-        applicantMapper.updateApplicantStepTwo(applicantDto);
         applicantMapper.insertApplyFile(coverLetterDto);
         applicantMapper.insertApplyCoverLetter(applyFileDto);
 
-        return "redirect:main";  //url
+        return "redirect:main";  // url
     }
-
 
 }
 

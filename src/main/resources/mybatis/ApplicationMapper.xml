@@ -4,7 +4,7 @@
         <mapper namespace="com.maximum.koreaartschool.dao.ApplicantMapper">
 
         <!-- 원서접수 1단계 INSERT -->
-        <insert id="insertApplicantStepOne" parameterType="com.maximum.koreaartschool.dto.ApplicantDto" useGeneratedKeys="true" keyProperty="aplNo">
+        <insert id="insertApplicantStepOne" parameterType="com.maximum.koreaartschool.dto.ApplicantDto">
             INSERT INTO `APPLICANT` (`RCRT_NO`, `DEPT`, `DEPT_CD`, `RCRT_CD`, `YEAR_CD`, `FIRST_PASS_YN`,
                                      `SECOND_PASS_YN`, `FINAL_PASS_YN`, `PSWD`, `APL_NM`, `APL_BRDT`,
                                      `GNDR_CD`, `ADDR`, `ADDR_DETAIL`, `APL_EML`, `APL_TEL`, `LAST_ACBG`,
@@ -12,9 +12,15 @@
             VALUES
                  (NULL, NULL, NULL, NULL, NULL,'N', 'N', 'N', #{pswd}, #{aplName}, #{aplBirthDay},
                  #{gndrCode}, #{address}, #{addressDetail}, #{aplEmail}, #{aplTelNumber}, #{lastAcbg},
-                 #{aplImg})
+                 #{saveName})
         </insert>
 
+        <!-- 이메일과 비밀번호로 데이터 조회 -->
+        <select id="findAplNoByEmailAndPassword" parameterType="com.maximum.koreaartschool.dto.ApplicantDto" resultType="com.maximum.koreaartschool.dto.ApplicantDto">
+            SELECT `APL_NO`
+            FROM `APPLICANT`
+            WHERE `APL_EML` = #{aplEmail} AND `PSWD` = #{pswd}
+        </select>
 
         <!-- 원서접수 2단계 UPDATE -->
         <update id="updateApplicantStepTwo" parameterType="com.maximum.koreaartschool.dto.ApplicantDto">
@@ -23,7 +29,7 @@
                 DEPT_CD = #{deptCode},
                 RCRT_CD = #{rcrtCode},
                 YEAR_CD = 40
-            WHERE APL_NO = #{aplNo}
+            WHERE `APL_NO` = #{aplNo}
         </update>
 
         <!-- 원서접수 2단계 INSERT -->
@@ -36,10 +42,8 @@
 
         <!-- 원서접수 2단계 INSERT -->
         <insert id="insertApplyFile" parameterType="com.maximum.koreaartschool.dto.ApplyFileDto">
-            INSERT INTO APLY_FILE (APL_NO, DCM_NO, DCM_NM)
-            VALUES (#{aplNo}, #{dcmNo}, #{dcmFile})
+            INSERT INTO APLY_FILE (APL_NO, DCM_NO, DCM_PATH)
+            VALUES (#{aplNo}, #{dcmNo}, #{saveName})
         </insert>
-
-
 </mapper>
 

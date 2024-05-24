@@ -44,17 +44,15 @@ dependencies {
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-//  implementation 'javax.servlet:jstl:1.2'
-//  implementation 'javax.servlet:javax.servlet-api:4.0.1'
-//  implementation 'javax.servlet:jstl'
+
 	// Hibernate Core 수정함
 	implementation 'org.hibernate:hibernate-core:6.4.1.Final'
 	// JDBC 드라이버 (예: MySQL을 사용하는 경우)
 	implementation 'mysql:mysql-connector-java:8.0.28'
 
-
+	//Thumbnailator 추가 (증명사진 썸네일 이미지 생성용)
+	implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.12'
 }
-
 
 tasks.named('test') {
 	useJUnitPlatform()
