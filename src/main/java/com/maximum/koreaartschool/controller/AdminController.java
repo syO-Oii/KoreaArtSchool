@@ -22,6 +22,11 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
+    @GetMapping("")
+    public String admin() {
+        return "admin";
+    }
+
     @GetMapping("/evaluator_selection")
     public String selection(Model model) {
         return "/admin/evaluator_selection";
