@@ -96,7 +96,9 @@ public class RecruitmentController {
 
     @PostMapping("/{id}/update")
     public String updateRecruitment(@PathVariable Integer id, @ModelAttribute Rcrt updatedRecruitment) {
-        rcrtService.updateRecruitment(id, updatedRecruitment);
+        String eduBgngYmd = updatedRecruitment.getEduBgngYmd();
+        String eduEndYmd = updatedRecruitment.getEduEndYmd();
+        rcrtService.updateRecruitment(id, eduBgngYmd, eduEndYmd);
         return "redirect:/admin/recruitments/" + id;
     }
 }
