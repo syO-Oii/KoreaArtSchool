@@ -541,7 +541,7 @@
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onreadystatechange = function() {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                alert("평가가 실행되었습니다.");
+                alert("평가가 성공적으로 실행되었습니다.");
                 location.reload(); // 평가 실행 후 페이지 새로고침
             }
         };

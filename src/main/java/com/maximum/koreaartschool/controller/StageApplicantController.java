@@ -3,17 +3,14 @@ package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.entity.CommCd;
 import com.maximum.koreaartschool.model.StageApplicant;
-import com.maximum.koreaartschool.service.CommCdService;
-import com.maximum.koreaartschool.service.StageApplicantService;
-import com.maximum.koreaartschool.service.StageApplicantService2;
-import com.maximum.koreaartschool.service.StageApplicantService3;
+import com.maximum.koreaartschool.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class StageApplicantController {
     StageApplicantService3 stageApplicantService3;
 
     @Autowired
-    private CommCdService commCdService;
+    ApplicantCheckService applicantCheckService;
 
     @GetMapping("/admin/stepevaluation1")
     public String stepevaluation() {
@@ -171,6 +168,48 @@ public class StageApplicantController {
         stageApplicantService3.processCandidates(rcrtNo,rcrtPscp);
         return "redirect:/admin/stepevaluation3";
     }
+
+
+    @GetMapping("/ApplicantCheck")
+    public String ApplicantCheck() {
+        // 조회 결과를 받아서 모델에 추가
+        return "applycheck";
+    }
+
+
+    @PostMapping("/ApplicantCheck")
+    @ResponseBody
+    public StageApplicant ApplicantCheck(@RequestParam String aplNm,
+                                      @RequestParam String aplEml,
+                                      @RequestParam String pswd) {
+        // 서비스를 통해 조회 결과를 가져옴
+        StageApplicant applicant = applicantCheckService.checkApplicant(aplNm, aplEml, pswd);
+        if (applicant == null) {
+            applicant = new StageApplicant();
+        }
+
+        return applicant;
+    }
+
+    @GetMapping("/ApplicantResultCheck")
+    public String ApplicantResultCheck() {
+        return "applyresultcheck";
+    }
+
+    @PostMapping("/ApplicantResultCheck")
+    @ResponseBody
+    public StageApplicant ApplicantResultCheck(@RequestParam String aplNm,
+                                         @RequestParam String aplEml,
+                                         @RequestParam String pswd) {
+        // 서비스를 통해 조회 결과를 가져옴
+        StageApplicant applicant = applicantCheckService.checkResultApplicant(aplNm, aplEml, pswd);
+        if (applicant == null) {
+            applicant = new StageApplicant();
+        }
+
+        return applicant;
+    }
+
 
 }
 
