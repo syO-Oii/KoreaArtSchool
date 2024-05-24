@@ -311,59 +311,60 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">학과구분</label>
                             <div class="col-sm-10">
-                                <td th:text="${recruitment.deptCd}">
-                                    <span id="deptCd" class="form-control" onclick="makeEditable('deptCd')">${recruitment.deptCd}</span>
-                                </td>
+                                <input type="text" class="form-control" th:value="${recruitment.deptCd}" th:if="${!#strings.isEmpty(recruitment.deptCd)}" disabled>
+                                <span class="form-control" th:if="${#strings.isEmpty(recruitment.deptCd)}" th:text="${recruitment.deptCd}"></span>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">모집전형</label>
                             <div class="col-sm-10">
-                                <td th:text="${recruitment.recruitmentCd}">
-                                    <span class="form-control" id="recruitmentCd" onclick="makeEditable('recruitmentCd')">${recruitment.recruitmentCd}</span>
-                                </td>
+                                <input type="text" class="form-control" th:value="${recruitment.recruitmentCd}" th:if="${!#strings.isEmpty(recruitment.recruitmentCd)}" disabled>
+                                <span class="form-control" th:if="${#strings.isEmpty(recruitment.recruitmentCd)}" th:text="${recruitment.recruitmentCd}"></span>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">입학년도</label>
                             <div class="col-sm-10">
-                                <td th:text="${recruitment.yearCd}">
-                                    <span class="form-control" id="yearCd" onclick="makeEditable('yearCd')">${recruitment.yearCd}</span>
-                                </td>
+                                <input type="text" class="form-control" th:value="${recruitment.yearCd}" th:if="${!#strings.isEmpty(recruitment.yearCd)}" disabled>
+                                <span class="form-control" th:if="${#strings.isEmpty(recruitment.yearCd)}" th:text="${recruitment.yearCd}"></span>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">기수코드</label>
-                            <td th:text="${recruitment.mtcltnYdCd}">
-                                <span class="form-control" id="mtcltnYdCd" onclick="makeEditable('mtcltnYdCd')">${recruitment.mtcltnYdCd}</span>
-                            </td>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:value="${recruitment.mtcltnYdCd}" th:if="${!#strings.isEmpty(recruitment.mtcltnYdCd)}" disabled>
+                                <span class="form-control" th:if="${#strings.isEmpty(recruitment.mtcltnYdCd)}" th:text="${recruitment.mtcltnYdCd}"></span>
+                            </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">교육시작년월</label>
-                            <td th:text="${recruitment.eduBgngYmd}">
-                                <span class="form-control" id="eduBgngYmd" onclick="makeEditable('eduBgngYmd')">${recruitment.eduBgngYmd}</span>
-                            </td>
+                            <div class="col-sm-10">
+                                <span class="form-control" th:text="${recruitment.eduBgngYmd}" id="eduBgngYmd" onclick="makeEditable('eduBgngYmd')"></span>
+                            </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label">교육종료년월</label>
-                            <td th:text="${recruitment.eduEndYmd}">
-                                <span class="form-control" id="eduEndYmd" onclick="makeEditable('eduEndYmd')">${recruitment.eduEndYmd}</span>
-                            </td>
+                            <div class="col-sm-10">
+                                <span class="form-control" th:text="${recruitment.eduEndYmd}" id="eduEndYmd" onclick="makeEditable('eduEndYmd')"></span>
+                            </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3" th:each="applicant : ${recruitment.rcrtApplicants}">
                             <label class="col-sm-2 col-form-label">모집정원</label>
-                            <td th:each="stageSchedule : ${recruitment.rcrtApplicants}" th:text="${stageSchedule.rcrtPscp}">
-                                <span class="form-control" id="rcrtPscp" onclick="makeEditable('rcrtPscp')">${recruitment.rcrtPscp}</span>
-                            </td>
+                            <div class="col-sm-10">
+                                <span class="form-control" th:text="${applicant.rcrtPscp}"></span>
+                            </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3" th:each="applicant : ${recruitment.rcrtApplicants}">
                             <label class="col-sm-2 col-form-label">선발인원</label>
-                            <td th:each="stageSchedule : ${recruitment.rcrtApplicants}" th:text="${stageSchedule.selectPscp}">
-                                <span class="form-control" id="selectPscp" onclick="makeEditable('selectPscp')">${recruitment.selectPscp}</span>
-                            </td>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" th:value="${applicant.selectPscp}" th:if="${!#strings.isEmpty(applicant.selectPscp)}" disabled>
+                                <span class="form-control" th:if="${#strings.isEmpty(applicant.selectPscp)}" th:text="${applicant.selectPscp}"></span>
+                            </div>
                         </div>
-                        <button class="btn btn-primary" onclick="saveChanges()">저장</button>
+                        <button id="editButton" class="btn btn-primary" onclick="makeEditableFields()">수정</button>
+                        <button id="saveButton" class="btn btn-outline-primary" style="display:none;" onclick="saveChanges()">저장</button>
                         <button class="btn btn-outline-primary" onclick="goBack()">목록</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -400,21 +401,26 @@
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
 <script>
-    function makeEditable(fieldId) {
-        var field = document.getElementById(fieldId);
-        field.disabled = false;
-        field.focus();
+    function makeEditableFields() {
+        var fields = document.getElementsByClassName("form-control");
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].setAttribute("contenteditable", true);
+        }
+        document.getElementById("editButton").style.display = "none";
+        document.getElementById("saveButton").style.display = "block";
     }
 
     function saveChanges() {
-        var deptCd = document.getElementById("deptCd").value;
-        var recruitmentCd = document.getElementById("recruitmentCd").value;
-        var yearCd = document.getElementById("yearCd").value;
-        var mtcltnYdCd = document.getElementById("mtcltnYdCd").value;
-        var eduBgngYmd = document.getElementById("eduBgngYmd").value;
-        var eduEndYmd = document.getElementById("eduEndYmd").value;
-        var rcrtPscp = document.getElementById("rcrtPscp").value;
-        var selectPscp = document.getElementById("selectPscp").value;
+        var eduBgngYmd = document.getElementById("eduBgngYmd").textContent;
+        var eduEndYmd = document.getElementById("eduEndYmd").textContent;
+        var fields = document.getElementsByClassName("form-control");
+        for (var i = 0; i < fields.length; i++) {
+            fields[i].setAttribute("contenteditable", false);
+        }
+        document.getElementById("editButton").style.display = "block";
+        document.getElementById("saveButton").style.display = "none";
+
+        alert("저장이 완료되었습니다.");
     }
 
     function goBack() {
