@@ -8,11 +8,11 @@ import java.sql.Timestamp;
 @Data
 @Table(name = "COMM_CD")
 @Entity
-public class CommCd {
+public class CommonCode {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CD_ID")
-    private Integer cdId;
+    private int commonCodeNo;
 
     @Column(name = "CD_SE", nullable = false, length = 10)
     private String cdSe;
@@ -27,7 +27,7 @@ public class CommCd {
     private String cdDesc;
 
     @Column(name = "IS_ACTIVE_YN", nullable = false, length = 2)
-    private String isYn;
+    private String isActiveYn;
 
     @Column(name = "CREATED_AT", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp createdAt;
