@@ -20,14 +20,14 @@ public class CommCdController {
 
     @GetMapping("/{cdId}")
     public CommonCodeDto getCommonCode(@PathVariable Integer cdId) {
-        return commCdServiceImpl.getCommonCodeById(cdId);
+        return commonCodeService.getCommonCodeById(cdId);
     }
 
     @GetMapping("/common-code")
     public String commonCode(Model model,
                              @RequestParam(defaultValue = "0") int page,
                              @RequestParam(defaultValue = "5") int size) {
-        Page<CommCd> commCdPage = commCdServiceImpl.getAllCommCd(page, size);
+        Page<CommCd> commCdPage = commonCodeService.getAllCommCd(page, size);
         model.addAttribute("commCdPage", commCdPage);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", commCdPage.getTotalPages());
@@ -40,7 +40,7 @@ public class CommCdController {
                           @RequestParam("cdNm") String cdNm,
                           @RequestParam(value = "cdDesc", required = false) String cdDesc,
                           @RequestParam("isYn") String isYn) {
-        commCdServiceImpl.addCode(cd, cdSe, cdNm, cdDesc, isYn);
+        commonCodeService.addCode(cd, cdSe, cdNm, cdDesc, isYn);
         return "redirect:/admin/common-code";
     }
 
@@ -51,13 +51,13 @@ public class CommCdController {
                                @RequestParam("cdNm") String cdNm,
                                @RequestParam("cdDesc") String cdDesc,
                                @RequestParam("isYn") String isYn) {
-        commCdServiceImpl.updateCommCd(cdId, cd, cdSe, cdNm, cdDesc, isYn);
+        commonCodeService.updateCommCd(cdId, cd, cdSe, cdNm, cdDesc, isYn);
         return "redirect:/admin/common-code";
     }
 
     @PostMapping("/common-code/delete")
     public String deleteCommCd(@RequestParam("cdId") Integer cdId) {
-        commCdServiceImpl.deleteCommCd(cdId);
+        commonCodeService.deleteCommCd(cdId);
         return "redirect:/admin/common-code";
     }
 
