@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>공통코드</title>
+    <title>공통코드관리</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -15,7 +15,8 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,18 +25,8 @@
     <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
     <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="/assets/vendor/simple-datatables/style1.css" rel="stylesheet">
-
     <!-- Template Main CSS File -->
     <link href="/assets/css/style1.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Updated: Apr 20 2024 with Bootstrap v5.3.3
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -46,19 +37,20 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="/evaluator" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
+            <span class="d-none d-lg-block">Korea Art School</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div><!-- End Search Bar -->
+
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
-
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown">
 
@@ -270,66 +262,107 @@
                 <i class="bi bi-grid"></i>
                 <span>공통코드관리</span>
             </a>
-        </li><!-- End Common Code Nav -->
+        </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item collapsed">
-            <a class="nav-link collapsed" href="/admin/recruitments">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
                 <i class="bi bi-grid"></i>
+                <span>공지사항관리</span>
+            </a>
+        </li><!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/recruitments">
+                <i class="bi bi-journal-text"></i>
                 <span>입학모집관리</span>
             </a>
         </li><!-- End recruitments Nav -->
 
-        <li class="nav-item collapsed">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-grid"></i>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/evaluator_info">
+                <i class="bi bi-journal-text"></i>
                 <span>평가위원 정보관리</span>
             </a>
-        </li><!-- End Nav -->
+        </li><!-- End evaluator_info Nav -->
 
-        <li class="nav-item collapsed">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-grid"></i>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/evaluator_selection">
+                <i class="bi bi-menu-button-wide"></i>
                 <span>평가위원 선정</span>
             </a>
-        </li><!-- End Nav -->
+        </li><!-- End evaluator_selection Nav -->
 
-        <li class="nav-item collapsed">
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-                <i class="bi bi-grid"></i>
+                <i class="bi bi-menu-button-wide"></i>
                 <span>평가위원별 지원자 선정</span>
             </a>
-        </li><!-- End Nav -->
+        </li><!-- End Components Nav -->
 
-        <li class="nav-item collapsed">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-grid"></i>
-                <span>공지사항 관리</span>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>평가관리 및 조회</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
             </a>
-        </li><!-- End Nav -->
-
-        <li class="nav-item collapsed">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-grid"></i>
-                <span>평가관리 및 조회</span>
-            </a>
-        </li><!-- End Nav -->
+            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/admin/stepevaluation1">
+                        <i class="bi bi-circle"></i><span>서류평가</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/stepevaluation2">
+                        <i class="bi bi-circle"></i><span>실기평가</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/stepevaluation3">
+                        <i class="bi bi-circle"></i><span>최종평가</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Charts Nav -->
     </ul>
 </aside><!-- End Sidebar-->
 
+
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Common code management</h1>
+        <h1>Common Code Management</h1>
     </div>
     <!-- End Page Title -->
 
     <section class="section">
         <div class="row">
-            <div class="col-lg-12">
 
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Common code list</h5>
+                        <h5 class="card-title"></h5>
+
+                        <form action="/admin/common-code/search" method="post">
+                            <div class="row mb-3">
+                                <label class="col-sm-1 col-form-label">상세 코드</label>
+                                <div class="col-sm-2">
+                                    <select name="cdSe" class="form-select">
+                                        <option value="" selected>전체</option>
+                                        <option th:each="code : ${cdSeList}" th:value="${code}"
+                                                th:text="${code}"></option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button class="btn btn-primary" type="submit">조회</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Common Code List</h5>
 
                         <!-- Default Table -->
                         <table class="table">
@@ -341,57 +374,59 @@
                                 <th scope="col">설명</th>
                                 <th scope="col">활성화 여부</th>
                                 <th scope="col">생성일</th>
+                                <th scope="col">폐지일</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="commCd : ${commCdPage.content}">
-                                    <td style="display: none;" th:text="${commCd.cdId}">코드 ID</td>
-                                    <td contenteditable="true" th:text="${commCd.cd}">코드</td>
-                                    <td contenteditable="true" th:text="${commCd.cdSe}">상세 코드</td>
-                                    <td contenteditable="true" th:text="${commCd.cdNm}">코드 이름</td>
-                                    <td contenteditable="true" th:text="${commCd.cdDesc}">설명</td>
-                                    <td contenteditable="true" th:text="${commCd.isYn}">활성화 여부</td>
-                                    <td contenteditable="true" th:text="${#dates.format(commCd.createdAt, 'yyyy-MM-dd')}">생성일</td>
-                                    <td>
-                                        <form id="editForm" style="display: none;" th:action="@{/admin/common-code/update}" method="post">
-                                            <input type="hidden" name="cdId" th:value="${commCd.cdId}" />
-                                            <input type="text" class="form-control" name="cd" th:value="${commCd.cd}" />
-                                            <input type="text" class="form-control" name="cdSe" th:value="${commCd.cdSe}" />
-                                            <input type="text" class="form-control" name="cdNm" th:value="${commCd.cdNm}" />
-                                            <input type="text" class="form-control" name="cdDesc" th:value="${commCd.cdDesc}" />
-                                            <input type="text" class="form-control" name="isYn" th:value="${commCd.isYn}" />
-                                            <button type="submit" class="btn btn-primary">저장</button>
-                                        </form>
-                                        <button class="btn btn-primary" onclick="showEditForm(this)">수정</button>
-                                        <form th:action="@{/admin/common-code/delete}" method="post" style="display:inline;">
-                                            <input type="hidden" name="cdId" th:value="${commCd.cdId}" />
-                                            <button class="btn btn-outline-primary" type="submit">삭제</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                            <tr th:each="commCd : ${commCdPage.content}">
+                                <td style="display: none;" th:text="${commCd.commonCodeNo}">코드 ID</td>
+                                <td th:text="${commCd.cd}">코드</td>
+                                <td th:text="${commCd.cdSe}">상세 코드</td>
+                                <td th:text="${commCd.cdNm}">코드 이름</td>
+                                <td th:text="${commCd.cdDesc}">설명</td>
+                                <td th:text="${commCd.isActiveYn}">활성화 여부</td>
+                                <td th:text="${#dates.format(commCd.createdAt, 'yyyy-MM-dd')}">생성일</td>
+                                <td th:text="${#dates.format(commCd.deletedAt, 'yyyy-MM-dd')}">폐지일</td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="loadEditForm(this)">수정</button>
+                                    <form th:action="@{/admin/common-code/delete}" method="post"
+                                          style="display:inline;">
+                                        <input type="hidden" name="commonCodeNo" th:value="${commCd.commonCodeNo}"/>
+                                        <button class="btn btn-outline-primary" type="submit">삭제</button>
+                                    </form>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                         <!-- End Default Table Example -->
 
                         <!-- Pagination with icons -->
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" th:href="@{/admin/common-code(page=${currentPage - 1}, size=5)}" th:if="${currentPage > 0}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"></li>
-                            <li class="page-item">
-                                <a class="page-link" th:href="@{/admin/common-code(page=${currentPage + 1}, size=5)}" th:if="${currentPage + 1 < totalPages}" aria-label="Previous">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                            <div class="breadcrumb">
-                                <span th:text="'   ' + ${currentPage + 1} + ' / ' + ${totalPages} + '   '"></span>
-                            </div>
-                        </ul>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <ul class="pagination mb-0">
+                                <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                                    <a class="page-link"
+                                       th:href="@{/admin/common-code?page=__${currentPage - 1}__&amp;size=8}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
+                                    th:classappend="${i - 1 == currentPage} ? 'active'">
+                                    <a class="page-link" th:href="@{/admin/common-code?page=__${i - 1}__&amp;size=8}"
+                                       th:text="${i}"></a>
+                                </li>
+                                <li class="page-item" th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
+                                    <a class="page-link"
+                                       th:href="@{/admin/common-code?page=__${currentPage + 1}__&amp;size=8}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <!-- End Pagination with icons -->
+
                     </div>
                 </div>
             </div>
@@ -399,8 +434,8 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add common code</h5>
-                        <form class="row g-3">
+                        <h5 class="card-title">Add Common Code</h5>
+                        <form id="addForm" action="/admin/common-code/add" method="post" class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">코드</label>
                                 <input type="text" name="cd" class="form-control" required>
@@ -415,26 +450,66 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">설명</label>
-                                <input type="text" name="cdDesc" class="form-control" required>
+                                <input type="text" name="cdDesc" class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">활성화 여부</label>
-                                <select name="isYn" class="form-select" required>
+                                <select name="isActiveYn" class="form-select" required>
                                     <option value="Y" selected>Y</option>
                                     <option value="N">N</option>
                                 </select>
                             </div>
                             <div class="d-grid gap-2 mt-3">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit">제출</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
-    </section>
 
-</main><!-- End #main -->
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Update Common Code</h5>
+                        <form id="editForm" style="display: none;" th:action="@{/admin/common-code/update}"
+                              method="post" class="row g-3">
+                            <input type="hidden" name="commonCodeNo" id="editCommonCodeNo"/>
+                            <div class="col-md-6">
+                                <label class="form-label">코드</label>
+                                <input type="text" name="cd" id="editCd" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">상세 코드</label>
+                                <input type="text" name="cdSe" id="editCdSe" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">코드 이름</label>
+                                <input type="text" name="cdNm" id="editCdNm" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">설명</label>
+                                <input type="text" name="cdDesc" id="editCdDesc" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">활성화 여부</label>
+                                <select name="isActiveYn" id="editIsActiveYn" class="form-select" required>
+                                    <option value="Y">Y</option>
+                                    <option value="N">N</option>
+                                </select>
+                            </div>
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="btn btn-primary" type="submit">제출</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Update Form -->
+        </div>
+    </section>
+</main>
+
+<!-- End #main -->
 
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
@@ -450,7 +525,8 @@
     </div>
 </footer><!-- End Footer -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -464,14 +540,24 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
-
 <script>
-    function showEditForm(button) {
-        var editForm = button.parentNode.querySelector('#editForm');
-        var saveButton = editForm.querySelector('button[type="submit"]');
-        button.style.display = 'none';
-        saveButton.textContent = '저장';
-        editForm.style.display = 'block';
+    function loadEditForm(button) {
+        var row = button.parentElement.parentElement;
+        var commonCodeNo = row.querySelector('td[style="display: none;"]').textContent;
+        var cd = row.children[1].textContent;
+        var cdSe = row.children[2].textContent;
+        var cdNm = row.children[3].textContent;
+        var cdDesc = row.children[4].textContent;
+        var isActiveYn = row.children[5].textContent;
+
+        document.getElementById('editCommonCodeNo').value = commonCodeNo.trim();
+        document.getElementById('editCd').value = cd.trim();
+        document.getElementById('editCdSe').value = cdSe.trim();
+        document.getElementById('editCdNm').value = cdNm.trim();
+        document.getElementById('editCdDesc').value = cdDesc.trim();
+        document.getElementById('editIsActiveYn').value = isActiveYn.trim();
+
+        document.getElementById('editForm').style.display = 'block';
     }
 </script>
 </body>
