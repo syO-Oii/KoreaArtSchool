@@ -6,6 +6,12 @@
 ## 🗓️프로젝트 기간
 * 2024년 04월 25일 ~ 2024년 05월 29일
 
+## 프로젝트 일정
+![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/aa81eb5b-2bfd-4de1-bdd0-b496aeeaff46)
+
+![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/62daa3f5-be0f-4e6b-baf0-f875dd1dd2a7)
+
+
 ## 성과
 무사히 잘 만들었다!!
 
@@ -55,6 +61,8 @@
 
 
 ## 팀원
-내용
+![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/be356ccf-6e0a-4afc-9ddd-7d6e5104803c)
+![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/ba6544fe-e551-40da-bbc6-bc2693a49bae)
+
 
 ## 라이센스
