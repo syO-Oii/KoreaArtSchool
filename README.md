@@ -34,16 +34,20 @@
  * Google Drive
  * ...
 
+## 메뉴트리
+![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/9100ec9f-83cf-4433-b415-fc392577c11a)
+
+
 ## 시스템 아키텍쳐
 ![구성도-페이지-2 drawio](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/f42af005-5d78-4e4a-995e-5307de09360a)
 
 
+## ERD 다이어그램
+![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/57788793-b71a-4819-984b-a72615d07ce6)
 
 
-## DataBase 설계
-내용
 ## 주요 기능
-내용
+
 ## 실행 화면
 내용
 ### 1. A 기능
