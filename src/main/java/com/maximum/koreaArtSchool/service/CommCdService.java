@@ -15,4 +15,6 @@ public interface CommCdService {
     String getCdNmByCdSeAndCd(String cdSe, String cd);
     CommCd updateCommCd(Integer cdId, String cd, String cdSe, String cdNm, String cdDesc, String isYn);
     void deleteCommCd(Integer cdId);
+    Page<CommCd> getAllCommCd(int page, int size);
+    List<CommCd> searchByCdSeAndCdNm(String cdSe, String cdNm);
 }
