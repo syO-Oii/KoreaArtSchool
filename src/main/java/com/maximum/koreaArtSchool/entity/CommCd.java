@@ -26,7 +26,7 @@ public class CommCd {
     @Column(name = "CD_DESC", length = 100)
     private String cdDesc;
 
-    @Column(name = "IS_YN", nullable = false, length = 2)
+    @Column(name = "IS_ACTIVE_YN", nullable = false, length = 2)
     private String isYn;
 
     @Column(name = "CREATED_AT", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
