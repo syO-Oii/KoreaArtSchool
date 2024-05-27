@@ -2,6 +2,7 @@ package com.maximum.koreaArtSchool.service;
 
 import com.maximum.koreaArtSchool.dto.CommonCodeDto;
 import com.maximum.koreaArtSchool.entity.CommCd;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
