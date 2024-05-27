@@ -2,7 +2,7 @@ package com.maximum.koreaArtSchool.controller;
 
 import com.maximum.koreaArtSchool.dto.CommonCodeDto;
 import com.maximum.koreaArtSchool.entity.CommCd;
-import com.maximum.koreaArtSchool.service.CommCdServiceImpl;
+import com.maximum.koreaArtSchool.service.CommonCodeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/admin")
 public class CommCdController {
 
-    private final CommCdServiceImpl commCdServiceImpl;
+    private CommonCodeService commonCodeService;
 
     @GetMapping("/{cdId}")
     public CommonCodeDto getCommonCode(@PathVariable Integer cdId) {
