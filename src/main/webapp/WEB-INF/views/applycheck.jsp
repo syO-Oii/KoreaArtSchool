@@ -46,20 +46,13 @@
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
-                    <a href="" class="logo">
-                        한국예술학교
+                    <a href="/main" class="logo" style="width: 350px">
+                        Korea Art School
                     </a>
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="applycheck.jsp" >원서접수</a></li>
-                        <li><a href="#">공지사항</a></li>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)">입학 안내</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">전형일정</a></li>
-                                <li><a href="#">학과소개</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="/apply" >원서접수</a></li>
+                        <li><a href="/notice_list" >공지사항</a></li>
                         <li class="has-sub">
                             <a href="javascript:void(0)" class="active" >접수/결과 조회</a>
                             <ul class="sub-menu">
@@ -67,7 +60,6 @@
                                 <li><a href="/ApplicantResultCheck">결과조회</a></li>
                             </ul>
                         </li>
-                        <li class="scroll-to-section"><a href="#">입학 Q&A</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
