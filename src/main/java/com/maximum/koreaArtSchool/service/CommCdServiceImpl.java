@@ -5,6 +5,7 @@ import com.maximum.koreaArtSchool.dto.ConvertToDto;
 import com.maximum.koreaArtSchool.entity.CommCd;
 import com.maximum.koreaArtSchool.repository.CommCdRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,9 +21,11 @@ import java.util.stream.Collectors;
 @Service
 public class CommCdServiceImpl implements CommCdService {
 
+    @Autowired
     private final CommCdRepository commCdRepository;
     private final ConvertToDto converter = new ConvertToDto();
 
+    @Override
     public List<CommCd> searchByCdSeAndCdNm(String cdSe, String cdNm) {
         if (cdSe != null && cdNm != null) {
             return commCdRepository.findByCdSeAndCdNm(cdSe, cdNm);
@@ -45,6 +48,7 @@ public class CommCdServiceImpl implements CommCdService {
         }
     }
 
+    @Override
     public Page<CommCd> getAllCommCd(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("CdId").descending());
         return commCdRepository.findAll(pageable);
@@ -111,3 +115,4 @@ public class CommCdServiceImpl implements CommCdService {
         commCdRepository.deleteById(cdId);
     }
 }
+
