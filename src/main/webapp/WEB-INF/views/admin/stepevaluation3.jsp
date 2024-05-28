@@ -369,7 +369,7 @@
                     <div class="card-body">
                         <h5 class="card-title"></h5>
                         <!-- General Form Elements -->
-                        <form action="/admin/stepevaluation1" method="post">
+                        <form action="/admin/stepevaluation3" method="post">
                             <div class="row mb-3">
                                 <label class="col-sm-1 col-form-label">입학년도</label>
                                 <div class="col-sm-2">
@@ -454,7 +454,7 @@
                                     <td>${stageApplicant.aplNm}</td>
                                     <td>${stageApplicant.gndrNm}</td>
                                     <td>${stageApplicant.score}</td>
-                                    <td>${stageApplicant.evlRank}</td>
+                                    <td class="rankData" style="visibility: hidden;">${stageApplicant.evlRank}</td>
                                     <!-- 각 지원자의 합격 여부를 나타내는 토글 버튼 -->
                                     <td class="pass-toggle">
                                         <div class="toggle-btn ${stageApplicant.finalPassYn eq 'Y' ? 'active' : 'inactive'}"
@@ -510,6 +510,15 @@
 <script>
     // 실행 버튼 클릭 시 평가 실행
     function executeEvaluation() {
+
+        function showRank() {
+            const rankDataElements = document.querySelectorAll('.rankData');
+            rankDataElements.forEach(element => {
+                element.style.visibility = 'visible';
+            });
+        }
+
+
         // 테이블에서 첫 번째 행을 선택하고 그 안의 td 요소를 찾아서 해당 값(rcrtNo 및 rcrtPscp)을 가져옴
         var firstRow = document.querySelector('table tbody tr:first-child');
         var rcrtNo = firstRow.querySelector('td:nth-child(1)').textContent;
@@ -528,7 +537,7 @@
         xhr.onreadystatechange = function() {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 alert("평가가 성공적으로 실행되었습니다.");
-                location.reload(); // 평가 실행 후 페이지 새로고침
+                showRank(); // 평가 실행 후 숨겨진 요소를 표시
             }
         };
         // rcrtNo와 rcrtPscp를 데이터로 전송
