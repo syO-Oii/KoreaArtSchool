@@ -2,7 +2,7 @@ package com.maximum.koreaArtSchool.service;
 
 import com.maximum.koreaArtSchool.entity.CommCd;
 import com.maximum.koreaArtSchool.entity.Rcrt;
-import com.maximum.koreaArtSchool.repository.CommCdRepository;
+import com.maximum.koreaArtSchool.repository.CommonCodeRepository;
 import com.maximum.koreaArtSchool.repository.RcrtRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RcrtService {
     private final RcrtRepository rcrtRepository;
-    private final CommCdRepository commCdRepository;
+    private final CommonCodeRepository commonCodeRepository;
 
     public Optional<Rcrt> getRecruitmentById(Integer rcrtNo) {
         return rcrtRepository.findById(rcrtNo);
@@ -76,6 +76,6 @@ public class RcrtService {
 
     @Cacheable(value = "commCd", key = "#cdSe + '-' + #cd")
     public String getCdNmByCdSeAndCd(String cdSe, String cd) {
-        return commCdRepository.findByCdSeAndCd(cdSe, cd).map(CommCd::getCdNm).orElse(null);
+        return commonCodeRepository.findByCdSeAndCd(cdSe, cd).map(CommCd::getCdNm).orElse(null);
     }
 }
