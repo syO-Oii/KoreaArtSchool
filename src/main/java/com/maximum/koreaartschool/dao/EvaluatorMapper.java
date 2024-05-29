@@ -51,5 +51,8 @@ public interface EvaluatorMapper {
 
     void updateEvaluateScoreSum();
 
+    @Select("SELECT * FROM STAGE_EVALUATOR WHERE IS_SELECTED = 'Y'")
+    List<StageEvaluator> getStageEvaluatorBySelected();
+
 
 }

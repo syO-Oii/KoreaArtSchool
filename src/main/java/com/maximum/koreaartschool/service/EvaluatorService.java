@@ -50,28 +50,35 @@ public class EvaluatorService {
         evaluatorMapper.updateEvaluator(evaluator);
     }
 
+    /* 조건별 평가위원 담당 지원자 목록 불러오기 */
 
-
+    // 평가위원 담당 지원자 전체 조회
     @Transactional
     public List<ViewApplicantEvaluate> getEvaluatorApplicants(int evlNo, int evlStgCd){
         return evaluatorMapper.selectEvaluatorApplicants(evlNo, evlStgCd);
     }
 
+    // 학과별 평가위원 담당 지원자 전체 조회
     @Transactional
     public List<ViewApplicantEvaluate> getApplicantByDeptno(int evlNo, int evlStgCd, int deptNo){
         return evaluatorMapper.selectApplicantByDeptno(evlNo, evlStgCd, deptNo);
     }
 
+    // 전형별 평가위원 담당 지원자 전체 조회
     @Transactional
     public List<ViewApplicantEvaluate> getApplicantByRcrtNo(int evlNo, int evlStgCd, int rcrtNo){
         return evaluatorMapper.selectApplicantByRcrtNo(evlNo, evlStgCd, rcrtNo);
     }
 
+    // 학과 및 전형별 평가위원 담당 지원자 전체 조회
     @Transactional
     public List<ViewApplicantEvaluate> getApplicantByOptions(int evlNo, int evlStgCd, int deptNo, int rcrtNo){
         return evaluatorMapper.selectApplicantByOptions(evlNo, evlStgCd, deptNo, rcrtNo);
     }
 
+    /* 조건 별 평가위원 담당 지원자 목록 불러오기 끝 */
+
+    // 평가 점수 합계 테이블 업데이트
     @Transactional
     public void updateEvaluateScoreSum(){
         evaluatorMapper.updateEvaluateScoreSum();
@@ -93,6 +100,9 @@ public class EvaluatorService {
         for (ViewApplicantEvaluate evaluation : evaluations) {
             evaluatorMapper.updateEvaluation(evaluation);
         }
+    }
+    public List<StageEvaluator> getStageEvaluatorBySelected(){
+        return evaluatorMapper.getStageEvaluatorBySelected();
     }
 
 

@@ -56,7 +56,7 @@
 		<div class="d-flex align-items-center justify-content-between">
 			<a href="/evaluator" class="logo d-flex align-items-center">
 				<img src="/assets/img/logo.png" alt="">
-				<span class="d-none d-lg-block">NiceAdmin</span>
+				<span class="d-none d-lg-block">Korea Art School</span>
 			</a>
 			<i class="bi bi-list toggle-sidebar-btn"></i>
 		</div><!-- End Logo -->
@@ -261,7 +261,7 @@
 	<ul class="sidebar-nav" id="sidebar-nav">
 
 		<li class="nav-item">
-			<a class="nav-link " href="/evaluator/progress">
+			<a class="nav-link collapsed" href="/evaluator/progress">
 				<i class="bi bi-grid"></i>
 				<span>평가진행현황</span>
 			</a>
@@ -282,7 +282,7 @@
 		</li><!-- 실기평가 끝 -->
 
 		<li class="nav-item">
-			<a class="nav-link collapsed" href="evl_interview">
+			<a class="nav-link" href="evl_interview">
 				<i class="bi bi-journal-text"></i>
 				<span>면접평가</span>
 			</a>

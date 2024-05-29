@@ -2,8 +2,10 @@ package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.dto.Evaluator;
 import com.maximum.koreaartschool.dto.RecruitmentInformation;
+import com.maximum.koreaartschool.dto.StageApplicant;
 import com.maximum.koreaartschool.dto.StageEvaluator;
 import com.maximum.koreaartschool.service.AdminService;
+import com.maximum.koreaartschool.service.ApplicantService;
 import com.maximum.koreaartschool.service.EvaluatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ public class AdminController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    ApplicantService applicantService;
 
     @GetMapping("/evaluator_selection")
     public String selection(Model model) {
@@ -111,7 +116,7 @@ public class AdminController {
                                   @RequestParam("dept_cd") String dept_cd,
                                   @RequestParam("evl_ogdp") String evl_ogdp,
                                   @RequestParam("evl_eml") String evl_eml,
-                                  @RequestParam("is_selected") char is_selected,
+                                    @RequestParam("is_selected") char is_selected,
                                   @RequestParam("evl_tel") String evl_tel,
                                   @RequestParam("addr") String addr,
                                   @RequestParam("addr_detail") String addr_detail,
@@ -135,6 +140,26 @@ public class AdminController {
 
         evaluatorService.updateEvaluator(evaluator);
         return "redirect:/admin/evaluator_info"; // 평가위원 정보 업데이트 후 리다이렉트할 페이지를 지정합니다.
+    }
+
+    @GetMapping("/evaluatorMatch")
+    public String applicantSelectPage(Model model){
+        String mtcltn_yd_cd = "40";
+        String evlStgCd = "10";
+        String deptCd = "10";
+        String rcrtCd = "10";
+        List<StageEvaluator> stgEvaluators = evaluatorService.getStageEvaluatorBySelected();
+        //List<StageApplicant> stgApplicants = applicantService.getAllStageApplicant();
+        List<StageApplicant> stgApplicantsByOption = applicantService.getStageApplicantByOption(evlStgCd, deptCd, rcrtCd);
+        List<RecruitmentInformation> rcrtInformation = adminService.selectRecruitment(mtcltn_yd_cd, deptCd, rcrtCd);
+
+
+
+        model.addAttribute("stgEvaluators", stgEvaluators);
+        //model.addAttribute("stgApplicants", stgApplicants);
+        model.addAttribute("stgApplicants", stgApplicantsByOption);
+        model.addAttribute("rcrtInformation", rcrtInformation);
+        return "/admin/evaluatorMatch";
     }
 
 }
