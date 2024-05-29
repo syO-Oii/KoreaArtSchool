@@ -210,6 +210,10 @@ public class StageApplicantController {
         return applicant;
     }
 
+    @GetMapping("/map")
+    public String map() {
+        return "map";
+    }
 
 }
 
