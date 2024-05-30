@@ -348,7 +348,7 @@
                         <h5 class="card-title"> 평가학생 선정 </h5>
 
                         <!-- General Form Elements -->
-                        <form action="/admin/selectRecruitment" method="get">
+                        <form action="/admin/selectOptionByEvaluatorMatch" method="get">
                             <div class="row mb-3">
                                 <label class="col-sm-1 col-form-label">입학년도</label>
                                 <div class="col-sm-2">
@@ -405,7 +405,7 @@
                                 <th scope="col">전형</th>
                                 <th scope="col">모집시작일</th>
                                 <th scope="col">모집종료일</th>
-                                <th scope="col">평가 단계</th>
+                                <%--<th scope="col">평가 단계</th>--%>
                             </tr>
                             </thead>
                             <tbody>
@@ -432,16 +432,16 @@
                                         <c:if test="${rcrt.dept_cd == 60}">싱어송라이터</c:if>
                                     </td>
                                     <td>
-                                        <c:if test="${rcrt.rcrt_cd == 10}">진행중</c:if>
-                                        <c:if test="${rcrt.rcrt_cd == 20}">완료</c:if>
+                                        <c:if test="${rcrt.rcrt_cd == 10}">일반전형</c:if>
+                                        <c:if test="${rcrt.rcrt_cd == 20}">특기생전형</c:if>
                                     </td>
-                                    <td>${rcrt.bgng_ymd}</td>
-                                    <td>${rcrt.end_ymd}</td>
-                                    <td>
+                                    <td>${rcrt.edu_bgng_ymd}</td>
+                                    <td>${rcrt.edu_end_ymd}</td>
+                                    <%--<td>
                                         <a href="/admin/selectStgEvaluator?rcrt_no=${rcrt.rcrt_no}&evl_stg_no=${rcrt.evl_stg_no}" class="selectStgEvaluator">
                                                 ${rcrt.evl_stg_nm}
                                         </a>
-                                    </td>
+                                    </td>--%>
                                 </tr>
                             </c:forEach>
                             </tbody>

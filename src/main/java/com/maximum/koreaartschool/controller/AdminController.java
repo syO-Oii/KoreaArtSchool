@@ -1,9 +1,6 @@
 package com.maximum.koreaartschool.controller;
 
-import com.maximum.koreaartschool.dto.Evaluator;
-import com.maximum.koreaartschool.dto.RecruitmentInformation;
-import com.maximum.koreaartschool.dto.StageApplicant;
-import com.maximum.koreaartschool.dto.StageEvaluator;
+import com.maximum.koreaartschool.dto.*;
 import com.maximum.koreaartschool.service.AdminService;
 import com.maximum.koreaartschool.service.ApplicantService;
 import com.maximum.koreaartschool.service.EvaluatorService;
@@ -151,8 +148,8 @@ public class AdminController {
         List<StageEvaluator> stgEvaluators = evaluatorService.getStageEvaluatorBySelected();
         //List<StageApplicant> stgApplicants = applicantService.getAllStageApplicant();
         List<StageApplicant> stgApplicantsByOption = applicantService.getStageApplicantByOption(evlStgCd, deptCd, rcrtCd);
-        List<RecruitmentInformation> rcrtInformation = adminService.selectRecruitment(mtcltn_yd_cd, deptCd, rcrtCd);
-
+        //List<RecruitmentInformation> rcrtInformation = adminService.selectRecruitment(mtcltn_yd_cd, deptCd, rcrtCd);
+        List<RCRT> rcrtInformation = adminService.getAllRecruitment();
 
 
         model.addAttribute("stgEvaluators", stgEvaluators);
@@ -162,4 +159,25 @@ public class AdminController {
         return "/admin/evaluatorMatch";
     }
 
+    @GetMapping("/selectOptionByEvaluatorMatch")
+    public String selectOptionByEvaluatorMatch(
+            Model model,
+            @RequestParam("mtcltn_yd_cd") String mtcltn_yd_cd,
+            @RequestParam("department") String dept_cd,
+            @RequestParam("rcrt_cd") String rcrt_cd
+    ){
+
+        List<StageEvaluator> stgEvaluators = evaluatorService.getStageEvaluatorBySelected();
+        List<StageApplicant> stgApplicants = applicantService.getAllStageApplicant();
+        List<RCRT> rcrt = adminService.getRcrtByOptions(mtcltn_yd_cd, dept_cd, rcrt_cd);
+
+
+
+
+        model.addAttribute("stgEvaluators", stgEvaluators);
+        model.addAttribute("stgApplicants", stgApplicants);
+        model.addAttribute("rcrtInformation", rcrt);
+        return "/admin/evaluatorMatch";
+
+    }
 }

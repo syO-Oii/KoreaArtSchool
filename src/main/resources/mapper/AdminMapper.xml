@@ -5,6 +5,23 @@
 
 <mapper namespace="com.maximum.koreaartschool.dao.AdminMapper">
 
+    <select id="getRcrtByOptions" resultType="com.maximum.koreaartschool.dto.RCRT">
+        SELECT *
+        FROM RCRT
+        WHERE 1=1
+        <if test="mtcltn_yd_cd != '선택해주세요'">
+            AND RCRT.MTCLTN_YD_CD = #{mtcltn_yd_cd}
+        </if>
+        <if test="dept_cd != '선택해주세요'">
+            AND RCRT.DEPT_CD = #{dept_cd}
+        </if>
+        <if test="rcrt_cd != '선택해주세요'">
+            AND RCRT.RCRT_CD = #{rcrt_cd}
+        </if>
+
+    </select>
+
+
     <select id="selectRecruitment" resultType="com.maximum.koreaartschool.dto.RecruitmentInformation">
         SELECT
             r.MTCLTN_YD_CD,
