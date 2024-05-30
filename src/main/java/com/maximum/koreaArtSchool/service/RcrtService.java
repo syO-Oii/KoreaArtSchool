@@ -1,6 +1,6 @@
 package com.maximum.koreaArtSchool.service;
 
-import com.maximum.koreaArtSchool.entity.CommCd;
+import com.maximum.koreaArtSchool.entity.CommonCode;
 import com.maximum.koreaArtSchool.entity.Rcrt;
 import com.maximum.koreaArtSchool.repository.CommonCodeRepository;
 import com.maximum.koreaArtSchool.repository.RcrtRepository;
@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -59,8 +58,8 @@ public class RcrtService {
         }
     }
 
-    public List<CommCd> getCommCdsByCdSe(String cdSe) {
-        return commCdRepository.findByCdSe(cdSe);
+    public List<CommonCode> getCommCdsByCdSe(String cdSe) {
+        return commonCodeRepository.findByCdSe(cdSe);
     }
 
     public void updateRecruitment(Integer id, Rcrt updatedRecruitment) {
@@ -76,6 +75,6 @@ public class RcrtService {
 
     @Cacheable(value = "commCd", key = "#cdSe + '-' + #cd")
     public String getCdNmByCdSeAndCd(String cdSe, String cd) {
-        return commonCodeRepository.findByCdSeAndCd(cdSe, cd).map(CommCd::getCdNm).orElse(null);
+        return commonCodeRepository.findByCdSeAndCd(cdSe, cd).map(CommonCode::getCdNm).orElse(null);
     }
 }
