@@ -1,9 +1,7 @@
 package com.maximum.koreaartschool.controller;
 
-import com.maximum.koreaartschool.dao.PostMapper;
 import com.maximum.koreaartschool.dto.PostDto;
 import com.maximum.koreaartschool.service.PostNoticeService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
