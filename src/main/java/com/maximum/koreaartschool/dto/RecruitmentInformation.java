@@ -20,7 +20,7 @@ public class RecruitmentInformation {
 	private char edu_bgng_ymd;
 	private char edu_end_ymd;
 	private Integer evl_stg_no;
-	private String evl_stg_cd;
+	private Integer evl_stg_cd;
 	private String evl_stg_nm;
 	private String prgr;
 	private char evl_bgng_dt;

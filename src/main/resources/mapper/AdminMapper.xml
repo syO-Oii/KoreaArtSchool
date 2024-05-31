@@ -15,6 +15,7 @@
             ss.END_YMD,
             es.EVL_STG_NM,
             es.EVL_STG_NO,
+            es.EVL_STG_CD,
             es.RCRT_NO,
             es.PRGR
         FROM
@@ -28,7 +29,28 @@
         SELECT *
         FROM
             STAGE_EVALUATOR
-        WHERE EVL_STG_NO=#{evl_stg_no} AND RCRT_NO=#{rcrt_no};
+        WHERE (EVL_STG_CD = #{evl_stg_cd} OR EVL_STG_CD = 0) AND RCRT_NO=#{rcrt_no} ORDER BY EVL_NO ASC;
     </select>
+
+    <select id="selectAllStgEvaluator" resultType="com.maximum.koreaartschool.dto.StageEvaluator">
+        SELECT *
+        FROM
+            STAGE_EVALUATOR;
+    </select>
+
+    <select id="selectIsSelected" resultType="com.maximum.koreaartschool.dto.StageEvaluator">
+        SELECT *
+        FROM
+            STAGE_EVALUATOR
+        WHERE IS_SELECTED=#{is_selected};
+    </select>
+
+    <update id="updateEvaluatorInfo" parameterType="com.maximum.koreaartschool.dto.StageEvaluator">
+        UPDATE STAGE_EVALUATOR AS SE
+            JOIN EVALUATOR AS E ON SE.EVL_NO = E.EVL_NO
+            SET SE.IS_SELECTED = #{is_selected},
+                SE.EVL_STG_CD = #{evl_stg_cd}
+        WHERE E.EVL_NO = #{evl_no};
+    </update>
 
 </mapper>

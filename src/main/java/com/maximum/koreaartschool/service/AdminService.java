@@ -19,15 +19,21 @@ public class AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
-    public List<Evaluator> getAllEvaluator() {
-        return evaluatorMapper.selectAllEvaluator();
-    }
-
     public List<RecruitmentInformation> selectRecruitment(String mtcltn_yd_cd, String dept_cd, String rcrt_cd) {
         return adminMapper.selectRecruitment(mtcltn_yd_cd, dept_cd, rcrt_cd);
     }
 
-    public List<StageEvaluator> selectStgEvaluators(int evl_stg_no, int rcrt_no) {
-        return adminMapper.selectStgEvaluator(evl_stg_no, rcrt_no);
+    public List<StageEvaluator> selectStgEvaluators(String evl_stg_cd, int rcrt_no) {
+        return adminMapper.selectStgEvaluator(evl_stg_cd, rcrt_no);
+    }
+
+    public void updateEvaluatorInfo(int evl_no, String evl_stg_cd) {
+
+        String is_selected = "Y"; // 기본값 설정
+        if ("0".equals(evl_stg_cd)) {
+            is_selected = "N";
+        }
+
+        adminMapper.updateEvaluatorInfo(evl_no, evl_stg_cd, is_selected);
     }
 }

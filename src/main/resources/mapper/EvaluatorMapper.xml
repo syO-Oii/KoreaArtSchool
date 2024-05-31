@@ -16,7 +16,7 @@
         FROM STAGE_APPLICANT sa
                  INNER JOIN APPLICANT_EVALUATE ae ON sa.EVL_STG_NO = ae.EVL_STG_NO
             AND sa.RCRT_NO = ae.RCRT_NO
-            AND sa.APL_NO = ae.APL_NO
+            AND sa.APL_NO = ae.APL_NO ORDER BY sa.APL_NO ASC
     </select>
 
     <select id="findApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantProcess">
@@ -26,7 +26,7 @@
                  INNER JOIN APPLICANT_EVALUATE ae ON sa.EVL_STG_NO = ae.EVL_STG_NO
             AND sa.RCRT_NO = ae.RCRT_NO
             AND sa.APL_NO = ae.APL_NO
-        WHERE sa.DEPT_CD=#{departmentId} AND sa.RCRT_CD=#{recruitmentId} AND sa.EVL_STG_CD=#{stageId};
+        WHERE sa.DEPT_CD=#{departmentId} AND sa.RCRT_CD=#{recruitmentId} AND sa.EVL_STG_CD=#{stageId} ORDER BY sa.APL_NO ASC;
     </select>
 
     <select id="findByIsSelected" resultType="com.maximum.koreaartschool.dto.Evaluator">

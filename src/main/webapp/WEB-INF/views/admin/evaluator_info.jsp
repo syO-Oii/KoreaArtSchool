@@ -50,7 +50,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
+            <span class="d-none d-lg-block">Korea Art School</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -245,8 +245,29 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="/admin/evaluator_info">
+            <a class="nav-link collapsed" href="#">
                 <i class="bi bi-grid"></i>
+                <span>공통코드관리</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-grid"></i>
+                <span>공지사항관리</span>
+            </a>
+        </li><!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-journal-text"></i>
+                <span>입학모집관리</span>
+            </a>
+        </li><!-- End Forms Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/evaluator_info">
+                <i class="bi bi-journal-text"></i>
                 <span>평가위원 정보관리</span>
             </a>
         </li><!-- End Dashboard Nav -->
@@ -260,75 +281,33 @@
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-                <i class="bi bi-journal-text"></i>
-                <span>Forms</span>
+                <i class="bi bi-menu-button-wide"></i>
+                <span>평가위원별 지원자 선정</span>
             </a>
-        </li><!-- End Forms Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i
-                    class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="tables-general.html">
-                        <i class="bi bi-circle"></i><span>General Tables</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="tables-data.html">
-                        <i class="bi bi-circle"></i><span>Data Tables</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Tables Nav -->
+        </li><!-- End Components Nav -->
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-layout-text-window-reverse"></i><span>평가관리 및 조회</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="charts-chartjs.html">
-                        <i class="bi bi-circle"></i><span>Chart.js</span>
+                        <i class="bi bi-circle"></i><span>서류평가</span>
                     </a>
                 </li>
                 <li>
                     <a href="charts-apexcharts.html">
-                        <i class="bi bi-circle"></i><span>ApexCharts</span>
+                        <i class="bi bi-circle"></i><span>실기평가</span>
                     </a>
                 </li>
                 <li>
                     <a href="charts-echarts.html">
-                        <i class="bi bi-circle"></i><span>ECharts</span>
+                        <i class="bi bi-circle"></i><span>최종평가</span>
                     </a>
                 </li>
             </ul>
         </li><!-- End Charts Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="icons-bootstrap.html">
-                        <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-remix.html">
-                        <i class="bi bi-circle"></i><span>Remix Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-boxicons.html">
-                        <i class="bi bi-circle"></i><span>Boxicons</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Icons Nav -->
 
     </ul>
 
@@ -555,7 +534,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="slry" class="col-sm-2 col-form-label">급여</label>
+                                <label for="slry" class="col-sm-2 col-form-label">연봉</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="slry" name="slry">
                                 </div>
@@ -663,7 +642,7 @@
             { id: 'addr_detail', message: '상세주소를 입력해주세요.' },
             { id: 'bank_nm', message: '은행명을 입력해주세요.' },
             { id: 'act_no', message: '계좌번호를 입력해주세요.' },
-            { id: 'slry', message: '급여를 입력해주세요.' },
+            { id: 'slry', message: '연봉을 입력해주세요.' },
         ];
 
         for (let field of requiredFields) {

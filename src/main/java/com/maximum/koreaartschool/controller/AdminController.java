@@ -5,14 +5,18 @@ import com.maximum.koreaartschool.dto.RecruitmentInformation;
 import com.maximum.koreaartschool.dto.StageEvaluator;
 import com.maximum.koreaartschool.service.AdminService;
 import com.maximum.koreaartschool.service.EvaluatorService;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -31,9 +35,29 @@ public class AdminController {
     @GetMapping("/selectStgEvaluator")
     @ResponseBody
     public List<StageEvaluator> stgEvaluator(@RequestParam("evl_stg_no") int evl_stg_no,
-                                             @RequestParam("rcrt_no") int rcrt_no) {
-        List<StageEvaluator> stgEvaluators = adminService.selectStgEvaluators(evl_stg_no, rcrt_no);
+                                             @RequestParam("rcrt_no") int rcrt_no,
+                                             @RequestParam(value = "evl_stg_cd", defaultValue = "0") String evl_stg_cd,
+                                             Model model) {
+
+        log.info("2단계 evl_stg_no: "+ evl_stg_no);
+        log.info("2단계 rcrt_no: "+ rcrt_no);
+        log.info("2단계 evl_stg_cd: "+ evl_stg_cd);
+
+        List<StageEvaluator> stgEvaluators = adminService.selectStgEvaluators(evl_stg_cd, rcrt_no); //모집학과의 평가단계의 평가위원 가져오기
+        model.addAttribute("stgEvaluators", stgEvaluators);
+        model.addAttribute("evl_stg_cd", evl_stg_cd);
         return stgEvaluators;
+    }
+
+    @PostMapping("/updateStgEvaluators")
+    @ResponseBody
+    public String updateEvaluatorInfo(@RequestParam("evl_no") int evl_no,
+                                         @RequestParam("evl_stg_cd") String evl_stg_cd) {
+        log.info("3단계 evl_no: "+ evl_no);
+        log.info("3단계 evl_stg_cd: "+ evl_stg_cd);
+        adminService.updateEvaluatorInfo(evl_no, evl_stg_cd);
+
+        return "redirect:/admin/evaluator_selection";
     }
 
     @GetMapping("/selectRecruitment")

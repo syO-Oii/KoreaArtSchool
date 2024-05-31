@@ -49,4 +49,5 @@ public class EvaluatorService {
     public void updateEvaluator(Evaluator evaluator) {
         evaluatorMapper.updateEvaluator(evaluator);
     }
+
 }
