@@ -9,16 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <title>Education Template - Meeting Detail Page</title>
-    <!-- Bootstrap core CSS -->
+    <title>KAS :: 한국예술학교 입학페이지</title>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <%--  Bootstrap 및 jQuery 라이브러리  --%>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
     <link rel="stylesheet" href="assets/css/owl.css">
@@ -26,48 +24,30 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
     <style>
-        /* 필수입력항목 *로 표시 */
         .required {
-            color: red; /* 빨간색 */
-            margin-right: 4px; /* 별표와 레이블 사이의 간격 조절 */
+            color: red;
+            margin-right: 4px;
         }
-
-        /*!* 비밀번호 일치 메시지 *!*/
-        /*#password-match-message {*/
-        /*    color: blue; !* 파란색으로 설정 *!*/
-        /*}*/
     </style>
 </head>
 <body>
-<!-- ***** Header Area Start ***** -->
 
+<!-- ***** Header Area Start ***** -->
 <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
+
                 <nav class="main-nav">
-                    <a href="" class="logo">
-                        한국예술학교
+                    <a href="/main" class="logo">
+                        Korea Art School
                     </a>
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="apply_step_one.jsp" class="active">원서접수</a></li>
-                        <li><a href="#">공지사항</a></li>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)">입학 안내</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">전형일정</a></li>
-                                <li><a href="#">학과소개</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)">접수/결과 조회</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">접수조회</a></li>
-                                <li><a href="#">결과조회</a></li>
-                            </ul>
-                        </li>
-                        <li class="scroll-to-section"><a href="#">입학 Q&A</a></li>
+                        <li><a href="/apply" class="active">원서접수</a></li>
+                        <li><a href="/list" >공지사항</a></li>
+                        <li><a href="/ApplicantCheck">접수 조회</a></li>
+                        <li><a href="/ApplicantResultCheck">결과 조회</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -93,19 +73,18 @@
 <section class="meetings-page" id="meetings">
     <div class="container">
         <div class="row justify-content-center">
-            <!-- ***** main 태그 시작 ***** -->
             <main id="main" class="main">
                 <div class="card">
-                    <div class="card-body">
-
+                    <div class="card-body" style="margin-top: 30px;">
+                        <main class="main">
                         <!-- General Form Elements -->
-                        <form id="applicationForm" action="/submitApplyStepOne" method="post" enctype="multipart/form-data">
-                            <main id="main" class="main">
+                        <form id="applicationForm" action="/apply_step1" method="post" enctype="multipart/form-data">
+                            <main class="main">
                                 <fieldset class="row mb-3 ">
                                     <style>
                                         legend {
-                                            font-weight: bold; /* 텍스트 bold */
-                                            font-size: 1.5em; /* 텍스트 크기 1.5em으로 설정 */
+                                            font-weight: bold;
+                                            font-size: 1.5em;
                                             text-align: center;
                                         }
                                     </style>
@@ -115,7 +94,7 @@
                                 <section class="section">
                                     <!-- 이름 -->
                                     <div class="row mb-3">
-                                        <label for="aplName" class="col-sm-2 col-form-label">이름<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="aplName" class="col-sm-2 col-form-label">이름<span class="required">*</span></label>
                                         <div class="col-sm-7">
                                             <input type="text" class="form-control" id="aplName" name="aplName" minlength="2" maxlength="11" required />
                                         </div>
@@ -128,13 +107,13 @@
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" id="male"  name="gndrCode" value="남자" checked="checked">
+                                                        <input type="radio" class="form-check-input" id="male"  name="gndrCode" value="10" checked="checked" required>
                                                         <label class="form-check-label" for="male">남자</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" id="female" name="gndrCode" value="여자">
+                                                        <input type="radio" class="form-check-input" id="female" name="gndrCode" value="20" required>
                                                         <label class="form-check-label" for="female">여자</label>
                                                     </div>
                                                 </div>
@@ -155,7 +134,9 @@
                                     <div class="row mb-3">
                                         <label for="pswd" class="col-sm-2 col-form-label">비밀번호<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input type="password" class="form-control" id="pswd" name="pswd" oninput="checkPasswordMatch(); checkPasswordLength()" required/>
+                                            <input type="password" class="form-control" id="pswd" name="pswd"  pattern="(?=.*\d)(?=.*[a-zA-Z]).{8,}"
+                                                   title="영문 소문자와 숫자를 각각 1개 이상을 포함하여 8자리 이상의 문자를 입력하세요."
+                                                   oninput="checkPasswordMatch(); checkPasswordLength()" required/>
                                             <div id="password-length-message" style="color: red;"></div>
                                         </div>
                                     </div>
@@ -169,29 +150,15 @@
                                     </div>
 
                                     <!-- 휴대폰번호 -->
-                                    <%-- 만아래 js스크립트로 하나로 합침--%>
                                     <div class="row mb-3">
                                         <label for="aplTelNumber" class="col-sm-2 col-form-label">휴대폰번호<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <div class="row g-2">
-                                                <div class="col">
-                                                    <div class="input-group">
-                                                        <input class="form-control" type="text" id="tel1" maxLength="3" pattern="01[0-9]{1}" onkeyup="next(this, 'tel2');" onkeydown="checkNum(event, this)" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="input-group">
-                                                        <input class="form-control" type="text" id="tel2" maxLength="4" pattern="[0-9]{4}" onkeyup="next(this, 'tel3');" onkeydown="checkNum(event, this)" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <input class="form-control" type="text" id="tel3" maxLength="4" pattern="[0-9]{4}" onkeydown="checkNum(event, this)" required/>
-                                                </div>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="aplTelNumber" name="aplTelNumber" placeholder="01012345678" pattern="[0-9]{11}" required/>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- 숨겨진 필드로 휴대폰번호 전송 -->
-                                    <input type="hidden" id="aplTelNumber" name="aplTelNumber">
+
 
 
                                     <!-- 이메일 -->
@@ -200,42 +167,57 @@
                                         <div class="col-sm-7">
                                             <div class="input-group">
                                                 <input type="email" class="form-control" id="aplEmail" name="aplEmail" placeholder="maximum@gmail.com" required/>
-                                                <button class="btn btn-outline-secondary">이메일 확인</button>
+                                                <button type="button" class="btn btn-outline-secondary" id="checkEmailButton">중복 확인</button>
                                             </div>
+                                            <div id="emailCheckResult"></div>
                                         </div>
                                     </div>
-
-
 
                                     <!-- 증명사진 -->
-                                    <div class="row mb-3">
+                                    <div class="row mb-3 align-items-center">
                                         <label for="aplImg" class="col-sm-2 col-form-label">증명사진<span class="required">*</span></label>
-                                        <div class="col-sm-7">
-                                            <input class="form-control" type="file" id="aplImg" name="aplImg" required/>
+                                        <div class="col-sm-7 d-flex align-items-center">
+                                            <input type="file" class="form-control" id="aplImg" name="aplImg" onchange="previewImage(this)" required/>
+                                        </div>
+                                        <div class="col-sm-2 d-flex align-items-center">
+                                            <img id="imgPreview" src="#" alt="증명사진 미리보기" class=form-control" style="max-width: 115px; max-height: 152px; display: none;">
                                         </div>
                                     </div>
 
-
+                                    <script>
+                                        function previewImage(input) {
+                                            var imgElement = document.getElementById('imgPreview');
+                                            if (input.files && input.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    imgElement.src = e.target.result;
+                                                    imgElement.style.display = 'block';
+                                                }
+                                                reader.readAsDataURL(input.files[0]);
+                                            }   else {
+                                                imgElement.style.display = 'none';
+                                            }
+                                        }
+                                    </script>
 
                                     <!-- 주소 -->
                                     <div class="row mb-3">
-                                        <label for="address" class="col-sm-2 col-form-label">주소<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="address" class="col-sm-2 col-form-label">주소<span class="required">*</span></label>
                                         <div class="col-sm-7">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="address" name="address" minlength="2" maxlength="11" required/>
-                                                <button class="btn btn-outline-secondary">주소 찾기</button>
+                                                <input type="text" class="form-control" id="address" name="address" minlength="1" required/>
+                                                <button type="button" class="btn btn-outline-secondary" onClick="goPopup()">주소 찾기</button>
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- 상세주소 -->
                                     <div class="row mb-3">
-                                        <label for="addressDetail" class="col-sm-2 col-form-label">상세주소<span class="required">*</span></label>            <!-- 아래의 id값과 같아야 함 -->
+                                        <label for="addressDetail" class="col-sm-2 col-form-label">상세주소<span class="required">*</span></label>
                                         <div class="col-sm-7">
-                                            <input type="text" class="form-control" id="addressDetail" name="addressDetail" required minlength="2" required/>
+                                            <input type="text" class="form-control" id="addressDetail" name="addressDetail" minlength="1" required/>
                                         </div>
                                     </div>
-
 
                                     <%--최종학력 (고등학교 졸업/대학교 졸업/대학원 졸업)--%>
                                     <fieldset class="row mb-3">
@@ -245,15 +227,15 @@
                                                 <div class="row">
                                                     <div class="col-sm-5">
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="lastAcbg-high" name="lastAcbg" value="고등">
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-high" name="lastAcbg" value="고등학교 졸업" required>
                                                             <label class="form-check-label" for="lastAcbg-high">고등학교 졸업</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="lastAcbg-bachelor" name="lastAcbg" value="학사">
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-bachelor" name="lastAcbg" value="대학교 졸업" required
                                                             <label class="form-check-label" for="lastAcbg-bachelor">대학교 졸업</label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" id="lastAcbg-master" name="lastAcbg" value="석사">
+                                                            <input class="form-check-input" type="radio" id="lastAcbg-master" name="lastAcbg" value="대학원 졸업" required>
                                                             <label class="form-check-label" for="lastAcbg-master">대학원 졸업</label>
                                                         </div>
                                                     </div>
@@ -264,23 +246,23 @@
                                     <style>
                                         /* '다음페이지', '이전페이지' 버튼 CSS코드 */
                                         .btn-next {
-                                            background-color: #22201e; /* 다음페이지 버튼의 배경색 */
+                                            background-color: #22201e;
                                             border-color: white;
                                         }
                                         .btn-next:hover {
-                                            background-color: #f5a425; /* 원하는 hover 시 배경색 */
-                                            color: white; /* 원하는 hover 시 텍스트색 */
-                                            border-color: #f5a425; /* 이전페이지 버튼의 테두리색 */
+                                            background-color: #f5a425;
+                                            color: white;
+                                            border-color: #f5a425;
                                         }
                                         .btn-previous {
                                             color: #22201e;
-                                            background-color: white; /* 이전페이지 버튼의 배경색 */
-                                            border-color: #22201e; /* 이전페이지 버튼의 테두리색 */
+                                            background-color: white;
+                                            border-color: #22201e;
                                         }
                                         .btn-previous:hover {
                                             color: white;
-                                            background-color:#f5a425; /* 이전페이지 버튼의 배경색 */
-                                            border-color: #f5a425; /* 이전페이지 버튼의 테두리색 */
+                                            background-color:#f5a425;
+                                            border-color: #f5a425;
                                         }
                                     </style>
                                 </section>
@@ -291,7 +273,7 @@
                                     <fieldset>
                                         <legend>개인정보보호정책</legend>
                                         <div class="row mb-3">
-                                            <div class="col-sm-12 text-center"> <!-- col-sm-12를 사용하여 전체 폭을 차지하고, text-center 클래스를 사용하여 가운데 정렬 -->
+                                            <div class="col-sm-12 text-center">
                                                 <textarea class="form-control" style="height: 200px; white-space: pre-line" >한국예술학교 (이하 'KAS'는) 고객님의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호"에 관한 법률을 준수하고 있습니다.
 KAS는 개인정보취급방침을 통하여 고객님께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
 
@@ -345,10 +327,9 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <div class="text-center"> <!-- 가운데 정렬 -->
+                                            <div class="text-center">
                                                 <input type="checkbox" id="agree" name="agree" value="동의" />
                                                 <label for="agree" class="me-2">개인정보 수집,이용에 동의합니다.</label>
-
                                             </div>
                                         </div>
                                     </fieldset>
@@ -357,48 +338,24 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
                                 <div class="col-lg-12" >
                                     <label class="col-sm-2 col-form-label "></label>
                                     <div class="main-button-black text-center form-group">
-                                        <button type="submit" class="btn btn-primary btn-next"></button>
-                                        <button type="button" onclick="goToMain()" class="btn btn-outline-primary btn-previous">취소</button>
+                                        <button type="submit" class="btn btn-dark btn-next">다음페이지</button>
+                                        <button type="button" onclick="goToMain()" class="btn btn-outline-dark btn-previous">취소</button>
 
                                         <script>
                                             function goToMain() {
-                                                window.location.href = "/main"; // 메인 페이지 URL로 이동
+                                                window.location.href = "/main";
                                             }
                                         </script>
                                     </div>
                                 </div>
-                                <!-- End General Form Elements -->
                             </main><!-- End #main -->
-
-                            <!-- End General Form Elements -->
                         </form>
                     </div>
                 </div>
             </main>
-            <!-- ***** 두 번째 페이지의 main 태그 끝 ***** -->
         </div>
     </div>
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">알림</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                필수 항목에 동의하셔야 합니다.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <footer class="footer">
     <p>서울특별시 마포구 신촌로 176 신입학 문의 : 02-123-4567 재학생 문의 : 02-123-4567</p>
@@ -407,8 +364,6 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 
 
 <!-- ***** 본문 끝 ***** -->
-<!-- Scripts -->
-<!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/isotope.min.js"></script>
@@ -421,12 +376,46 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<!-- 생년월일 설정 script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const submitButton = document.querySelector('.btn-next');
+        const agreeCheckbox = document.getElementById('agree');
 
-<%-- 이미지 업로드 설정 --%>
-<script src="/js/jQuery-2.1.4.min.js"></script>
+        function toggleSubmitButton() {
+            submitButton.disabled = !agreeCheckbox.checked;
+        }
 
+        toggleSubmitButton();
+
+        agreeCheckbox.addEventListener('change', toggleSubmitButton);
+
+        document.getElementById('applicationForm').addEventListener('submit', function (event) {
+            if (!agreeCheckbox.checked) {
+                event.preventDefault();
+                alert('개인정보 수집, 이용에 동의해야 합니다.');
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const submitButton = document.querySelector('.btn-next');
+
+        submitButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            const form = document.getElementById('applicationForm');
+
+            if (form.checkValidity()) {
+                if (confirm('정말 다음 단계로 이동하시겠습니까? (이동한 후에는 인적사항 정보에 대한 수정이 불가능합니다.)')) {
+                    form.submit();
+                }
+            } else {
+                form.reportValidity();
+            }
+        });
+    });
+</script>
 <script>
     $(document).ready(function (){
      var formObj = $("#item");
@@ -458,27 +447,46 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 </div>
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
-    //비밀번호 일치 여부 확인 함수 (checkPasswordMatch)
+    $(document).ready(function() {
+        var emailChecked = false;
+
+        $("#checkEmailButton").click(function () {
+            var aplEmail = $("#aplEmail").val();
+            console.log("Checking email: " + aplEmail);
+            if (aplEmail) {
+                $.ajax({
+                    url: '/apply/check_email',
+                    type: 'GET',
+                    data: {aplEmail: aplEmail},
+                    success: function (response) {
+                        console.log("Server response: " + response);
+                        if (response) {
+                            $("#emailCheckResult").text("이메일이 중복됩니다. 다른 이메일을 입력하세요.");
+                            $("#emailCheckResult").css("color", "red");
+                            emailChecked = false;
+                        } else {
+                            $("#emailCheckResult").text("사용 가능한 이메일입니다.");
+                            $("#emailCheckResult").css("color", "green");
+                            emailChecked = true;
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("AJAX error: " + textStatus + ", " + errorThrown);
+                        $("#emailCheckResult").text("이메일 확인 중 오류가 발생했습니다.");
+                        $("#emailCheckResult").css("color", "red");
+                        emailChecked = false;
+                    }
+                });
+            } else {
+                $("#emailCheckResult").text("이메일을 입력해주세요.");
+                $("#emailCheckResult").css("color", "red");
+                emailChecked = false;
+            }
+        });
+    });
+</script>
+<script>
     function checkPasswordMatch() {
         var password = document.getElementById("pswd").value;
         var confirmPassword = document.getElementById("pswd-validate").value;
@@ -486,57 +494,33 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
         var matchMessage = document.getElementById("password-match-message");
         var lengthMessage = document.getElementById("password-length-message");
 
-        // 비밀번호 일치 여부 확인
         if (password === confirmPassword) {
             matchMessage.innerHTML = "비밀번호 일치";
-            matchMessage.style.color = "blue"; // 파란색으로 설정
+            matchMessage.style.color = "green";
         } else {
             matchMessage.innerHTML = "비밀번호 불일치";
-            matchMessage.style.color = "red"; // 빨간색으로 설정
+            matchMessage.style.color = "red";
         }
 
-        // 비밀번호 길이 확인
         if (password.length >= 8) {
-            lengthMessage.innerHTML = ""; // 길이가 충분하면 안내 메시지를 지움
+            lengthMessage.innerHTML = "";
         } else {
-            lengthMessage.innerHTML = "비밀번호는 8자 이상이어야 합니다."; // 길이가 충분하지 않으면 안내 메시지 표시
+            lengthMessage.innerHTML = "비밀번호는 8자 이상이어야 합니다.(영문 소문자, 숫자 1개 이상 입력 필수)";
         }
     }
 
-    // 비밀번호 입력 필드의 입력 이벤트에 대한 핸들러 등록
     document.getElementById("pswd").addEventListener("input", function() {
         var password = document.getElementById("pswd").value;
         var confirmPassword = document.getElementById("pswd-validate").value;
 
-        // 입력을 시작하면 안내 문구를 표시
         if (password !== "" || confirmPassword !== "") {
             checkPasswordMatch();
         } else {
-            // 입력 필드가 비어있을 때는 안내 문구를 숨김
             document.getElementById("password-match-message").innerHTML = "";
             document.getElementById("password-length-message").innerHTML = "";
         }
     });
 
-    // 동의 체크박스 상태 변경 시 모달 창 표시/숨김
-    window.onload = function() {
-        var agreeCheckbox = document.getElementById('agree');
-        var modal = document.getElementById('myModal');
-
-        agreeCheckbox.onchange = function() {
-            if (agreeCheckbox.checked) {
-                modal.style.display = 'none';
-            } else {
-                modal.style.display = 'block';
-            }
-        }
-
-        modal.onclick = function() {
-            modal.style.display = 'none';
-        }
-    };
-
-    // 생년월일 입력 필드에 커스텀 색상 적용
     document.addEventListener('DOMContentLoaded', function () {
         const birthdayInput = document.getElementById('birthday');
 
@@ -547,7 +531,6 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
                 birthdayInput.classList.remove('custom-color');
             }
         }
-
         applyCustomColor();
 
         birthdayInput.addEventListener('input', applyCustomColor);
@@ -555,26 +538,16 @@ KAS는 이용자들의 신고사항에 대해 신속하게 충분한 답변을 �
 </script>
 
 <script>
-        // 폼 제출 시 비밀번호 일치 여부 확인 후 AJAX 요청 (AJAX를 이용한 폼 제출)
-        $(document).ready(function () {
-            $("#applicationForm").on("submit", function (e) {
+    function goPopup(){
+        var pop = window.open("/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+    }
 
-                // 동의 체크박스 확인
-                if (!$("#agree").is(":checked")) {
-                    $('#myModal').modal('show');
-                    return;
-                }
-
-
-                // 휴대폰번호 합치기
-                var phoneNumber = $("#tel1").val() + $("#tel2").val() + $("#tel3").val();
-                $("#aplTelNumber").val(phoneNumber);
-
-
-
-            });
-        });
+    function jusoCallBack(roadAddrPart1, addrDetail){
+        var addressEl1 = document.querySelector("#address");
+        var addressEl2 = document.querySelector("#addressDetail");
+        addressEl1.value = roadAddrPart1;
+        addressEl2.value = addrDetail;
+    }
 </script>
-
 </body>
 </html>

@@ -7,19 +7,16 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Forms / Editors - NiceAdmin Bootstrap Template</title>
+    <title>KAS :: 한국예술학교 관리자페이지</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
     <link href="/assets/admin/img/favicon.png" rel="icon">
     <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="/vendor/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/admin/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/vendor/admin/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -28,16 +25,8 @@
     <link href="/vendor/admin/remixicon/remixicon.css" rel="stylesheet">
     <link href="/vendor/admin/simple-datatables/style.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
+
     <link href="/assets/admin/css/style1.css" rel="stylesheet">
-    `
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Updated: Apr 20 2024 with Bootstrap v5.3.3
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
@@ -524,8 +513,8 @@
                 }
 
                 .table-fixed tbody {
-                    height: 200px; /* 테이블 본문의 높이를 조절하고자 하는 높이로 지정 */
-                    overflow-y: auto; /* 세로 스크롤을 활성화하여 테이블 본문 내용을 스크롤할 수 있게 함 */
+                    height: 200px;
+                    overflow-y: auto;
                     width: 100%;
                 }
 
@@ -534,11 +523,11 @@
                 }
 
                 .table-fixed tbody td, .table-fixed thead th {
-                    float: left; /* 셀을 왼쪽으로 띄움 */
+                    float: left;
                 }
 
                 .table-fixed thead th:first-child, .table-fixed tbody td:first-child {
-                    border-left: none; /* 첫 번째 열의 왼쪽 테두리를 없앰 */
+                    border-left: none;
                 }
 
 
@@ -553,8 +542,6 @@
 
                                 <div class="col-mb-2">
                                     <button class="btn btn-dark" type="submit">삭제</button>
-                                    <%--                                    <button class="btn btn-primary" type="submit">저장</button>--%>
-
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -581,12 +568,12 @@
                             </div>
                             <!-- 제목 -->
                             <div class="form-group col-mb-2">
-                                <label for="postTitle" class="col-sm-3 col-form-label">제목</label><!-- 아래의 id값과 같아야 함 -->
+                                <label for="postTitle" class="col-sm-3 col-form-label">제목</label>
                                 <input type="text" class="form-control" id="postTitle" name="postTitle" required minlength="2" maxlength="15" />
                             </div>
 
                             <div class="form-group col-mb-2">
-                                <label for="postContent" class="col-sm-3 col-form-label">내용</label><!-- 아래의 id값과 같아야 함 -->
+                                <label for="postContent" class="col-sm-3 col-form-label">내용</label>
                                 <!-- TinyMCE Editor -->
                                 <textarea class="tinymce-editor" id="postContent" name="postContent"></textarea>
                             </div>
@@ -594,12 +581,6 @@
                                 <label for="writer">작성자</label>
                                 <input type="hidden" id="writer" name="writer" value="관리자">
                                 <input type="hidden" name="bbsId" value="1">
-                                <!-- Hidden input : bbsId 값 1로 고정(=공지사항) -->
-
-                                <%--        <div class="form-group">--%>
-                                <%--            <label for="fileNo">첨부 파일</label>--%>
-                                <%--            <input type="file" id="fileNo" name="fileNo">--%>
-                                <%--        </div>--%>
 
                                 <input type="hidden" name="delYn" value="N">
                                 <input type="hidden" name="adminEml" value="admin@example.com">
@@ -622,17 +603,12 @@
         &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
 </footer><!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Vendor JS Files -->
 <script src="/vendor/admin/apexcharts/apexcharts.min.js"></script>
 <script src="/vendor/admin/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/admin/chart.js/chart.umd.js"></script>
@@ -642,7 +618,6 @@
 <script src="/vendor/admin/tinymce/tinymce.min.js"></script>
 <script src="/vendor/admin/php-email-form/validate.js"></script>
 
-<!-- Template Main JS File -->
 <script src="/assets/admin/js/main.js"></script>
 
 </body>

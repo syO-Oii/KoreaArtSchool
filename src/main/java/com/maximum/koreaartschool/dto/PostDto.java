@@ -18,10 +18,7 @@ public class PostDto {
     private String postTitle;            //title 제목
     private String postContent;             //content 내용
     private LocalDateTime writeDate;      //WRT_DT 작성일자
-    private String fileNm;  //첨부파일(name = "FILE_NO")
+    private String fileName;  //첨부파일(name = "FILE_NO")
+    private String filePath;
+    private String delYn;   //삭제여부(name = "DEL_YN")
 }
-
-//private Integer bbsId;  //게시판ID(name = "BBS_ID")
-
-//private String delYn;   //삭제여부(name = "DEL_YN")
-//private String adminEml;  //로그인ID(name = "ADMIN_EML")

@@ -9,47 +9,34 @@
     <meta name="description" content="">
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <title>Education Template - Meeting Detail Page</title>
-    <!-- Bootstrap core CSS -->
+    <title>KAS :: 한국예술학교 입학페이지</title>
+
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Additional CSS Files -->
+
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/lightbox.css">
-    <!-- Template Main CSS File -->
+
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
 <!-- ***** Header Area Start ***** -->
-
 <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
+
                 <nav class="main-nav">
-                    <a href="" class="logo">
-                        한국예술학교
+                    <a href="/main" class="logo">
+                        Korea Art School
                     </a>
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="apply_step_one.jsp" class="active">원서접수</a></li>
-                        <li><a href="meetings.jsp">공지사항</a></li>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)">입학 안내</a>
-                            <ul class="sub-menu">
-                                <li><a href="meetings.html">전형일정</a></li>
-                                <li><a href="meeting-details.html">학과소개</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)">접수/결과 조회</a>
-                            <ul class="sub-menu">
-                                <li><a href="">접수조회</a></li>
-                                <li><a href="">결과조회</a></li>
-                            </ul>
-                        </li>
-                        <li class="scroll-to-section"><a href="#apply">입학 Q&A</a></li>
+                        <li><a href="/apply">원서접수</a></li>
+                        <li><a href="/list" class="active">공지사항</a></li>
+                        <li><a href="/ApplicantCheck">접수 조회</a></li>
+                        <li><a href="/ApplicantResultCheck">결과 조회</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -83,27 +70,38 @@
                         <section>
                                 <div class="card form-label form-group">
                                     <div class="card-body">
-                                        <h5 class="card-title">${dto.postTitle}</h5>
+                                        <h5 class="card-title" readonly="">${dto.postTitle}</h5>
                                         <div class="quill-editor-default">
-                                            <textarea class="form-control"  rows="10"> ${dto.postContent}</textarea>
+                                            <textarea class="form-control"  rows="15" readonly> ${dto.postContent}</textarea>
 
-<%--                                            ${dto.writer}--%>
+                                            <!-- 파일 다운로드 링크 추가 -->
+<%--                                            <label for="fileName">첨부파일: </label>--%>
+<%--                                            <a href="${dto.filePath}" id="fileName" name="fileName" download="${dto.fileName}">--%>
+<%--                                                ${dto.fileName}--%>
+<%--                                            </a>--%>
                                         </div>
                                     </div>
                                 </div>
                             </section>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+                                    document.getElementById("postTitle").setAttribute("readonly", true);
+                                    document.getElementById("postContent").setAttribute("readonly", true);
+                                    document.getElementById("fileName").setAttribute("readonly", true);
+                                });
+                            </script>
                             <style>
                                 /* '목록' 버튼 */
                                 .page-list {
                                     color: white;
-                                    background-color: #22201e; /* 이전페이지 버튼의 배경색 */
+                                    background-color: #22201e;
 
-                                    border-color: white; /* 이전페이지 버튼의 테두리색 */
+                                    border-color: white;
                                 }
                                 .page-list:hover {
                                     color: white;
-                                    background-color:#f5a425; /* 이전페이지 버튼의 배경색 */
-                                    border-color: #f5a425; /* 이전페이지 버튼의 테두리색 */
+                                    background-color:#f5a425;
+                                    border-color: #f5a425;
 
                                     color:#22201e
                                 }
@@ -125,11 +123,9 @@
 <footer class="footer">
     <p>서울특별시 마포구 신촌로 176 신입학 문의 : 02-123-4567 재학생 문의 : 02-123-4567</p>
     <p>Copyright © 2024 Maximum Co., Ltd. All Rights Reserved.</p>
-    <!-- <p>© CloudStudying | <a href="#">Privacy</a> | <a href="#">Terms</a></p> -->
 </footer>
 
 <!-- Scripts -->
-<!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/isotope.min.js"></script>
@@ -153,14 +149,11 @@
             }
         }
 
-        // Apply color on page load
         applyCustomColor();
 
-        // Apply color on input change
         birthdayInput.addEventListener('input', applyCustomColor);
     });
 
-    //according to loftblog tut
     $('.nav li:first').addClass('active');
     var showSection = function showSection(section, isAnimate) {
         var
@@ -199,7 +192,6 @@
         checkSection();
     });
 
-    // 생년월일 script
     var cleave = new Cleave('.input-element', {
         date: true,
         delimiter: '-',
@@ -229,10 +221,8 @@
             }
         }
 
-        // Apply color on page load
         applyCustomColor();
 
-        // Apply color on input change
         birthdayInput.addEventListener('input', applyCustomColor);
     });
 </script>

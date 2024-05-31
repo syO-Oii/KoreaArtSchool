@@ -1,85 +1,92 @@
 package com.maximum.koreaartschool.controller;
 
 import com.maximum.koreaartschool.dao.ApplicantMapper;
+import com.maximum.koreaartschool.dto.ApplyFileDto;
+import com.maximum.koreaartschool.dto.ApplyIntroDto;
+import com.maximum.koreaartschool.service.ApplicantService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.List;
 
 @Slf4j
 @Controller
 public class ApplicantController {
 
     @Autowired
-    private ApplicantMapper applicantDao;
+    private ApplicantService applicantService;
 
-    //insert메서드(원서 접수 1단계)
-    @PostMapping("/submitApplyStepOne")
-    public String applySubmit(@RequestParam("aplName") String aplName,
-                              @RequestParam("pswd") String pswd,
-                              @RequestParam("aplBirthDay") String aplBirthDay,
-                              @RequestParam("gndrCode") String gndrCode,
-                              @RequestParam("address") String address,
-                              @RequestParam("addressDetail") String addressDetail,
-                              @RequestParam("aplEmail") String aplEmail,
-                              @RequestParam("aplTelNumber") String aplTelNumber,
-                              @RequestParam("lastAcbg") String lastAcbg,
-                              @RequestParam(value = "aplImg", required = false) MultipartFile aplImg,
-                              Model model)
+    @RequestMapping(value="/main")
+    public String mainPage(){
+        return applicantService.mainPage();
+    }
 
-{
+    @RequestMapping(value="/apply")
+    public String applyPage(){
+        return applicantService.applyPage();
+    }
 
-        //파일 저장 로직 (서버의 uploads 디렉토리에 저장)
-        String ImgName = null;
-
-        if (aplImg != null && !aplImg.isEmpty()) {
-            ImgName = aplImg.getOriginalFilename();
-            Path path = Paths.get("uploads", ImgName); // 파일 저장 경로 지정
-            try {
-                // 파일을 지정된 경로에 저장
-                Files.write(path, aplImg.getBytes());
-            } catch (IOException e) {
-                e.printStackTrace(); // 파일 저장 중 에러가 발생한 경우 로그 출력
-            }
-        }
-
-        model.addAttribute("msg", "등록 완료");
-
-        applicantDao.insertApplicantStepOne(aplName, pswd,
-                aplBirthDay, gndrCode, address, addressDetail,
-                aplEmail ,aplTelNumber, lastAcbg, ImgName);
-
-        return "apply_step_two";  //뷰 페이지
+    @RequestMapping("/apply_pageTest")
+    public String stepTwoForm() {
+        return applicantService.stepTwoForm();
     }
 
 
-    //테스트(원서 접수 2단계 페이지 바로 보기)
-    @RequestMapping(value="/apply_pageTest")
-    public String applyPageTwo(){
+    @RequestMapping("/jusoPopup")
+    public String jusoPopupForm() {
+        return applicantService.jusoPopupView();
+    }
 
-        return "apply_step_two"; //뷰페이지
+    @PostMapping("/apply_step1")
+    public String applySubmitOne(@RequestParam("aplName") String aplName,
+                                 @RequestParam("pswd") String pswd,
+                                 @RequestParam("aplBirthDay") String aplBirthDay,
+                                 @RequestParam("gndrCode") String gndrCode,
+                                 @RequestParam("address") String address,
+                                 @RequestParam("addressDetail") String addressDetail,
+                                 @RequestParam("aplEmail") String aplEmail,
+                                 @RequestParam("aplTelNumber") String aplTelNumber,
+                                 @RequestParam("lastAcbg") String lastAcbg,
+                                 @RequestParam(value = "aplImg", required = false) MultipartFile aplImg,
+                                 Model model) throws IOException {
+
+        return applicantService.applySubmitOne(aplName, pswd, aplBirthDay,gndrCode, address, addressDetail,
+                aplEmail, aplTelNumber, lastAcbg, aplImg, model);
+    }
+
+    @GetMapping("/apply/check_email")
+    public ResponseEntity<Boolean> checkEmailDuplicate(@RequestParam String aplEmail) {
+        return applicantService.checkEmailDuplicate(aplEmail);
     }
 
 
-    //insert메서드(원서 접수 2단계)
-    @PostMapping("/submitApplyStepTwo")
-    public String applySubmit(
-                              Model model)
+    @PostMapping("/apply_step2")
+    public String applySubmitTwo(@RequestParam("aplEmail") String aplEmail,
+                                 @RequestParam("pswd") String pswd,
+                                 @RequestParam("dept") String dept,
+                                 ApplyFileDto applyFileDto,
+                                 @RequestParam("deptCode") String deptCode,
+                                 @RequestParam("rcrtCode") String rcrtCode,
+                                 @RequestParam("yearCode") String yearCode,
+                                 @RequestParam("qitemAns1") String qitemAns1,
+                                 @RequestParam("qitemAns2") String qitemAns2,
+                                 @RequestParam(value = "dcmNm", required = false) MultipartFile dcmNm)
+            throws IOException {
 
-    {
-
-        return "redirect:main";
+        return applicantService.applySubmitTwo(aplEmail, pswd, applyFileDto, dept,
+                deptCode, rcrtCode, yearCode,qitemAns1, qitemAns2, dcmNm);
     }
 
-
+    @PostMapping("/apply_step1_goback")
+    public String deleteSubmitOne(@RequestParam("aplEmail") String aplEmail) {
+        return applicantService.deleteSubmitOne(aplEmail);
+    }
 }
 

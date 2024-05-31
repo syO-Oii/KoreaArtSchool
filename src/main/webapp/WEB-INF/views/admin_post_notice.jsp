@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,19 +8,17 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Forms / Editors - NiceAdmin Bootstrap Template</title>
+    <title>KAS :: 한국예술학교 관리자페이지</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
     <link href="/assets/admin/img/favicon.png" rel="icon">
     <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
     <link href="/vendor/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/admin/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/vendor/admin/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -28,47 +27,24 @@
     <link href="/vendor/admin/remixicon/remixicon.css" rel="stylesheet">
     <link href="/vendor/admin/simple-datatables/style.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
     <link href="/assets/admin/css/style1.css" rel="stylesheet">
-    `
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Updated: Apr 20 2024 with Bootstrap v5.3.3
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>
-
-
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
             <img src="/assets/admin/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
+            <span class="d-none d-lg-block">Korea Art School</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
 
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li><!-- End Search Icon-->
 
             <li class="nav-item dropdown">
 
@@ -277,235 +253,77 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="index.html">
+            <a class="nav-link collapsed" href="#">
                 <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
+                <span>공통코드관리</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
+
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link" href="#">
+                <i class="bi bi-grid"></i>
+                <span>공지사항관리</span>
             </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="components-alerts.html">
-                        <i class="bi bi-circle"></i><span>Alerts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-accordion.html">
-                        <i class="bi bi-circle"></i><span>Accordion</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-badges.html">
-                        <i class="bi bi-circle"></i><span>Badges</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-breadcrumbs.html">
-                        <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-buttons.html">
-                        <i class="bi bi-circle"></i><span>Buttons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-cards.html">
-                        <i class="bi bi-circle"></i><span>Cards</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-carousel.html">
-                        <i class="bi bi-circle"></i><span>Carousel</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-list-group.html">
-                        <i class="bi bi-circle"></i><span>List group</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-modal.html">
-                        <i class="bi bi-circle"></i><span>Modal</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tabs.html">
-                        <i class="bi bi-circle"></i><span>Tabs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-pagination.html">
-                        <i class="bi bi-circle"></i><span>Pagination</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-progress.html">
-                        <i class="bi bi-circle"></i><span>Progress</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-spinners.html">
-                        <i class="bi bi-circle"></i><span>Spinners</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tooltips.html">
-                        <i class="bi bi-circle"></i><span>Tooltips</span>
-                    </a>
-                </li>
-            </ul>
+        </li><!-- End Components Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-journal-text"></i>
+                <span>입학모집관리</span>
+            </a>
+        </li><!-- End Forms Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/evaluator_info">
+                <i class="bi bi-journal-text"></i>
+                <span>평가위원 정보관리</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/admin/evaluator_selection">
+                <i class="bi bi-menu-button-wide"></i>
+                <span>평가위원 선정</span>
+            </a>
+        </li><!-- End Components Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-menu-button-wide"></i>
+                <span>평가위원별 지원자 선정</span>
+            </a>
         </li><!-- End Components Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="forms-elements.html">
-                        <i class="bi bi-circle"></i><span>Form Elements</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-layouts.html">
-                        <i class="bi bi-circle"></i><span>Form Layouts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-editors.html" class="active">
-                        <i class="bi bi-circle"></i><span>Form Editors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-validation.html">
-                        <i class="bi bi-circle"></i><span>Form Validation</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Forms Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="tables-general.html">
-                        <i class="bi bi-circle"></i><span>General Tables</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="tables-data.html">
-                        <i class="bi bi-circle"></i><span>Data Tables</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Tables Nav -->
-
-        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-layout-text-window-reverse"></i><span>평가관리 및 조회</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="charts-chartjs.html">
-                        <i class="bi bi-circle"></i><span>Chart.js</span>
+                    <a href="/admin/stepevaluation1">
+                        <i class="bi bi-circle"></i><span>서류평가</span>
                     </a>
                 </li>
                 <li>
-                    <a href="charts-apexcharts.html">
-                        <i class="bi bi-circle"></i><span>ApexCharts</span>
+                    <a href="/admin/stepevaluation2">
+                        <i class="bi bi-circle"></i><span>실기평가</span>
                     </a>
                 </li>
                 <li>
-                    <a href="charts-echarts.html">
-                        <i class="bi bi-circle"></i><span>ECharts</span>
+                    <a href="/admin/stepevaluation3
+">
+                        <i class="bi bi-circle"></i><span>최종평가</span>
                     </a>
                 </li>
             </ul>
         </li><!-- End Charts Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="icons-bootstrap.html">
-                        <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-remix.html">
-                        <i class="bi bi-circle"></i><span>Remix Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-boxicons.html">
-                        <i class="bi bi-circle"></i><span>Boxicons</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Icons Nav -->
-
-        <li class="nav-heading">Pages</li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>F.A.Q</span>
-            </a>
-        </li><!-- End F.A.Q Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-contact.html">
-                <i class="bi bi-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </li><!-- End Contact Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-register.html">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
-            </a>
-        </li><!-- End Register Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li><!-- End Login Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
-                <i class="bi bi-dash-circle"></i>
-                <span>Error 404</span>
-            </a>
-        </li><!-- End Error 404 Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
-                <i class="bi bi-file-earmark"></i>
-                <span>Blank</span>
-            </a>
-        </li><!-- End Blank Page Nav -->
-
-    </ul>
 
 </aside><!-- End Sidebar-->
 
@@ -524,8 +342,8 @@
                 }
 
                 .table-fixed tbody {
-                    height: 200px; /* 테이블 본문의 높이를 조절하고자 하는 높이로 지정 */
-                    overflow-y: auto; /* 세로 스크롤을 활성화하여 테이블 본문 내용을 스크롤할 수 있게 함 */
+                    height: 200px;
+                    overflow-y: auto;
                     width: 100%;
                 }
 
@@ -534,15 +352,14 @@
                 }
 
                 .table-fixed tbody td, .table-fixed thead th {
-                    float: left; /* 셀을 왼쪽으로 띄움 */
+                    float: left;
                 }
 
                 .table-fixed thead th:first-child, .table-fixed tbody td:first-child {
-                    border-left: none; /* 첫 번째 열의 왼쪽 테두리를 없앰 */
+                    border-left: none;
                 }
-
-
             </style>
+
             <!-- Notice List -->
             <div class="col-lg-6">
                 <div class="card">
@@ -554,14 +371,13 @@
                                     <button class="btn btn-dark" type="submit">삭제</button>
                                 </div>
                             </div>
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="height: 550px; overflow-y: auto;">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
                                         <th scope="col">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" id="selectAll">
-                                                <label class="form-check-label" for="selectAll"></label>
                                             </div>
                                         </th>
                                         <th scope="col">No</th>
@@ -575,7 +391,7 @@
                                         <tr>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input row-check" type="checkbox" id="gridCheck${dto.postNumber}">
+                                                    <input class="form-check-input row-check" type="checkbox" name="postNumbers" value="${dto.postNumber}" id="gridCheck${dto.postNumber}">
                                                     <label class="form-check-label" for="gridCheck${dto.postNumber}"></label>
                                                 </div>
                                             </td>
@@ -594,7 +410,6 @@
                 </div>
             </div>
 
-
             <!-- New Notice -->
             <div class="col-lg-6">
                 <div class="card">
@@ -602,29 +417,54 @@
                         <form id="noticeForm" action="/submit" method="post" enctype="multipart/form-data">
                             <input type="hidden" id="action" name="action" value="post">
                             <input type="hidden" id="postNumber" name="postNumber" value="${dto.postNumber}">
+
                             <div class="d-flex align-items-center justify-content-between">
-                                <h5 class="card-title">New Notice</h5>
+                                <h5 class="card-title">Notice View</h5>
                                 <div class="form-group">
                                     <button class="btn btn-dark" type="submit" id="saveChanges">변경사항 저장</button>
-                                    <button class="btn btn-primary" type="submit" id="createNew">등록</button>
+                                    <button class="btn btn-primary" type="submit" id="createNew">새 글 등록</button>
                                 </div>
                             </div>
                             <!-- 제목 -->
                             <div class="form-group col-mb-2">
                                 <label for="postTitle" class="col-sm-3 col-form-label">제목</label>
-                                <input type="text" class="form-control" id="postTitle" name="postTitle" required minlength="2" maxlength="15">
+                                <input type="text" class="form-control" id="postTitle" name="postTitle" required minlength="2" maxlength="30">
                             </div>
                             <!-- 내용 -->
                             <div class="form-group col-mb-2">
                                 <label for="postContent" class="col-sm-3 col-form-label">내용</label>
-                                <textarea class="form-control" id="postContent" name="postContent"></textarea>
+                                <textarea class="form-control" id="postContent" name="postContent" rows="17"></textarea>
                             </div>
+
+                            <!-- 첨부파일 보기 폼 -->
+<%--                            <h5 class="card-title">--%>
+<%--                                [조회용] 첨부한 파일:--%>
+<%--                                <c:choose>--%>
+<%--                                    <c:when test="${dto.fileName != null && !dto.fileName.isEmpty()}">--%>
+<%--                                        ${dto.fileName}--%>
+<%--                                    </c:when>--%>
+<%--                                    <c:otherwise>--%>
+<%--                                        없음--%>
+<%--                                    </c:otherwise>--%>
+<%--                                </c:choose>--%>
+<%--                            </h5>--%>
+
+<%--                            <c:if test="${dto.fileName != null && !dto.fileName.isEmpty()}">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <label for="fileLink">다운로드 링크:</label>--%>
+<%--                                    <a href="${dto.filePath}" id="fileLink" class="btn btn-info">파일 다운로드</a>--%>
+<%--                                </div>--%>
+<%--                            </c:if>--%>
+
+<%--                            <!-- 첨부파일 선택 -->--%>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="fileName"><h5 class="card-title">[등록용] 첨부파일 선택:</h5></label>--%>
+<%--                                <input type="file" id="fileName" name="fileName" class="form-control-file">--%>
+<%--                            </div>--%>
+
                             <div class="form-group">
                                 <input type="hidden" id="writer" name="writer" value="관리자">
                                 <input type="hidden" name="bbsId" value="1">
-                                <label for="fileNm">첨부 파일</label>
-                                <input type="file" id="fileNm" name="fileNm">
-                                <input type="hidden" name="filePath">
                                 <input type="hidden" name="delYn" value="N">
                                 <input type="hidden" name="adminEml" value="admin@example.com">
                             </div>
@@ -632,9 +472,7 @@
                     </div>
                 </div>
             </div>
-
         </div><!-- End .row -->
-
     </section>
 
 </main><!-- End #main -->
@@ -646,17 +484,13 @@
         &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
-</footer><!-- End Footer -->
+</footer>
+<!-- End Footer -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Vendor JS Files -->
 <script src="/vendor/admin/apexcharts/apexcharts.min.js"></script>
 <script src="/vendor/admin/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/vendor/admin/chart.js/chart.umd.js"></script>
@@ -666,101 +500,124 @@
 <script src="/vendor/admin/tinymce/tinymce.min.js"></script>
 <script src="/vendor/admin/php-email-form/validate.js"></script>
 
-<!-- Template Main JS File -->
 <script src="/assets/admin/js/main.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        // 제목을 클릭하면 해당 게시물 정보를 불러오는 함수
         $("body").on("click", "a.post-link", function(event) {
-            event.preventDefault(); // 기본 동작 방지
+            event.preventDefault();
 
-            // 클릭된 제목의 href 속성을 가져와서 AJAX 요청을 보냄
             var postLink = $(this).attr("href");
             $.ajax({
-                url: postLink, // 게시물 정보를 가져올 URL
-                type: "GET", // GET 요청
+                url: postLink,
+                type: "GET",
                 success: function(response) {
-                    // 요청이 성공하면 받은 데이터를 처리
-                    $("#postNumber").val(response.postNumber); // 게시물 번호 설정
-                    $("#postTitle").val(response.postTitle); // 제목 입력란에 제목 설정
-                    $("#postContent").val(response.postContent); // 내용 설정
-                    // 액션을 수정으로 변경
+                    // 요청 성공
+                    $("#postNumber").val(response.postNumber);
+                    $("#postTitle").val(response.postTitle);
+                    $("#postContent").val(response.postContent);
+                    $("#filePath").val(response.filePath);
+                    $("#fileName").val(response.fileName);
+                    // 액션 변경
                     $("#action").val("edit");
                 },
                 error: function(xhr, status, error) {
-                    // 요청이 실패하면 에러 메시지 출력
+                    // 요청 실패
                     console.error("Error:", error);
                 }
             });
         });
-
-        // 저장 버튼 클릭 시 폼의 action을 수정으로 설정
         $("#saveChanges").click(function() {
+            $("#noticeForm").attr("action", "/submit");
             $("#action").val("edit");
         });
-
-        // 등록 버튼 클릭 시 폼의 action을 등록으로 설정
         $("#createNew").click(function() {
+            $("#noticeForm").attr("action", "/submit");
             $("#action").val("post");
         });
     });
 </script>
+<script>
+    $(document).ready(function() {
+        $("#fileUploadForm").submit(function(event) {
+            event.preventDefault();
 
+            var formData = new FormData();
+            var file = $("#fileName")[0].files[0];
+            formData.append("fileName", file);
 
-<%--단일 게시물의 정보를 비동기적으로 로드--%>
+            $.ajax({
+                url: $(this).attr("action"),
+                type: $(this).attr("method"),
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    alert("파일이 성공적으로 업로드되었습니다.");
+                    $("#filePath").val(response.filePath);
+                    $("#fileLink").attr("href", response.filePath).text(response.fileName);
+                },
+                error: function(xhr, status, error) {
+                    console.error("파일 업로드 실패:", error);
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $("#fileLink").click(function(event) {
+            event.preventDefault();
+
+            var fileLink = $(this).attr("href");
+            window.location.href = fileLink;
+        });
+
+        $(".table-responsive").scroll(function() {
+            var tableHeight = $(this).height();
+            var scrollPosition = $(this).scrollTop();
+            var tableContentHeight = $(".table").height();
+        });
+    });
+</script>
+
 <script>
     document.getElementById('selectAll').addEventListener('change', function () {
         const checkboxes = document.querySelectorAll('.row-check');
         checkboxes.forEach(checkbox => checkbox.checked = this.checked);
     });
-
-
-    let selectedEvaluators = [];
-
-    function fillForm(checkbox) {
-        if (checkbox.checked) {
-            // 체크박스를 선택하면 배열에 추가
-            selectedEvaluators.push(checkbox);
-        } else {
-            // 체크박스를 해제하면 배열에서 제거
-            selectedEvaluators = selectedEvaluators.filter(item => item !== checkbox);
-        }
-
-        // 배열의 마지막 요소로 폼을 채우기
-        if (selectedEvaluators.length > 0) {
-            const lastChecked = selectedEvaluators[selectedEvaluators.length - 1];
-            document.getElementById('evl_no').value = lastChecked.dataset.evlNo;
-            document.getElementById('evl_nm').value = lastChecked.dataset.evlNm;
-            document.getElementById('dept_cd').value = lastChecked.dataset.deptCd;
-            document.getElementById('evl_ogdp').value = lastChecked.dataset.evlOgdp;
-            document.getElementById('evl_eml').value = lastChecked.dataset.evlEml;
-            document.getElementById('is_selected').value = lastChecked.dataset.isSelected;
-            document.getElementById('evl_tel').value = lastChecked.dataset.evlTel;
-            document.getElementById('addr').value = lastChecked.dataset.addr;
-            document.getElementById('addr_detail').value = lastChecked.dataset.addrDetail;
-            document.getElementById('bank_nm').value = lastChecked.dataset.bankNm;
-            document.getElementById('act_no').value = lastChecked.dataset.actNo;
-            document.getElementById('slry').value = lastChecked.dataset.slry;
-        } else {
-            // 배열이 비어 있으면 폼을 초기화
-            document.getElementById('evl_no').value = '';
-            document.getElementById('evl_nm').value = '';
-            document.getElementById('dept_cd').value = '';
-            document.getElementById('evl_ogdp').value = '';
-            document.getElementById('evl_eml').value = '';
-            document.getElementById('is_selected').value = '';
-            document.getElementById('evl_tel').value = '';
-            document.getElementById('addr').value = '';
-            document.getElementById('addr_detail').value = '';
-            document.getElementById('bank_nm').value = '';
-            document.getElementById('act_no').value = '';
-            document.getElementById('slry').value = '';
-        }
-    }
 </script>
 
-</body>
+<script>
+    var checkedPostNumbers = [];
 
+    $(".row-check").change(function() {
+        var postNumber = $(this).val();
+        if ($(this).is(":checked")) {
+            checkedPostNumbers.push(postNumber);
+        } else {
+            checkedPostNumbers = checkedPostNumbers.filter(function(value) {
+                return value !== postNumber;
+            });
+        }
+    });
+
+    $("#deleteButton").click(function() {
+        var postNumbersString = checkedPostNumbers.join(",");
+
+        $.ajax({
+            url: "/delete",
+            type: "POST",
+            data: { postNumbers: postNumbersString },
+            success: function(response) {
+                window.location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+</script>
+</body>
 </html>

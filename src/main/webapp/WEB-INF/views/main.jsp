@@ -35,37 +35,21 @@
 <body>
 
 <!-- ***** Header Area Start ***** -->
-
 <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                    <nav class="main-nav">
-                        <a href="" class="logo">
-                            한국예술학교
-                        </a>
+                <nav class="main-nav">
+                    <a href="/main" class="logo">
+                        Korea Art School
 
-                    <!-- ***** Logo End ***** -->
+                    </a>
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li class="scroll-to-section"><a href="apply_step_one.jsp" class="active">원서접수</a></li>
-                        <li><a href="meetings.jsp">공지사항</a></li>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)">입학 안내</a>
-                            <ul class="sub-menu">
-                                <li><a href="meetings.html">전형일정</a></li>
-                                <li><a href="meeting-details.html">학과소개</a></li>
-                            </ul>
-                        </li>
-<%--                        <li class="scroll-to-section"><a href="#">접수조회</a></li>--%>
-                        <li class="has-sub">
-                            <a href="javascript:void(0)">접수/결과 조회</a>
-                            <ul class="sub-menu">
-                                <li><a href="meetings.html">접수조회</a></li>
-                                <li><a href="meeting-details.html">결과조회</a></li>
-                            </ul>
-                        </li>
-                        <li class="scroll-to-section"><a href="#apply">입학 Q&A</a></li>
+                        <li><a href="/apply" >원서접수</a></li>
+                        <li><a href="/list" >공지사항</a></li>
+                        <li><a href="/ApplicantCheck" class=”active”>접수 조회</a></li>
+                        <li><a href="/ApplicantResultCheck">결과 조회</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -89,9 +73,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="caption">
-                        <h6>한국예술학교 입학정보</h6>
-                        <h2>Korea National University of Arts</h2>
-                        <p>한국예술학교는 창의적인 예술 교육으로 미래를 준비합니다. 예술의 다양한 측면을 탐구하는 과정 속에서 자신만의 예술적 목소리를 발견하며, 예술의 세계에서 독창적으로 발전할 수 있는 기반을 마련할 수 있습니다</a>.</p>
+                        <h6>Korea Art School</h6>
+                        <h2>한국예술학교 입학정보</h2>
+                        <p>한국예술학교는 창의적인 예술 교육으로 미래를 준비합니다. 예술의 다양한 측면을 탐구하는 과정 속에서 자신만의 예술적 목소리를 발견하며, 예술의 세계에서 독창적으로 발전할 수 있는 기반을 마련할 수 있습니다</a>.</p><br>
                         <div class="main-button-yellow">
                             <style>
                                 .scroll-to-section a {
@@ -101,7 +85,7 @@
                             </style>
 
                             <div class="main-button-yellow">
-                                <div class="scroll-to-section"><a href="#contact">원서 접수</a></div>
+                                <button type="button" class="btn btn-warning scroll-to-section" onclick="window.location.href='/apply'">원서접수</button>
                             </div>
                         </div>
                     </div>
@@ -163,14 +147,10 @@
 </section>
 
 <section class="upcoming-meetings" id="meetings">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-heading">
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer class="footer">
+        <p>서울특별시 마포구 신촌로 176 신입학 문의 : 02-123-4567 재학생 문의 : 02-123-4567</p>
+        <p>Copyright © 2024 Maximum Co., Ltd. All Rights Reserved.</p>
+    </footer>
 </section>
 
 
