@@ -2,7 +2,6 @@ package com.maximum.koreaArtSchool.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.sql.Timestamp;
 
 @Data
