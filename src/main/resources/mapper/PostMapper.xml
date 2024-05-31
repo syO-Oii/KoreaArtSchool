@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.maximum.koreaartschool.dao.PostMapper"> <!--PostDao 인터페이스와 관련된 mapper-->
+<mapper namespace="com.maximum.koreaartschool.dao.PostMapper">
 
     <resultMap id="postInfoResultMap" type="com.maximum.koreaartschool.dto.PostDto">
         <id property="postNumber" column="PST_NO"/>
@@ -15,8 +15,7 @@
         <result property="adminEmail" column="ADMIN_EML"/>
     </resultMap>
 
-    <!-- PostDao에 정의된 select메서드(공지사항 리스트 보기) -->    <!-- resultType : 리턴 타입 -->
-    <select id="listDao" resultType="com.maximum.koreaartschool.dto.PostDto">
+    <select id="adminListDao" resultType="com.maximum.koreaartschool.dto.PostDto">
         SELECT PST_NO AS postNumber,
                WRTR AS writer,
                PST_TTL AS postTitle,
@@ -27,18 +26,35 @@
                ADMIN_EML AS adminEml
         FROM POST_INFO
         WHERE BBS_ID = 1
-        ORDER BY PST_NO ASC
+        ORDER BY PST_NO DESC
     </select>
 
-
-    <!-- PostDao에 정의된 select메서드(개별 뷰 보기) -->    <!-- resultType : 리턴 타입 -->
-    <select id="viewDao" resultType="com.maximum.koreaartschool.dto.PostDto">
+    <select id="listDao" parameterType="map" resultType="com.maximum.koreaartschool.dto.PostDto">
         SELECT PST_NO AS postNumber,
                WRTR AS writer,
                PST_TTL AS postTitle,
                PST_CN AS postContent,
                WRT_DT AS writeDate,
                FILE_NM AS fileNm,
+               DEL_YN AS delYn,
+               ADMIN_EML AS adminEml
+        FROM POST_INFO
+        WHERE BBS_ID = 1
+        ORDER BY PST_NO DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="countPosts" resultType="int">
+        SELECT COUNT(*) FROM POST_INFO WHERE BBS_ID = 1
+    </select>
+
+    <select id="viewDao" resultType="com.maximum.koreaartschool.dto.PostDto">
+        SELECT PST_NO AS postNumber,
+               WRTR AS writer,
+               PST_TTL AS postTitle,
+               PST_CN AS postContent,
+               WRT_DT AS writeDate,
+               FILE_NM AS fileName,
                FILE_PATH AS filePath,
                DEL_YN AS delYn,
                ADMIN_EML AS adminEml
@@ -46,13 +62,11 @@
         WHERE PST_NO = #{postNumber}
     </select>
 
-    <!-- PostDao에 정의된 insert메서드(글 작성) -->
     <insert id="postInsertDao">
         INSERT INTO POST_INFO(BBS_ID, PST_TTL, PST_CN, WRTR, WRT_DT, FILE_NM, FILE_PATH, DEL_YN, ADMIN_EML)
-        VALUES (#{bbsId}, #{postTitle}, #{postContent}, #{writer}, DEFAULT, #{fileName}, NULL, 'N', #{adminEml})
+        VALUES (#{bbsId}, #{postTitle}, #{postContent}, #{writer}, DEFAULT, #{fileName}, #{filePath}, 'N', #{adminEml})
     </insert>
 
-    <!-- PostDao에 정의된 update메서드(글 수정) -->
     <update id="postUpdateDao">
         UPDATE POST_INFO
         SET PST_TTL = #{postTitle},
@@ -60,17 +74,17 @@
         WHERE PST_NO = #{postNumber}
     </update>
 
-    <!-- PostDao에 정의된 delete메서드(글 삭제) -->
+    <select id="getPostByNo" parameterType="java.lang.Integer" resultType="com.maximum.koreaartschool.dto.PostDto">
+        SELECT PST_NO AS postNumber, WRTR AS writer, PST_TTL AS postTitle, PST_CN AS postContent, WRT_DT AS writeDate,
+               FILE_NM AS fileName, FILE_PATH AS filePath
+        FROM POST_INFO
+        WHERE PST_NO = #{postNumber}
+    </select>
+
     <delete id="postDeleteDao">
         DELETE FROM POST_INFO
         WHERE PST_NO = #{postNumber}
     </delete>
 
-    <!-- 단일 게시물 정보를 가져오는 쿼리 -->
-    <select id="getPostByNo" parameterType="java.lang.Integer" resultType="com.maximum.koreaartschool.dto.PostDto">
-        SELECT PST_NO AS postNumber, WRTR AS writer, PST_TTL AS postTitle, PST_CN AS postContent, WRT_DT AS writeDate, FILE_NM AS fileNm
-        FROM POST_INFO
-        WHERE PST_NO = #{postNumber}
-    </select>
 
 </mapper>
