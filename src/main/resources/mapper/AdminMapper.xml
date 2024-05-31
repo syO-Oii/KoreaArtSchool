@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.maximum.koreaartschool.dao.AdminMapper">
+
+    <select id="selectRecruitment" resultType="com.maximum.koreaartschool.dto.RecruitmentInformation">
+        SELECT
+            r.MTCLTN_YD_CD,
+            r.YEAR_CD,
+            r.DEPT_CD,
+            r.RCRT_CD,
+            ss.BGNG_YMD,
+            ss.END_YMD,
+            es.EVL_STG_NM,
+            es.EVL_STG_NO,
+            es.RCRT_NO,
+            es.PRGR
+        FROM
+            RCRT r
+                INNER JOIN RCRT_SCHDL ss ON r.RCRT_NO = ss.RCRT_NO
+                INNER JOIN EVALUATE_STAGE es ON r.RCRT_NO = es.RCRT_NO AND ss.EVL_STG_CD = es.EVL_STG_CD
+        WHERE r.MTCLTN_YD_CD=#{mtcltn_yd_cd} AND r.DEPT_CD=#{dept_cd} AND r.RCRT_CD=#{rcrt_cd};
+    </select>
+
+    <select id="selectStgEvaluator" resultType="com.maximum.koreaartschool.dto.StageEvaluator">
+        SELECT *
+        FROM
+            STAGE_EVALUATOR
+        WHERE EVL_STG_NO=#{evl_stg_no} AND RCRT_NO=#{rcrt_no};
+    </select>
+
+</mapper>

@@ -314,6 +314,7 @@
 
 						<!-- 옵션 선택 Form -->
 						<form method="get" action="/evaluator/selectOption">
+							<input type="hidden" name="currentUrl" value="/evl_document">
 							<input type="hidden" name="evaluateStage" value="10">
 							<div class="row mb-3">
 								<!-- 학과 선택 리스트 -->
@@ -366,17 +367,17 @@
 
 							<table class="table">
 								<thead>
-									<tr>
-										<td>선택</td>
-										<td>이름</td>
-										<td>학과</td>
-										<td>지원서조회</td>
-										<td>제출서류조회</td>
-										<td>문항1번</td>
-										<td>문항2번</td>
-										<td>합계</td>
-										<td>평가여부</td>
-									</tr>
+								<tr>
+									<td>선택</td>
+									<td>이름</td>
+									<td>학과</td>
+									<td>지원서조회</td>
+									<td>제출서류조회</td>
+									<td>문항1번</td>
+									<td>문항2번</td>
+									<td>합계</td>
+									<td>평가여부</td>
+								</tr>
 								</thead>
 								<tbody>
 								<c:forEach var="evaluateApplicantScore" items="${evaluateApplicantScore}" varStatus="loop">

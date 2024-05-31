@@ -21,7 +21,7 @@ public interface StageApplicantMapper3 {
     void updateStageApplicantAll(@Param("rcrtNo") int rcrtNo);
     void updateApplicant(@Param("rcrtNo") int rcrtNo,@Param("rcrtPscp") int rcrtPscp);
     void updateRcrtApplicant(@Param("rcrtNo") int rcrtNo);
-    void dropTopCandidatesTable();
+    void dropTopCandidatesTable(); // 임시 테이블 삭제 쿼리
 
 
 

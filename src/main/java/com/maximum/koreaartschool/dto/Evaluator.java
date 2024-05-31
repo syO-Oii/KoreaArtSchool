@@ -22,7 +22,7 @@ public class Evaluator {
 	@NonNull private String evl_ogdp;
 	@NonNull private String addr;
 	@NonNull private String addr_detail;
-	@NonNull private char evl_brdt;
+	@NonNull private String evl_brdt;
 	@NonNull private BigDecimal slry;
 	@NonNull private String evl_img;
 	@NonNull private String bank_nm;

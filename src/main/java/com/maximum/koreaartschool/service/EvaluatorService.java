@@ -26,40 +26,51 @@ public class EvaluatorService {
         return evaluatorMapper.findApplicants(departmentId, recruitmentId, stageId);
     }
 
+    public List<Evaluator> getEvaluatorsBySelect(String departmentId, String is_selected) {
+        if (departmentId == null && is_selected == null) {
+            return evaluatorMapper.selectAllEvaluator();
+        } else if (departmentId == null) {
+            return evaluatorMapper.findByIsSelected(is_selected);
+        } else if (is_selected == null) {
+            return evaluatorMapper.findByDepartmentId(departmentId);
+        } else {
+            return evaluatorMapper.findByDepartmentIdAndIsSelected(departmentId, is_selected);
+        }
+    }
+
+    public void deleteEvaluator(int evl_no) {
+        evaluatorMapper.deleteEvaluator(evl_no);
+    }
+
+    public void insertEvaluator(Evaluator evaluator) {
+        evaluatorMapper.insertEvaluator(evaluator);
+    }
+
+    public void updateEvaluator(Evaluator evaluator) {
+        evaluatorMapper.updateEvaluator(evaluator);
+    }
+
+
+
     @Transactional
     public List<ViewApplicantEvaluate> getEvaluatorApplicants(int evlNo, int evlStgCd){
         return evaluatorMapper.selectEvaluatorApplicants(evlNo, evlStgCd);
     }
 
     @Transactional
-    public List<ViewApplicantEvaluate> getApplicantByDeptno(int deptNo){
-        return evaluatorMapper.selectApplicantByDeptno(deptNo);
+    public List<ViewApplicantEvaluate> getApplicantByDeptno(int evlNo, int evlStgCd, int deptNo){
+        return evaluatorMapper.selectApplicantByDeptno(evlNo, evlStgCd, deptNo);
     }
-
-    /*@Transactional
-    public List<ViewApplicantEvaluate> getTestApplicantByDeptno(int deptNo){
-        return evaluatorMapper.selectTestApplicantByDeptno(deptNo);
-    }*/
 
     @Transactional
-    public List<ViewApplicantEvaluate> getApplicantByRcrtNo(int rcrtNo){
-        return evaluatorMapper.selectApplicantByRcrtNo(rcrtNo);
+    public List<ViewApplicantEvaluate> getApplicantByRcrtNo(int evlNo, int evlStgCd, int rcrtNo){
+        return evaluatorMapper.selectApplicantByRcrtNo(evlNo, evlStgCd, rcrtNo);
     }
-
-    /*@Transactional
-    public List<ViewApplicantEvaluate> getTestApplicantByRcrtNo(int rcrtNo){
-        return evaluatorMapper.selectTestApplicantByRcrtNo(rcrtNo);
-    }*/
 
     @Transactional
-    public List<ViewApplicantEvaluate> getApplicantByOptions(int deptNo, int rcrtNo){
-        return evaluatorMapper.selectApplicantByOptions(deptNo, rcrtNo);
+    public List<ViewApplicantEvaluate> getApplicantByOptions(int evlNo, int evlStgCd, int deptNo, int rcrtNo){
+        return evaluatorMapper.selectApplicantByOptions(evlNo, evlStgCd, deptNo, rcrtNo);
     }
-
-   /* @Transactional
-    public List<ViewApplicantEvaluate> getTestApplicantByOptions(int deptNo, int rcrtNo){
-        return evaluatorMapper.selectTestApplicantByOptions(deptNo, rcrtNo);
-    }*/
 
     @Transactional
     public void updateEvaluateScoreSum(){

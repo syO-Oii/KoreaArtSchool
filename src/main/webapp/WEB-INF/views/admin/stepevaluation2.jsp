@@ -86,7 +86,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
+            <span class="d-none d-lg-block">Korea Art School</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -283,102 +283,82 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-grid"></i>
+                <span>공통코드관리</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-grid"></i>
+                <span>공지사항관리</span>
+            </a>
+        </li><!-- End Components Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#">
+                <i class="bi bi-journal-text"></i>
+                <span>입학모집관리</span>
+            </a>
+        </li><!-- End Forms Nav -->
+
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="/admin/evaluator_info">
-                <i class="bi bi-grid"></i>
+                <i class="bi bi-journal-text"></i>
                 <span>평가위원 정보관리</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
+
         <li class="nav-item">
-            <a class="nav-link " href="/admin/evaluator_selection">
+            <a class="nav-link collapsed" href="/admin/evaluator_selection">
                 <i class="bi bi-menu-button-wide"></i>
                 <span>평가위원 선정</span>
             </a>
         </li><!-- End Components Nav -->
 
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#">
-                <i class="bi bi-journal-text"></i>
-                <span>Forms</span>
+                <i class="bi bi-menu-button-wide"></i>
+                <span>평가위원별 지원자 선정</span>
             </a>
-        </li><!-- End Forms Nav -->
+        </li><!-- End Components Nav -->
+
 
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-layout-text-window-reverse"></i><span>평가 단계 및 합격자 조회</span><i
-                    class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link  data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-layout-text-window-reverse"></i><span>평가관리 및 조회</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <ul id="charts-nav" class="nav-content " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="/admin/stepevaluation1">
-                        <i class="bi bi-circle"></i><span>서류 평가</span>
+                    <a href="/admin/stepevaluation1" >
+                        <i class="bi bi-circle"></i><span>서류평가</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/stepevaluation2">
-                        <i class="bi bi-circle"></i><span>면접 평가</span>
+                    <a href="/admin/stepevaluation2" class="active">
+                        <i class="bi bi-circle"></i><span>실기평가</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/stepevaluation3">
-                        <i class="bi bi-circle"></i><span>최종 평가 및 합격자 명단</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Tables Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="charts-chartjs.html">
-                        <i class="bi bi-circle"></i><span>Chart.js</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="charts-apexcharts.html">
-                        <i class="bi bi-circle"></i><span>ApexCharts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="charts-echarts.html">
-                        <i class="bi bi-circle"></i><span>ECharts</span>
+                    <a href="/admin/stepevaluation3
+">
+                        <i class="bi bi-circle"></i><span>최종평가</span>
                     </a>
                 </li>
             </ul>
         </li><!-- End Charts Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="icons-bootstrap.html">
-                        <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-remix.html">
-                        <i class="bi bi-circle"></i><span>Remix Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-boxicons.html">
-                        <i class="bi bi-circle"></i><span>Boxicons</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Icons Nav -->
-
     </ul>
 
 </aside><!-- End Sidebar-->
-
-
 
 <main id="main" class="main">
 
@@ -387,6 +367,8 @@
             <div class="col-lg-12">
 
                 <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
                         <!-- General Form Elements -->
                         <form action="/admin/stepevaluation2" method="post">
                             <div class="row mb-3">
@@ -409,7 +391,13 @@
                                         <option value="30">음악</option>
                                     </select>
                                 </div>
+                                <div class="col-sm-2">
+                                    <button id="getAppliantButton" class="btn btn-primary" type="submit" >조회</button>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label class="col-sm-1 col-form-label">학과 선택</label>
+
                                 <div class="col-sm-2">
                                     <select id="deptCd" name="deptCd" class="form-select" aria-label="Default select example">
                                         <option selected>선택해주세요</option>
@@ -429,21 +417,18 @@
                                         <option value="20">특기생전형</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2">
-                                    <button id="getAppliantButton" class="btn btn-primary" type="submit">조회</button>
-                                </div>
 
                             </div>
-
                         </form><!-- End General Form Elements -->
-                    <div class="col-sm-2">
-                        <button id="executeEvaluationButton" class="btn btn-primary" onclick="executeEvaluation()">평가 실행</button>
-                    </div>
+                        <div class="col-sm-2">
+                            <button id="executeEvaluationButton" class="btn btn-primary" onclick="executeEvaluation()">평가 실행</button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-lg-12">
+        <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
 
@@ -470,7 +455,7 @@
                                     <td>${stageApplicant.aplNm}</td>
                                     <td>${stageApplicant.gndrNm}</td>
                                     <td>${stageApplicant.score}</td>
-                                    <td>${stageApplicant.evlRank}</td>
+                                    <td class="rankData" style="visibility: hidden;">${stageApplicant.evlRank}</td>
                                     <!-- 각 지원자의 합격 여부를 나타내는 토글 버튼 -->
                                     <td class="pass-toggle">
                                         <div class="toggle-btn ${stageApplicant.secondPassYn eq 'Y' ? 'active' : 'inactive'}"
@@ -526,6 +511,14 @@
 <script>
     // 실행 버튼 클릭 시 평가 실행
     function executeEvaluation() {
+        function showRank() {
+            const rankDataElements = document.querySelectorAll('.rankData');
+            rankDataElements.forEach(element => {
+                element.style.visibility = 'visible';
+            });
+        }
+
+
         // 테이블에서 첫 번째 행을 선택하고 그 안의 td 요소를 찾아서 해당 값(rcrtNo 및 rcrtPscp)을 가져옴
         var firstRow = document.querySelector('table tbody tr:first-child');
         var rcrtNo = firstRow.querySelector('td:nth-child(1)').textContent;
@@ -544,7 +537,7 @@
         xhr.onreadystatechange = function() {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 alert("평가가 성공적으로 실행되었습니다.");
-                location.reload(); // 평가 실행 후 페이지 새로고침
+                showRank(); // 평가 실행 후 숨겨진 요소를 표시
             }
         };
         // rcrtNo와 rcrtPscp를 데이터로 전송
