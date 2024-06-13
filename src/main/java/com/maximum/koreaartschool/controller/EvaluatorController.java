@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.ArrayList;
@@ -61,7 +62,6 @@ public class EvaluatorController {
     // 서류평가 초기화면, (평가위원에게 속한) 전체 지원자 명단 조회
     @GetMapping("/evl_document")
     public String evlDocument(Model model) {
-        evlNo = 1;      // 심사위원 1번이라고 가정한 더미데이터
         evlStgCd = 10;  // 서류심사단계, 각 단계마다 이 변수 값을 넣어줘야함
         List<ViewApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo, evlStgCd);     // 전체 지원자 명단 추출
         List<EvaluateScore> existingScores = evaluatorService.getScoresByEvaluator(evlNo);                  // 점수 추출
@@ -78,6 +78,7 @@ public class EvaluatorController {
             @RequestParam(value = "evaluateStage", required = false) String evaluateStage,
             @RequestParam(value = "currentUrl", required = false) String currentUrl
     ) {
+        int evlNo = 1;
 
         int deptNum = Integer.parseInt(department);
         int rcrtNum = Integer.parseInt(recruitment);
@@ -115,7 +116,8 @@ public class EvaluatorController {
             @RequestParam("applicantCount") int applicantCount,
             @RequestParam Map<String, String> allParams,
             @RequestParam(value = "evaluateStage", required = false) String evaluateStage,
-            HttpServletRequest request) {
+            HttpServletRequest request,
+            RedirectAttributes redirectAttributes) {
 
         // 평가 단계 불러오기
         evlStgCd = Integer.parseInt(evaluateStage);
@@ -145,6 +147,9 @@ public class EvaluatorController {
         List<ViewApplicantEvaluate> asEvaluatorApplicants = evaluatorService.getEvaluatorApplicants(evlNo, evlStgCd);
         model.addAttribute("evaluateApplicantScore", asEvaluatorApplicants);
         evaluatorService.updateEvaluateScoreSum();  // 합계 점수 테이블에 업로드
+
+        // Add success message to redirect attributes
+        redirectAttributes.addFlashAttribute("successMessage", "저장이 완료되었습니다");
 
         // 이전 요청의 URL 가져오기
         String referer = request.getHeader("Referer");

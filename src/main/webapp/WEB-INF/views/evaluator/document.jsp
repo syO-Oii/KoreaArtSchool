@@ -375,7 +375,7 @@
 								<h5 class="card-title">Applicant Information</h5>
 								<!-- 저장버튼 -->
 								<div class="col-mb-2">
-									<input type="submit" class="btn btn-primary" value="저장">
+									<input type="submit" class="btn btn-primary" value="저장" onclick="showAlert()">
 								</div>
 							</div>
 							<table class="table">
@@ -522,15 +522,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 <script>
-	window.onload = function() {
+	window.onload = function () {
 		// 페이지가 로드될 때 모든 입력란의 합계를 계산
 		var inputElements = document.querySelectorAll('input[type="number"]');
-		inputElements.forEach(function(inputElement) {
+		inputElements.forEach(function (inputElement) {
 			// 인덱스 가져오기
 			var index = inputElement.id.split('_')[1];
 			calculateTotal(index);
 		});
 	};
+
 	function calculateTotal(index) {
 		var score1Input = document.getElementById('score1_' + index);
 		var score2Input = document.getElementById('score2_' + index);
@@ -566,7 +567,7 @@
 	}
 
 	// 페이지가 로드될 때 실행
-	$(document).ready(function() {
+	$(document).ready(function () {
 		// 총 학생 수
 		var totalStudents = ${fn:length(evaluateApplicantScore)};
 		// 페이지당 학생 수
@@ -584,6 +585,14 @@
 	function changePage(pageNumber) {
 		// 선택한 페이지에 해당하는 학생들을 보여줄 수 있도록 서버에 요청하고, 페이지 업데이트
 		// 여기에 필요한 AJAX 요청 등을 추가하세요.
+	}
+
+	function showAlert() {
+		// successMessage가 존재하면 알람을 띄운다.
+		let successMessage = '<%= (request.getAttribute("successMessage") != null) ? request.getAttribute("successMessage") : "" %>';
+		if (successMessage !== '') {
+			alert(successMessage);
+		}
 	}
 
 

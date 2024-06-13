@@ -95,6 +95,7 @@
                 AND DAE.APL_NO = ES.APL_NO
         WHERE
             DAE.EVL_STG_CD = #{evlStgCd}
+        AND DAE.EVL_NO = #{evlNo}
         GROUP BY
             DAE.EVL_STG_NO,
             DAE.RCRT_NO,
@@ -139,6 +140,7 @@
             DAE.EVL_STG_CD = #{evlStgCd}
             AND DAE.EVL_STG_CD = #{evlStgCd}
             AND DAE.DEPT_CD = #{deptNo}
+            AND DAE.EVL_NO = #{evlNo}
         GROUP BY
             DAE.EVL_STG_NO,
             DAE.RCRT_NO,
@@ -183,6 +185,7 @@
             DAE.EVL_STG_CD = #{evlStgCd}
           AND DAE.EVL_STG_CD = #{evlStgCd}
           AND DAE.RCRT_CD = #{rcrt}
+          AND DAE.EVL_NO = #{evlNo}
         GROUP BY
             DAE.EVL_STG_NO,
             DAE.RCRT_NO,
@@ -228,6 +231,7 @@
           AND DAE.EVL_STG_CD = #{evlStgCd}
           AND DAE.DEPT_CD = #{deptNo}
           AND DAE.RCRT_CD = #{rcrt}
+          AND DAE.EVL_NO = #{evlNo}
         GROUP BY
             DAE.EVL_STG_NO,
             DAE.RCRT_NO,
