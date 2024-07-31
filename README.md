@@ -1,8 +1,5 @@
 # 📖 한국예술학교 입학지원 시스템
 
-## 개요
-설명
-
 ## 🗓️프로젝트 기간
 * 2024년 04월 25일 ~ 2024년 05월 29일
 
@@ -10,10 +7,6 @@
 ![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/aa81eb5b-2bfd-4de1-bdd0-b496aeeaff46)
 
 ![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/62daa3f5-be0f-4e6b-baf0-f875dd1dd2a7)
-
-
-## 성과
-무사히 잘 만들었다!!
 
 ## 🛠️개발 환경
 * IDE : IntelliJ IDEA
@@ -23,22 +16,29 @@
 ## ✒️개발 언어
 #### [Back-End]
  * Java 17
- * Spring Boot : ~ 구현
- * MyBatis
- * MySQL(Oracle) : ~ 데이터 저장
+ * Spring Boot 3.2.5
+ * MyBatis 3.0.3
+ * MySQL 8.0.36
 
 #### [Front-End]
  * HTML
  * CSS
  * Javascript
- * Bootstrap
+ * Bootstrap 5.3.3
  * JSP
  * Thymeleaf
+
+#### [Cloud]
+ * AWS RDS
+
+#### [Server]
+ * Apachi Tomcat 10.1.20
 
 #### [TEAM 협업도구]
  * Github
  * Google Drive
- * ...
+ * Figma
+ * ERD Cloud
 
 ## 메뉴트리
 ![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/9100ec9f-83cf-4433-b415-fc392577c11a)
@@ -64,5 +64,3 @@
 ![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/6ff97f54-7188-489d-9abf-a571e05e9053)
 
 
-
-## 라이센스
