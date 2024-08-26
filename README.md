@@ -1,7 +1,11 @@
-# 📖 한국예술학교 입학지원 시스템
+![image](https://github.com/user-attachments/assets/81a7f99e-6294-4db5-bc1b-ef042247f703)# 📖 한국예술학교 입학지원 시스템
 
 ## 개요
-설명
+대학 정보화시스템 구축을 전문으로 하는 ㈜위지언과 함께 기업 프로젝트를 진행하게 되었고 저희는 입학관리시스템을 주제로 선택했습니다.
+
+어떤 입학관리시스템을 구축할까? 모색하던 중 한국예술종합학교에서 아이디어를 얻어 ‘한국예술학교’ (Korea Art School) 라는 타이틀로 
+예술 전문 교육기관 입학관리시스템 웹사이트 구축 프로젝트를 진행하게 되었습니다.
+
 
 ## 🗓️프로젝트 기간
 * 2024년 04월 25일 ~ 2024년 05월 29일 (1개월 5일)
@@ -11,18 +15,11 @@
 
 ![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/62daa3f5-be0f-4e6b-baf0-f875dd1dd2a7)
 
-
 ## 🛠️개발 환경
-* IDE : IntelliJ IDEA
-* Database : MySQL 8.0.36
-* Infra : AMAZON RDS
-
-## ✒️개발 언어
 #### [Back-End]
  * Java 17
- * Spring Boot
- * MyBatis
- * MySQL(Oracle)
+ * Spring Boot 3.2.5
+ * MyBatis 
 
 #### [Front-End]
  * HTML
@@ -32,10 +29,19 @@
  * JSP
  * Thymeleaf
 
+#### [DB]
+ * MySQL 8.0.36
+
+#### [Infra]
+ * AMAZON RDS
+
 #### [TEAM 협업도구]
  * Github
  * Google Drive
  * Figma
+
+#### [IDE]
+ * IntelliJ IDEA
 
 ## 메뉴트리
 ![image](https://github.com/syO-Oii/KoreaArtSchool/assets/149779282/9100ec9f-83cf-4433-b415-fc392577c11a)
@@ -50,11 +56,17 @@
 
 
 ## 주요 기능
+![지원자](https://github.com/user-attachments/assets/c2f2b3f5-0baf-4585-b4fc-f7a1f92f4ddf)
+![입학사정관](https://github.com/user-attachments/assets/453011b5-db24-46fc-a90c-57d6899f4c48)
+![관리자](https://github.com/user-attachments/assets/ad9dc9aa-b819-4ad7-8687-0dc6278f7b7c)
 
 ## 실행 화면
-내용
-### 1. A 기능
-### 2. B 기능
+#### 1. 지원서 접수
+
+
+https://github.com/user-attachments/assets/52544545-93b6-455b-9df5-9dcabb6aef63
+
+
 
 
 ## 팀원
