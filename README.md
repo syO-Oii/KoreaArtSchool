@@ -70,13 +70,9 @@ https://github.com/user-attachments/assets/4115d9c3-de97-4c71-97fe-12aa2eb71382
 #### 4. 지원 여부 및 합격 여부 확인
 https://github.com/user-attachments/assets/04a2a64a-43a8-44e6-97cb-3d73c0390abe
 #### 5. 공통코드 관리
-
-#### 6. 
-
-
-
-
-
+https://github.com/user-attachments/assets/bcc7a562-2bce-41a6-a39f-61d9585f6f45
+#### 6. 공지사항 관리
+https://github.com/user-attachments/assets/576b1eb5-9d06-462e-8419-285c8568faa1
 
 
 ## 팀원
