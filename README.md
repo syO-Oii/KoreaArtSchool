@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/81a7f99e-6294-4db5-bc1b-ef042247f703)# 📖 한국예술학교 입학지원 시스템
+# 📖 한국예술학교 입학지원 시스템
 
 ## 개요
 대학 정보화시스템 구축을 전문으로 하는 ㈜위지언과 함께 기업 프로젝트를 진행하게 되었고 저희는 입학관리시스템을 주제로 선택했습니다.
@@ -62,8 +62,6 @@
 
 ## 실행 화면
 #### 1. 지원서 접수
-
-
 https://github.com/user-attachments/assets/52544545-93b6-455b-9df5-9dcabb6aef63
 
 
