@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximum.koreaartschool.dao.ApplicantMapper">
+
+    <insert id="insertApplicantStepOne" parameterType="com.maximum.koreaartschool.dto.ApplicantDto">
+        INSERT INTO `APPLICANT` (`RCRT_NO`, `DEPT`, `DEPT_CD`, `RCRT_CD`, `YEAR_CD`, `FIRST_PASS_YN`,
+                                 `SECOND_PASS_YN`, `FINAL_PASS_YN`, `PSWD`, `APL_NM`, `APL_BRDT`,
+                                 `GNDR_CD`, `ADDR`, `ADDR_DETAIL`, `APL_EML`, `APL_TEL`, `LAST_ACBG`,
+                                 `APL_IMG`)
+        VALUES
+            (NULL, NULL, NULL, NULL, NULL,'N', 'N', 'N', #{pswd}, #{aplName}, #{aplBirthDay},
+             #{gndrCode}, #{address}, #{addressDetail}, #{aplEmail}, #{aplTelNumber}, #{lastAcbg},
+             #{saveName})
+    </insert>
+
+    <select id="findAplNoByEmailAndPassword" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT `APL_NO` AS `aplNo`
+        FROM `APPLICANT`
+        WHERE `APL_EML` = #{aplEmail} AND `PSWD` = #{pswd}
+    </select>
+
+    <update id="updateApplicantStepTwo" parameterType="com.maximum.koreaartschool.dto.ApplicantDto">
+        UPDATE APPLICANT
+        SET RCRT_NO = ${rcrtNo},
+            DEPT = #{dept},
+            DEPT_CD = #{deptCode},
+            RCRT_CD = #{rcrtCode},
+            YEAR_CD = 40
+        WHERE `APL_NO` = #{aplNo}
+    </update>
+
+    <insert id="insertApplyIntro" parameterType="com.maximum.koreaartschool.dto.ApplyIntroDto">
+        INSERT INTO APLY_INTRO (APL_NO, RCRT_INTR_NO, EVLQ_NO, RCRT_NO, QITEM_ANS )
+        VALUES
+            (#{aplNo}, 0, 0, ${rcrtNo}, #{qitemAns1}),
+            (#{aplNo}, 0, 0, ${rcrtNo}, #{qitemAns2})
+    </insert>
+
+    <insert id="insertApplyFile" parameterType="com.maximum.koreaartschool.dto.ApplyFileDto">
+        INSERT INTO APLY_FILE (APL_NO, DCM_NM)
+        VALUES (#{aplNo}, #{saveName})
+    </insert>
+
+    <select id="checkEmailDuplicate" resultType="int">
+        SELECT COUNT(*)
+        FROM APPLICANT
+        WHERE `APL_EML` = #{aplEmail}
+    </select>
+
+    <delete id="deleteApplicantStepOne">
+        DELETE FROM APPLICANT
+        WHERE APL_EML = #{aplEmail}
+    </delete>
+</mapper>
+

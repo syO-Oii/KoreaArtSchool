@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.maximum.koreaartschool.repository.StageApplicantMapper3">
+
+	<select id="selectStageApplicant" resultType="com.maximum.koreaartschool.model.StageApplicant" >
+		SELECT SA.APL_NO,SA.APL_NM, SA.GNDR_CD, ES.SCORE, SA.EVL_RANK,A.FINAL_PASS_YN,SA.RCRT_NO,get_korean_common_code('CD0001', SA.GNDR_CD) AS gndr_nm, RA.RCRT_PSCP
+		FROM APPLICANT A INNER JOIN STAGE_APPLICANT SA ON A.APL_NO= SA.APL_NO
+						 INNER JOIN EVALUATE_SCORE ES ON A.APL_NO =ES.APL_NO
+						 INNER JOIN RCRT_APPLICANT RA ON A.RCRT_NO=RA.RCRT_NO
+		WHERE A.DEPT =#{dept} AND A.DEPT_CD = #{deptCd} AND A.RCRT_CD = #{rcrtCd} AND A.YEAR_CD = #{yearCd} AND A.FIRST_PASS_YN = 'Y' AND A.SECOND_PASS_YN = 'Y' AND ES.EVL_STG_CD = 30
+		order by SA.EVL_RANK ASC
+	</select>
+
+	<select id="stageApplicantCount" resultType="int" >
+		select count(EVL_STG_NO)
+		from STAGE_APPLICANT
+	</select>
+
+	<update id="passUpdate" parameterType="com.maximum.koreaartschool.model.StageApplicant">
+		update APPLICANT
+		set FINAL_PASS_YN = #{finalPassYn}
+		where APL_NO = #{aplNo};
+	</update>
+
+
+	<!-- 임시 테이블 생성 -->
+	<select id="createTopCandidatesTable" parameterType="com.maximum.koreaartschool.model.StageApplicant">
+		CREATE TEMPORARY TABLE IF NOT EXISTS TopCandidates AS
+		SELECT
+			APL_NO,
+			SCORE,
+			RANK() OVER (ORDER BY SCORE DESC) AS EVL_RANK
+		FROM
+			EVALUATE_SCORE
+		WHERE
+			EVL_STG_CD = 30 AND RCRT_NO = #{rcrtNo}
+	</select>
+
+	<!-- 상위 3명만 STAGE_APPLICANT 업데이트 -->
+	<update id="updateStageApplicant" parameterType="com.maximum.koreaartschool.model.StageApplicant">
+		UPDATE STAGE_APPLICANT SA
+			JOIN (
+			SELECT APL_NO, SCORE, EVL_RANK
+			FROM TopCandidates
+			ORDER BY EVL_RANK
+			LIMIT #{rcrtPscp}
+			) TC ON SA.APL_NO = TC.APL_NO
+			SET
+				SA.PASS_YN = 'Y',
+				SA.EVL_RANK = TC.EVL_RANK,
+				SA.SCORE = TC.SCORE
+		WHERE
+			SA.EVL_STG_CD = 30 AND SA.RCRT_NO = #{rcrtNo}
+	</update>
+
+	<!-- 나머지 STAGE_APPLICANT 업데이트 -->
+	<update id="updateStageApplicantAll" parameterType="com.maximum.koreaartschool.model.StageApplicant">
+		UPDATE STAGE_APPLICANT SA
+			LEFT JOIN TopCandidates TC ON SA.APL_NO = TC.APL_NO
+			SET
+				SA.EVL_RANK = TC.EVL_RANK,
+				SA.SCORE = TC.SCORE
+		WHERE
+			SA.EVL_STG_CD = 30 AND SA.RCRT_NO = #{rcrtNo}
+	</update>
+
+
+
+	<!-- APPLICANT 업데이트 -->
+	<update id="updateApplicant" parameterType="com.maximum.koreaartschool.model.StageApplicant">
+		UPDATE APPLICANT A
+			JOIN (
+			SELECT APL_NO
+			FROM TopCandidates
+			ORDER BY EVL_RANK
+			LIMIT #{rcrtPscp}
+			) AS TopThree ON A.APL_NO = TopThree.APL_NO
+			SET A.FINAL_PASS_YN = 'Y'
+		WHERE A.RCRT_NO = #{rcrtNo};
+	</update>
+
+
+	<!-- RCRT_APPLICANT 업데이트 -->
+	<update id="updateRcrtApplicant" parameterType="com.maximum.koreaartschool.model.StageApplicant">
+		UPDATE RCRT_APPLICANT
+		SET SELECT_PSCP = (
+			SELECT COUNT(apl_no)
+			FROM APPLICANT
+			WHERE FINAL_PASS_YN = 'Y' AND RCRT_NO = #{rcrtNo}
+		)
+		WHERE RCRT_NO = #{rcrtNo}
+	</update>
+
+	<!-- 임시 테이블 삭제 -->
+	<select id="dropTopCandidatesTable" statementType="STATEMENT">
+		DROP TEMPORARY TABLE IF EXISTS TopCandidates
+	</select>
+
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.maximum.koreaartschool.dao.EvaluatorMapper">
+    <select id="selectAllApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantProcess">
+        SELECT sa.APL_NM, sa.GNDR_CD, sa.APL_BRDT, sa.DEPT_CD, sa.RCRT_CD, sa.EVL_STG_CD,
+               ae.IS_EVALUATED, ae.SCORE
+        FROM STAGE_APPLICANT sa
+                 INNER JOIN APPLICANT_EVALUATE ae ON sa.EVL_STG_NO = ae.EVL_STG_NO
+            AND sa.RCRT_NO = ae.RCRT_NO
+            AND sa.APL_NO = ae.APL_NO
+    </select>
+
+    <select id="findApplicants" resultType="com.maximum.koreaartschool.dto.ApplicantProcess">
+        SELECT sa.APL_NM, sa.GNDR_CD, sa.APL_BRDT, sa.DEPT_CD, sa.RCRT_CD, sa.EVL_STG_CD,
+               ae.IS_EVALUATED, ae.SCORE
+        FROM STAGE_APPLICANT sa
+                 INNER JOIN APPLICANT_EVALUATE ae ON sa.EVL_STG_NO = ae.EVL_STG_NO
+            AND sa.RCRT_NO = ae.RCRT_NO
+            AND sa.APL_NO = ae.APL_NO
+        WHERE sa.DEPT_CD=#{departmentId} AND sa.RCRT_CD=#{recruitmentId} AND sa.EVL_STG_CD=#{stageId};
+    </select>
+
+    <select id="findByIsSelected" resultType="com.maximum.koreaartschool.dto.Evaluator">
+        SELECT *
+        FROM EVALUATOR
+        WHERE IS_SELECTED=#{is_selected};
+    </select>
+
+    <select id="findByDepartmentId" resultType="com.maximum.koreaartschool.dto.Evaluator">
+        SELECT *
+        FROM EVALUATOR
+        WHERE DEPT_CD=#{departmentId};
+    </select>
+
+    <select id="findByDepartmentIdAndIsSelected" resultType="com.maximum.koreaartschool.dto.Evaluator">
+        SELECT *
+        FROM EVALUATOR
+        WHERE DEPT_CD=#{departmentId} AND IS_SELECTED=#{is_selected};
+    </select>
+
+    <update id="updateEvaluator" parameterType="com.maximum.koreaartschool.dto.Evaluator">
+        UPDATE EVALUATOR
+        SET evl_nm = #{evl_nm},
+            dept_cd = #{dept_cd},
+            evl_ogdp = #{evl_ogdp},
+            evl_eml = #{evl_eml},
+            is_selected = #{is_selected},
+            evl_tel = #{evl_tel},
+            addr = #{addr},
+            addr_detail = #{addr_detail},
+            bank_nm = #{bank_nm},
+            act_no = #{act_no},
+            slry = #{slry}
+        WHERE evl_no = #{evl_no}
+    </update>
+
+    <delete id="deleteEvaluator">
+        DELETE FROM EVALUATOR WHERE evl_no = #{evl_no}
+    </delete>
+
+    <insert id="insertEvaluator" parameterType="com.maximum.koreaartschool.dto.Evaluator">
+        INSERT INTO EVALUATOR (evl_nm, gndr_cd, evl_brdt, dept_cd, evl_ogdp, evl_eml, is_selected, evl_tel, addr, addr_detail, bank_nm, act_no, slry)
+        VALUES (#{evl_nm}, #{gndr_cd}, #{evl_brdt}, #{dept_cd}, #{evl_ogdp}, #{evl_eml}, #{is_selected}, #{evl_tel}, #{addr}, #{addr_detail}, #{bank_nm}, #{act_no}, #{slry})
+    </insert>
+
+    <select id="selectEvaluatorApplicants" resultType="com.maximum.koreaartschool.dto.ViewApplicantEvaluate">
+        SELECT
+            DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 1
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE1,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 2
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE2,
+            (SELECT COALESCE(SUM(SCORE), 0)
+             FROM EVALUATE_SCORE
+             WHERE evlq_no IN (1, 2)
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD) AS SCORE,
+            DAE.EVL_RANK, DAE.IS_EVALUATED, DAE.EVL_STG_CD, DAE.RCRT_CD, DAE.DEPT_CD
+        FROM
+            APPLICANT_EVALUATE AS DAE
+                LEFT JOIN
+            EVALUATE_SCORE AS ES
+            ON DAE.EVL_STG_CD = ES.EVL_STG_CD
+                AND DAE.APL_NO = ES.APL_NO
+        WHERE
+            DAE.EVL_STG_CD = #{evlStgCd}
+        GROUP BY
+            DAE.EVL_STG_NO,
+            DAE.RCRT_NO,
+            DAE.EVL_NO,
+            DAE.APL_NO,
+            DAE.APL_NM,
+            DAE.EVL_RANK,
+            DAE.IS_EVALUATED,
+            DAE.EVL_STG_CD,
+            DAE.RCRT_CD,
+            DAE.DEPT_CD;
+    </select>
+
+    <select id="selectApplicantByDeptno" resultType="com.maximum.koreaartschool.dto.ViewApplicantEvaluate">
+        SELECT
+            DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 1
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE1,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 2
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE2,
+            (SELECT COALESCE(SUM(SCORE), 0)
+             FROM EVALUATE_SCORE
+             WHERE evlq_no IN (1, 2)
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD) AS SCORE,
+            DAE.EVL_RANK, DAE.IS_EVALUATED, DAE.EVL_STG_CD, DAE.RCRT_CD, DAE.DEPT_CD
+        FROM
+            APPLICANT_EVALUATE AS DAE
+                LEFT JOIN
+            EVALUATE_SCORE AS ES
+            ON DAE.EVL_STG_CD = ES.EVL_STG_CD
+                AND DAE.APL_NO = ES.APL_NO
+        WHERE
+            DAE.EVL_STG_CD = #{evlStgCd}
+            AND DAE.EVL_STG_CD = #{evlStgCd}
+            AND DAE.DEPT_CD = #{deptNo}
+        GROUP BY
+            DAE.EVL_STG_NO,
+            DAE.RCRT_NO,
+            DAE.EVL_NO,
+            DAE.APL_NO,
+            DAE.APL_NM,
+            DAE.EVL_RANK,
+            DAE.IS_EVALUATED,
+            DAE.EVL_STG_CD,
+            DAE.RCRT_CD,
+            DAE.DEPT_CD;
+    </select>
+
+    <select id="selectApplicantByRcrtNo" resultType="com.maximum.koreaartschool.dto.ViewApplicantEvaluate">
+        SELECT
+            DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 1
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE1,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 2
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE2,
+            (SELECT COALESCE(SUM(SCORE), 0)
+             FROM EVALUATE_SCORE
+             WHERE evlq_no IN (1, 2)
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD) AS SCORE,
+            DAE.EVL_RANK, DAE.IS_EVALUATED, DAE.EVL_STG_CD, DAE.RCRT_CD, DAE.DEPT_CD
+        FROM
+            APPLICANT_EVALUATE AS DAE
+                LEFT JOIN
+            EVALUATE_SCORE AS ES
+            ON DAE.EVL_STG_CD = ES.EVL_STG_CD
+                AND DAE.APL_NO = ES.APL_NO
+        WHERE
+            DAE.EVL_STG_CD = #{evlStgCd}
+          AND DAE.EVL_STG_CD = #{evlStgCd}
+          AND DAE.RCRT_CD = #{rcrt}
+        GROUP BY
+            DAE.EVL_STG_NO,
+            DAE.RCRT_NO,
+            DAE.EVL_NO,
+            DAE.APL_NO,
+            DAE.APL_NM,
+            DAE.EVL_RANK,
+            DAE.IS_EVALUATED,
+            DAE.EVL_STG_CD,
+            DAE.RCRT_CD,
+            DAE.DEPT_CD;
+    </select>
+
+    <select id="selectApplicantByOptions" resultType="com.maximum.koreaartschool.dto.ViewApplicantEvaluate">
+        SELECT
+            DAE.EVL_STG_NO, DAE.RCRT_NO, DAE.EVL_NO, DAE.APL_NO, DAE.APL_NM,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 1
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE1,
+            (SELECT SCORE
+             FROM EVALUATE_SCORE
+             WHERE evlq_no = 2
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD
+             LIMIT 1) AS SCORE2,
+            (SELECT COALESCE(SUM(SCORE), 0)
+             FROM EVALUATE_SCORE
+             WHERE evlq_no IN (1, 2)
+               AND apl_no = DAE.APL_NO
+               AND EVL_STG_CD = DAE.EVL_STG_CD) AS SCORE,
+            DAE.EVL_RANK, DAE.IS_EVALUATED, DAE.EVL_STG_CD, DAE.RCRT_CD, DAE.DEPT_CD
+        FROM
+            APPLICANT_EVALUATE AS DAE
+                LEFT JOIN
+            EVALUATE_SCORE AS ES
+            ON DAE.EVL_STG_CD = ES.EVL_STG_CD
+                AND DAE.APL_NO = ES.APL_NO
+        WHERE
+            DAE.EVL_STG_CD = #{evlStgCd}
+          AND DAE.EVL_STG_CD = #{evlStgCd}
+          AND DAE.DEPT_CD = #{deptNo}
+          AND DAE.RCRT_CD = #{rcrt}
+        GROUP BY
+            DAE.EVL_STG_NO,
+            DAE.RCRT_NO,
+            DAE.EVL_NO,
+            DAE.APL_NO,
+            DAE.APL_NM,
+            DAE.EVL_RANK,
+            DAE.IS_EVALUATED,
+            DAE.EVL_STG_CD,
+            DAE.RCRT_CD,
+            DAE.DEPT_CD;
+    </select>
+
+    <select id="updateEvaluateScoreSum" resultType="com.maximum.koreaartschool.dto.EvaluateScoreSum">
+        INSERT INTO EVALUATE_SCORE_SUM (EVL_STG_NO, EVL_STG_CD, RCRT_NO, EVL_NO, APL_NO, SCORE)
+        SELECT
+            es1.EVL_STG_NO,
+            es1.EVL_STG_CD,
+            es1.RCRT_NO,
+            es1.EVL_NO,
+            es1.APL_NO,
+            COALESCE(es1.SCORE, 0) + COALESCE(es2.SCORE, 0) AS SCORE
+        FROM
+            EVALUATE_SCORE es1
+                LEFT JOIN
+            EVALUATE_SCORE es2
+            ON
+                es1.EVL_NO = es2.EVL_NO
+                    AND es1.RCRT_NO = es2.RCRT_NO
+                    AND es1.APL_NO = es2.APL_NO
+                    AND es1.EVL_STG_CD = es2.EVL_STG_CD
+                    AND es1.EVL_STG_NO = es2.EVL_STG_NO
+                    AND es2.EVLQ_NO = 2
+        WHERE
+            es1.EVLQ_NO = 1
+        UNION
+        SELECT
+            es2.EVL_STG_NO,
+            es2.EVL_STG_CD,
+            es2.RCRT_NO,
+            es2.EVL_NO,
+            es2.APL_NO,
+            COALESCE(es1.SCORE, 0) + COALESCE(es2.SCORE, 0) AS SCORE
+        FROM
+            EVALUATE_SCORE es2
+                LEFT JOIN
+            EVALUATE_SCORE es1
+            ON
+                es1.EVL_NO = es2.EVL_NO
+                    AND es1.RCRT_NO = es2.RCRT_NO
+                    AND es1.APL_NO = es2.APL_NO
+                    AND es1.EVL_STG_CD = es2.EVL_STG_CD
+                    AND es1.EVL_STG_NO = es2.EVL_STG_NO
+                    AND es1.EVLQ_NO = 1
+        WHERE
+            es2.EVLQ_NO = 2
+        ON DUPLICATE KEY UPDATE
+            SCORE = VALUES(SCORE);
+    </select>
+
+</mapper>

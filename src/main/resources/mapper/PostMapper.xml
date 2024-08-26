@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maximum.koreaartschool.dao.PostMapper">
+
+    <resultMap id="postInfoResultMap" type="com.maximum.koreaartschool.dto.PostDto">
+        <id property="postNumber" column="PST_NO"/>
+        <result property="bbsId" column="BBS_ID"/>
+        <result property="postTitle" column="PST_TTL"/>
+        <result property="postContent" column="PST_CN"/>
+        <result property="writer" column="WRTR"/>
+        <result property="writeDate" column="WRT_DT"/>
+        <result property="fileNumber" column="FILE_NO"/>
+        <result property="deleteYn" column="DEL_YN"/>
+        <result property="adminEmail" column="ADMIN_EML"/>
+    </resultMap>
+
+    <select id="adminListDao" resultType="com.maximum.koreaartschool.dto.PostDto">
+        SELECT PST_NO AS postNumber,
+               WRTR AS writer,
+               PST_TTL AS postTitle,
+               PST_CN AS postContent,
+               WRT_DT AS writeDate,
+               FILE_NM AS fileNm,
+               DEL_YN AS delYn,
+               ADMIN_EML AS adminEml
+        FROM POST_INFO
+        WHERE BBS_ID = 1
+        ORDER BY PST_NO DESC
+    </select>
+
+    <select id="listDao" parameterType="map" resultType="com.maximum.koreaartschool.dto.PostDto">
+        SELECT PST_NO AS postNumber,
+               WRTR AS writer,
+               PST_TTL AS postTitle,
+               PST_CN AS postContent,
+               WRT_DT AS writeDate,
+               FILE_NM AS fileNm,
+               DEL_YN AS delYn,
+               ADMIN_EML AS adminEml
+        FROM POST_INFO
+        WHERE BBS_ID = 1
+        ORDER BY PST_NO DESC
+            LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <select id="countPosts" resultType="int">
+        SELECT COUNT(*) FROM POST_INFO WHERE BBS_ID = 1
+    </select>
+
+    <select id="viewDao" resultType="com.maximum.koreaartschool.dto.PostDto">
+        SELECT PST_NO AS postNumber,
+               WRTR AS writer,
+               PST_TTL AS postTitle,
+               PST_CN AS postContent,
+               WRT_DT AS writeDate,
+               FILE_NM AS fileName,
+               FILE_PATH AS filePath,
+               DEL_YN AS delYn,
+               ADMIN_EML AS adminEml
+        FROM POST_INFO
+        WHERE PST_NO = #{postNumber}
+    </select>
+
+    <insert id="postInsertDao">
+        INSERT INTO POST_INFO(BBS_ID, PST_TTL, PST_CN, WRTR, WRT_DT, FILE_NM, FILE_PATH, DEL_YN, ADMIN_EML)
+        VALUES (#{bbsId}, #{postTitle}, #{postContent}, #{writer}, DEFAULT, #{fileName}, #{filePath}, 'N', #{adminEml})
+    </insert>
+
+    <update id="postUpdateDao">
+        UPDATE POST_INFO
+        SET PST_TTL = #{postTitle},
+            PST_CN = #{postContent}
+        WHERE PST_NO = #{postNumber}
+    </update>
+
+    <select id="getPostByNo" parameterType="java.lang.Integer" resultType="com.maximum.koreaartschool.dto.PostDto">
+        SELECT PST_NO AS postNumber, WRTR AS writer, PST_TTL AS postTitle, PST_CN AS postContent, WRT_DT AS writeDate,
+               FILE_NM AS fileName, FILE_PATH AS filePath
+        FROM POST_INFO
+        WHERE PST_NO = #{postNumber}
+    </select>
+
+    <delete id="postDeleteDao">
+        DELETE FROM POST_INFO
+        WHERE PST_NO = #{postNumber}
+    </delete>
+
+
+</mapper>

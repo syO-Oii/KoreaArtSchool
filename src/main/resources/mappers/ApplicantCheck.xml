@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.maximum.koreaartschool.repository.ApplicantCheckMapper">
+
+	<select id="checkApplicant" resultType="com.maximum.koreaartschool.model.StageApplicant" >
+		SELECT APL_NM,APL_EML,get_korean_common_code('AC0002', DEPT_CD) AS DEPT_CD
+		from APPLICANT
+		where APL_NM= #{aplNm} and APL_EML = #{aplEml} and pswd = #{pswd}
+	</select>
+
+	<select id="checkResultApplicant" resultType="com.maximum.koreaartschool.model.StageApplicant" >
+		SELECT APL_NM,APL_EML,get_korean_common_code('AC0002', DEPT_CD) AS DEPT_CD
+		from APPLICANT
+		where APL_NM= #{aplNm} and APL_EML = #{aplEml} and pswd = #{pswd} and  FINAL_PASS_YN = 'Y';
+	</select>
+
+
+</mapper>

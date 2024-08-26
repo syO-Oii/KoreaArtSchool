@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.maximum.koreaartschool.repository.StageApplicantMapper">
+
+	<select id="selectStageApplicant" resultType="com.maximum.koreaartschool.model.StageApplicant" >
+		SELECT SA.APL_NO,SA.APL_NM, SA.GNDR_CD, SA.SCORE, SA.EVL_RANK,SA.PASS_YN
+		FROM APPLICANT A INNER JOIN STAGE_APPLICANT SA ON A.APL_NO= SA.APL_NO
+		WHERE A.DEPT =#{dept} AND A.DEPT_CD = #{deptCd} AND A.RCRT_CD = #{rcrtCd} AND A.APL_PW = #{aplPw};
+	</select>
+
+	<select id="stageApplicantCount" resultType="int" >
+		select count(EVL_STG_NO)
+		from STAGE_APPLICANT
+	</select>
+
+	<update id="passUpdate" parameterType="com.maximum.koreaartschool.model.StageApplicant">
+		update stage_applicant
+		set PASS_YN = #{passYn}
+		where EVL_STG_NO = #{evlStgNo};
+	</update>
+
+
+<!--	<update id="passUpdateBatch" parameterType="java.util.List">-->
+<!--		&lt;!&ndash; 여러 지원자의 정보를 한 번에 업데이트하기 위해 반복문을 사용합니다. &ndash;&gt;-->
+<!--		<foreach collection="list" item="stageApplicant" separator=";">-->
+<!--			UPDATE stage_applicant-->
+<!--			SET PASS_YN = #{stageApplicant.passYn}-->
+<!--			WHERE EVL_STG_NO = #{stageApplicant.evlStgNo}-->
+<!--		</foreach>-->
+<!--	</update>-->
+
+
+</mapper>
