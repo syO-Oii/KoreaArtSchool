@@ -63,6 +63,18 @@
 ## 실행 화면
 #### 1. 지원서 접수
 https://github.com/user-attachments/assets/52544545-93b6-455b-9df5-9dcabb6aef63
+#### 2. 평가위원 선정
+https://github.com/user-attachments/assets/901dbbb9-9db7-4b5f-9068-62ea7fbfc85e
+#### 3. 지원자 평가 및 합격 여부 처리
+https://github.com/user-attachments/assets/4115d9c3-de97-4c71-97fe-12aa2eb71382
+#### 4. 지원 여부 및 합격 여부 확인
+https://github.com/user-attachments/assets/04a2a64a-43a8-44e6-97cb-3d73c0390abe
+#### 5. 공통코드 관리
+
+#### 6. 
+
+
+
 
 
 
